@@ -31,10 +31,6 @@
 </p>
 
 <p align="center">
-  <strong>一个面向 <code>*.art.vue</code> 文件的轻量 Vue 组件画廊工具，由 <code>musea</code> CLI 驱动。</strong>
-</p>
-
-<p align="center">
   <strong> Musea 通过 <code>*.art.vue</code> 让你在一个地方管理组件示例、变体与文档，并提供简单的 CLI 工作流用于开发、构建和预览。 </strong>
 </p>
 
