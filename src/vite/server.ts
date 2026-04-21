@@ -57,7 +57,6 @@ export function museaServer(ctx: MuseaPluginContext): Connect.NextHandleFunction
       ctx,
       title: 'Musea Variant Preview',
       entryFile: paths.variantFrameEntry,
-      inlineCss: `* { padding: 0; margin: 0; }`,
     });
   });
 
@@ -67,7 +66,6 @@ export function museaServer(ctx: MuseaPluginContext): Connect.NextHandleFunction
       ctx,
       title: 'Musea Component Preview',
       entryFile: paths.componentFrameEntry,
-      inlineCss: `* { padding: 0; margin: 0; }`,
     });
   });
 

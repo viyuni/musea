@@ -17,7 +17,14 @@ export interface RenderHtmlOptions {
   inlineCss?: string;
 }
 
-export function renderHtml({ title, entryFile, cssFiles = [], inlineCss }: RenderHtmlOptions) {
+export const resetCss = `html, body { padding: 0; margin: 0; }`;
+
+export function renderHtml({
+  title,
+  entryFile,
+  cssFiles = [],
+  inlineCss = resetCss,
+}: RenderHtmlOptions) {
   return `<!doctype html>
 <html lang="en">
   <head>
