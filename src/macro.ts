@@ -22,4 +22,10 @@ declare module 'vite' {
   }
 }
 
+declare module 'vite-plus' {
+  interface UserConfig {
+    musea?: import('./types/index.ts').MuseaConfig;
+  }
+}
+
 export {};
