@@ -208,3 +208,8 @@ Musea's product direction and interaction experience are inspired by:
 - [vitejs.dev](https://vitejs.dev/)
 
 For component API docs, Musea uses [`vue-component-meta`](https://github.com/vuejs/language-tools/tree/master/packages/component-meta) to extract metadata (props, events, slots, exposed) from Vue components.
+
+## TODO List
+
+- [ ] Add a Test tab with Vitest integration
+- [ ] Add A11y tab
