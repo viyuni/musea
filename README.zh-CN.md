@@ -16,7 +16,18 @@
   <a href="https://www.npmjs.com/package/@viyuni/musea">
     <img alt="npm version" src="https://img.shields.io/npm/v/%40viyuni%2Fmusea?label=npm" />
   </a>
-  <img alt="CI/CD status" src="https://img.shields.io/badge/CI%2FCD-not%20configured-lightgrey" />
+  <a href="https://github.com/viyuni/musea/actions/workflows/release.yml">
+    <img alt="Release status" src="https://github.com/viyuni/musea/actions/workflows/release.yml/badge.svg" />
+  </a>
+  <a href="https://github.com/viyuni/musea/actions/workflows/ci.yml">
+    <img alt="CI status" src="https://github.com/viyuni/musea/actions/workflows/ci.yml/badge.svg" />
+  </a>
+  <a href="./LICENSE">
+    <img alt="License" src="https://img.shields.io/github/license/viyuni/musea" />
+  </a>
+  <a href="https://www.npmjs.com/package/@viyuni/musea">
+    <img alt="npm downloads" src="https://img.shields.io/npm/dw/%40viyuni%2Fmusea" />
+  </a>
 </p>
 
 <p align="center">
