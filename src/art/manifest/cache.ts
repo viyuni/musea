@@ -16,7 +16,10 @@ export function createArtManifestCache({
 
   for (const file of findArtFiles(patterns, ignore, root)) {
     const manifestEntry = toArtManifestEntry(file, root);
-    cache.set(manifestEntry.file, manifestEntry);
+
+    if (manifestEntry) {
+      cache.set(manifestEntry.file, manifestEntry);
+    }
   }
 
   return cache;
@@ -30,8 +33,14 @@ export function upsertArtManifestCacheEntry({
   cache,
   file,
   root,
-}: ArtManifestCacheFileOptions): ArtManifest {
+}: ArtManifestCacheFileOptions): ArtManifest | undefined {
   const manifestEntry = toArtManifestEntry(file, root);
+
+  if (!manifestEntry) {
+    cache.delete(toManifestCacheKey(file, root));
+    return;
+  }
+
   cache.set(manifestEntry.file, manifestEntry);
   return manifestEntry;
 }

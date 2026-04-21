@@ -8,6 +8,8 @@ import {
 } from '@vue/compiler-core';
 import { parse as parseSfc } from '@vue/compiler-sfc';
 
+import { warn } from '../shared/logger.ts';
+
 export function isArtSfc(file: string) {
   return file.endsWith('.art.vue');
 }
@@ -132,18 +134,25 @@ export function findArtRootNode(root: RootNode) {
   return root.children.find(isArtNode);
 }
 
-export function parseArtSfc(source: string, filename: string) {
+export interface ParsedArtSfc {
+  artNode: ElementNode;
+  variantNodes: ElementNode[];
+}
+
+export function parseArtSfc(source: string, filename: string): ParsedArtSfc | undefined {
   const { descriptor } = parseSfc(source, { filename });
   const template = descriptor.template;
 
   if (!template?.ast) {
-    throw new Error(`Missing template in ${filename}`);
+    warn(`Missing template in ${filename}`);
+    return;
   }
 
   const artNode = findArtRootNode(template.ast);
 
   if (!artNode) {
-    throw new Error(`Missing <art> root in ${filename}`);
+    warn(`Missing <art> root in ${filename}`);
+    return;
   }
 
   return {

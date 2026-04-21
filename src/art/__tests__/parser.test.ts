@@ -1,4 +1,4 @@
-import { describe, expect, test } from 'vite-plus/test';
+import { describe, expect, test, vi } from 'vite-plus/test';
 
 import {
   collectAttributes,
@@ -26,7 +26,7 @@ describe('parseArtSfc', () => {
 </template>
 `,
       'Button.art.vue',
-    );
+    )!;
 
     expect(collectAttributes(artNode)).toMatchObject({
       title: 'Button',
@@ -50,7 +50,7 @@ describe('parseArtSfc', () => {
 </template>
 `,
       'Button.art.vue',
-    );
+    )!;
 
     expect(collectAttributes(fromAttribute.artNode)).toMatchObject({
       title: 'Button',
@@ -66,7 +66,7 @@ describe('parseArtSfc', () => {
 </template>
 `,
       'Button.art.vue',
-    );
+    )!;
 
     expect(collectAttributes(fromDirective.artNode)).toMatchObject({
       title: 'Button',
@@ -84,7 +84,7 @@ describe('parseArtSfc', () => {
 </template>
 `,
       'Button.art.vue',
-    );
+    )!;
 
     expect(collectAttributes(fromAttribute.artNode)).toMatchObject({
       title: 'Button',
@@ -99,7 +99,7 @@ describe('parseArtSfc', () => {
 </template>
 `,
       'Button.art.vue',
-    );
+    )!;
 
     expect(collectAttributes(fromDirective.artNode)).toMatchObject({
       title: 'Button',
@@ -108,12 +108,18 @@ describe('parseArtSfc', () => {
     });
   });
 
-  test('throws when template or art root is missing', () => {
-    expect(() => parseArtSfc('<script setup></script>', 'MissingTemplate.art.vue')).toThrow(
-      'Missing template in MissingTemplate.art.vue',
+  test('warns and returns undefined when template or art root is missing', () => {
+    const warn = vi.spyOn(console, 'warn').mockImplementation(() => {});
+
+    expect(parseArtSfc('<script setup></script>', 'MissingTemplate.art.vue')).toBeUndefined();
+    expect(parseArtSfc('<template><div /></template>', 'MissingArt.art.vue')).toBeUndefined();
+
+    expect(warn).toHaveBeenCalledWith(
+      expect.stringContaining('Missing template in MissingTemplate.art.vue'),
     );
-    expect(() => parseArtSfc('<template><div /></template>', 'MissingArt.art.vue')).toThrow(
-      'Missing <art> root in MissingArt.art.vue',
+    expect(warn).toHaveBeenCalledWith(
+      expect.stringContaining('Missing <art> root in MissingArt.art.vue'),
     );
+    warn.mockRestore();
   });
 });

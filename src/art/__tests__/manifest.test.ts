@@ -94,7 +94,7 @@ describe('scanArtManifest', () => {
     expect(manifest[1]!.components).toEqual([]);
     expect(manifest[1]!.tests).toEqual([]);
     expect(warn).toHaveBeenCalledWith(
-      '[@viyuni/musea] Missing component file for z.art.vue: ./Missing.vue',
+      expect.stringContaining('Missing component file for z.art.vue: ./Missing.vue'),
     );
     warn.mockRestore();
   });
@@ -126,6 +126,35 @@ describe('scanArtManifest', () => {
     warn.mockRestore();
   });
 
+  test('warns and skips invalid art files instead of throwing', () => {
+    const root = createFixtureRoot();
+    const warn = vi.spyOn(console, 'warn').mockImplementation(() => {});
+    writeFixture(root, 'good.vue');
+    writeFixture(
+      root,
+      'good.art.vue',
+      '<template><Art title="Good" components="./good.vue" category="Demo" status="ready" /></template>',
+    );
+    writeFixture(root, 'broken.art.vue', '<script setup lang="ts">const x = 1</script>');
+
+    expect(scanArtManifest({ root, patterns: ['**/*.art.vue'], ignore: [] })).toEqual([
+      {
+        title: 'Good',
+        category: 'Demo',
+        status: 'ready',
+        tags: [],
+        file: 'good.art.vue',
+        id: 'good.art.vue',
+        components: ['good.vue'],
+        tests: [],
+        variants: [],
+      },
+    ]);
+    expect(warn).toHaveBeenCalledWith(expect.stringContaining('Missing template in'));
+    expect(warn).toHaveBeenCalledWith(expect.stringContaining('broken.art.vue'));
+    warn.mockRestore();
+  });
+
   test('ignores missing component files while keeping existing ones', () => {
     const root = createFixtureRoot();
     const warn = vi.spyOn(console, 'warn').mockImplementation(() => {});
@@ -150,7 +179,9 @@ describe('scanArtManifest', () => {
       },
     ]);
     expect(warn).toHaveBeenCalledWith(
-      '[@viyuni/musea] Missing component file for src/components/Button.art.vue: ./Missing.vue',
+      expect.stringContaining(
+        'Missing component file for src/components/Button.art.vue: ./Missing.vue',
+      ),
     );
     warn.mockRestore();
   });

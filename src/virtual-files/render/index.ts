@@ -8,6 +8,7 @@ import {
   ART_VARIANT_RENDER_QUERY_KEY,
   VIRTUAL_ART_VARIANT_RENDER,
 } from '../../shared/constants.ts';
+import { warn } from '../../shared/logger.ts';
 import { toAbsolutePath } from '../../shared/utils.ts';
 import { defineVirtualFile } from '../core/index.ts';
 
@@ -71,13 +72,15 @@ export const artVariantRenderVirtualFile = defineVirtualFile({
     const artId = searchParams.get('artId');
 
     if (!artId) {
-      throw new Error(`Missing "artId" in ${requestId}`);
+      warn(`Missing "artId" in ${requestId}`);
+      return;
     }
 
     const art = artManifest.find((entry) => entry.id === artId);
 
     if (!art) {
-      throw new Error(`Unknown art id: ${artId}`);
+      warn(`Unknown art id: ${artId}`);
+      return;
     }
 
     return createResolvedArtVariantRenderId({
@@ -100,12 +103,14 @@ export const artVariantRenderVirtualFile = defineVirtualFile({
     const variant = searchParams.get('variant');
 
     if (!artId) {
-      throw new Error(`Missing "artId" in ${VIRTUAL_ART_VARIANT_RENDER.id} request`);
+      warn(`Missing "artId" in ${VIRTUAL_ART_VARIANT_RENDER.id} request`);
+      return null;
     }
 
     const art = artManifest.find((entry) => entry.id === artId);
     if (!art) {
-      throw new Error(`Unknown art id: ${artId}`);
+      warn(`Unknown art id: ${artId}`);
+      return null;
     }
 
     const file = toAbsolutePath(art.file, root);

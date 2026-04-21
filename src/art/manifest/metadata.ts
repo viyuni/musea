@@ -3,6 +3,7 @@ import path from 'node:path';
 
 import { normalizePath } from 'unplugin-utils';
 
+import { warn } from '../../shared/logger.ts';
 import type {
   ArtManifest,
   ParsedArtProps,
@@ -16,9 +17,15 @@ type ArtMetadata = ParsedArtProps & {
   variants?: VariantProps[];
 };
 
-function readArtMetadata(filePath: string): ArtMetadata {
+function readArtMetadata(filePath: string): ArtMetadata | undefined {
   const source = readFileSync(filePath, 'utf8');
-  const { artNode, variantNodes } = parseArtSfc(source, filePath);
+  const parsed = parseArtSfc(source, filePath);
+
+  if (!parsed) {
+    return;
+  }
+
+  const { artNode, variantNodes } = parsed;
 
   const art = collectAttributes(artNode) as unknown as ParsedArtProps;
   const variants = variantNodes.map((item) => {
@@ -68,7 +75,7 @@ function resolveExistingComponents(file: string, root: string, components: strin
     const absoluteComponent = path.resolve(path.dirname(file), component);
 
     if (!existsSync(absoluteComponent)) {
-      console.warn(`[@viyuni/musea] Missing component file for ${relativeFile}: ${component}`);
+      warn(`Missing component file for ${relativeFile}: ${component}`);
       continue;
     }
 
@@ -86,7 +93,7 @@ function resolveExistingTests(file: string, root: string, tests: string[]) {
     const absoluteTestFile = path.resolve(path.dirname(file), testFile);
 
     if (!existsSync(absoluteTestFile)) {
-      console.warn(`[@viyuni/musea] Missing test file for ${relativeFile}: ${testFile}`);
+      warn(`Missing test file for ${relativeFile}: ${testFile}`);
       continue;
     }
 
@@ -98,17 +105,22 @@ function resolveExistingTests(file: string, root: string, tests: string[]) {
 
 export function resolveArtDocsTarget(file: string, root = process.cwd()) {
   const normalizedFile = normalizePath(file);
-  const { docs } = readArtMetadata(normalizedFile);
+  const docs = readArtMetadata(normalizedFile)?.docs;
   const docsFile = docs
     ? toAbsoluteDocsTarget(normalizedFile, docs)
     : normalizedFile.replace(/\.vue$/, '.md');
   return normalizePath(path.relative(root, docsFile));
 }
 
-export function toArtManifestEntry(file: string, root = process.cwd()): ArtManifest {
+export function toArtManifestEntry(file: string, root = process.cwd()): ArtManifest | undefined {
   const normalizedFile = normalizePath(file);
   const relativeFile = normalizePath(path.relative(root, normalizedFile));
   const meta = readArtMetadata(normalizedFile);
+
+  if (!meta) {
+    return;
+  }
+
   const { docs, ...manifestMeta } = meta;
   const components = resolveExistingComponents(normalizedFile, root, meta.components);
   const tests = resolveExistingTests(normalizedFile, root, meta.tests);

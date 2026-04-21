@@ -4,7 +4,6 @@ import path from 'node:path';
 import process from 'node:process';
 
 import arg from 'arg';
-// 严格控制颜色，主要使用 lightMagenta, magenta, dim
 import { dim, red, bold, magenta, lightMagenta } from 'kolorist';
 
 import pkgJson from '../../package.json' with { type: 'json' };
@@ -21,7 +20,7 @@ interface CliOptions {
   port?: number;
 }
 
-const prefix = bold(lightMagenta('[musea]'));
+const prefix = bold(lightMagenta('[@viyuni/musea]'));
 
 function parsePort(value: string) {
   const port = Number(value);
