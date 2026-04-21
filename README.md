@@ -205,7 +205,7 @@ vp test
 Musea's product direction and interaction experience are inspired by:
 
 - [Storybook](https://storybook.js.org/)
-- [vitejs.dev](https://vitejs.dev/)
+- [vizejs](https://vizejs.dev/guide/musea/index.html)
 
 For component API docs, Musea uses [`vue-component-meta`](https://github.com/vuejs/language-tools/tree/master/packages/component-meta) to extract metadata (props, events, slots, exposed) from Vue components.
 

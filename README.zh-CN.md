@@ -205,7 +205,7 @@ vp test
 Musea 的产品方向与交互体验参考了：
 
 - [Storybook](https://storybook.js.org/)
-- [vitejs.dev](https://vitejs.dev/)
+- [vizejs](https://vizejs.dev/guide/musea/index.html)
 
 组件 API 文档由 [`vue-component-meta`](https://github.com/vuejs/language-tools/tree/master/packages/component-meta) 自动提取（props、events、slots、exposed）。
 
