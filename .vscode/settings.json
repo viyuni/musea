@@ -1,0 +1,38 @@
+{
+  "editor.defaultFormatter": "oxc.oxc-vscode",
+  "oxc.fmt.configPath": "./vite.config.ts",
+  "editor.formatOnSave": true,
+  "editor.formatOnSaveMode": "file",
+  "editor.codeActionsOnSave": {
+    "source.fixAll.oxc": "explicit"
+  },
+  "cSpell.words": [
+    "daisyui",
+    "defu",
+    "fdir",
+    "kolorist",
+    "linkify",
+    "musea",
+    "oxlint",
+    "prefersdark",
+    "preflights",
+    "quasis",
+    "shiki",
+    "shikijs",
+    "subcomponent",
+    "subcomponents",
+    "unconfig",
+    "vitesse",
+    "vitest",
+    "viyuni",
+    "voidzero"
+  ],
+  "[javascript]": {
+    "editor.defaultFormatter": "oxc.oxc-vscode"
+  },
+  "css.customData": ["./.vscode/tailwindcss.at-rules.json"],
+  "[typescript]": {
+    "editor.defaultFormatter": "oxc.oxc-vscode"
+  },
+  "typescript.tsdk": "node_modules\\typescript\\lib"
+}

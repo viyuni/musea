@@ -1,0 +1,270 @@
+@import 'tailwindcss';
+@plugin "@tailwindcss/typography";
+
+@plugin "daisyui" {
+  themes: light, dark;
+}
+
+@plugin "daisyui/theme" {
+  name: 'light';
+  default: true;
+  prefersdark: false;
+  color-scheme: light;
+  --root-bg: #ffffff;
+  --color-base-100: #ffffff;
+  --color-base-200: #f4f4f5;
+  --color-base-300: #e4e4e7;
+  --color-base-content: oklch(25% 0 0);
+  --color-primary: #e2588d;
+  --color-primary-content: oklch(100% 0 0);
+  --color-secondary: oklch(35% 0 0);
+  --color-secondary-content: oklch(100% 0 0);
+  --color-accent: oklch(35% 0 0);
+  --color-accent-content: oklch(100% 0 0);
+  --color-neutral: oklch(35% 0 0);
+  --color-neutral-content: oklch(100% 0 0);
+  --color-info: oklch(59.042% 0.21374 266.065);
+  --color-info-content: oklch(89.04% 0.062 264.052);
+  --color-success: oklch(0.696 0.177 162.5);
+  --color-success-content: oklch(90.395% 0.035 142.495);
+  --color-warning: oklch(0.769 0.141 70.1);
+  --color-warning-content: oklch(90.395% 0.035 142.495);
+  --color-error: oklch(65.446% 0.16845 22.062);
+  --color-error-content: oklch(90.395% 0.035 142.495);
+  --radius-selector: 1rem;
+  --radius-field: 0.5rem;
+  --radius-box: 1rem;
+  --size-selector: 0.25rem;
+  --size-field: 0.25rem;
+  --border: 1px;
+  --depth: 1;
+  --noise: 0;
+  --selection-background: rgba(226, 88, 141, 0.8);
+  --selection-color: oklch(100% 0 0);
+  --header-height: 100px;
+}
+
+@plugin "daisyui/theme" {
+  name: 'dark';
+  default: false;
+  prefersdark: true;
+  color-scheme: dark;
+  --root-bg: #09090b;
+  --color-base-100: #09090b;
+  --color-base-200: #141415;
+  --color-base-300: #202022;
+  --color-base-content: oklch(87.609% 0 0);
+  --color-primary: #e2588d;
+  --color-primary-content: oklch(100% 0 0);
+  --color-secondary: oklch(35% 0 0);
+  --color-secondary-content: oklch(100% 0 0);
+  --color-accent: oklch(35% 0 0);
+  --color-accent-content: oklch(100% 0 0);
+  --color-neutral: oklch(35% 0 0);
+  --color-neutral-content: oklch(100% 0 0);
+  --color-info: oklch(59.042% 0.21374 266.065);
+  --color-info-content: oklch(89.04% 0.062 264.052);
+  --color-success: oklch(0.696 0.177 162.5);
+  --color-success-content: oklch(90.395% 0.035 142.495);
+  --color-warning: oklch(0.769 0.141 70.1);
+  --color-warning-content: oklch(90.395% 0.035 142.495);
+  --color-error: oklch(65.446% 0.16845 22.062);
+  --color-error-content: oklch(90.395% 0.035 142.495);
+  --radius-selector: 1rem;
+  --radius-field: 0.5rem;
+  --radius-box: 1rem;
+  --size-selector: 0.25rem;
+  --size-field: 0.25rem;
+  --border: 1px;
+  --depth: 1;
+  --noise: 0;
+  --selection-background: rgba(226, 88, 141, 0.6);
+  --selection-color: oklch(90% 0 0);
+  --header-height: 100px;
+}
+
+@layer base {
+  ::selection {
+    background-color: var(--selection-background);
+    color: var(--selection-color);
+  }
+
+  /* 兼容火狐浏览器 */
+  ::-moz-selection {
+    background-color: var(--selection-background);
+    color: var(--selection-color);
+  }
+
+  [data-theme='dark'] {
+    color-scheme: dark;
+  }
+
+  [data-theme='light'] {
+    color-scheme: light;
+  }
+
+  .shiki,
+  .shiki span {
+    background-color: var(--color-base-100) !important;
+  }
+
+  [data-theme='dark'] .shiki,
+  [data-theme='dark'] .shiki span {
+    color: var(--shiki-dark) !important;
+    /* background-color: var(--shiki-dark-bg) !important; */
+    /* Optional, if you also want font styles */
+    font-style: var(--shiki-dark-font-style) !important;
+    font-weight: var(--shiki-dark-font-weight) !important;
+    text-decoration: var(--shiki-dark-text-decoration) !important;
+  }
+}
+
+@utility size-screen {
+  @apply w-screen h-screen;
+}
+
+@utility text-md {
+  font-size: 16px;
+}
+
+@utility h-header {
+  height: var(--header-height);
+}
+
+@utility h-content {
+  /* On mobile: 100vh - RootLayout Header (56px) - ArtTab Header (var(--header-height)) */
+  height: calc(100svh - var(--header-height) - 56px);
+
+  /* On desktop (lg): 100vh - ArtTab Header (var(--header-height)) */
+  @media (min-width: 1024px) {
+    height: calc(100svh - var(--header-height));
+  }
+}
+
+@utility top-content {
+  top: var(--header-height);
+}
+
+@theme {
+  --animate-pop-in: popIn 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+
+  @keyframes popIn {
+    0% {
+      transform: scale(0.5);
+      opacity: 0;
+    }
+
+    100% {
+      transform: scale(1);
+      opacity: 1;
+    }
+  }
+}
+
+.md-body {
+  @apply text-base-content leading-relaxed text-sm sm:text-base;
+}
+
+.md-body h1 {
+  @apply text-2xl font-bold mb-6 pb-2 border-b border-base-300 text-primary mt-4;
+}
+
+.md-body h2 {
+  @apply text-xl font-bold mb-4 mt-8 pb-1 border-b border-base-200;
+}
+
+.md-body h3 {
+  @apply text-lg font-bold mb-3 mt-6;
+}
+
+.md-body h4 {
+  @apply text-base font-bold mb-2 mt-5;
+}
+
+.md-body p {
+  @apply mb-4;
+}
+
+.md-body a {
+  @apply link link-primary no-underline hover:underline;
+}
+
+.md-body blockquote {
+  @apply border-l-4 border-primary bg-base-200/50 px-4 py-3 my-5 italic;
+}
+
+.md-body blockquote > p:last-child {
+  @apply mb-0;
+}
+
+.md-body blockquote > *:last-child {
+  @apply mb-0;
+}
+
+.md-body ul {
+  @apply list-disc list-inside mb-4 space-y-1.5;
+}
+
+.md-body ol {
+  @apply list-decimal list-inside mb-4 space-y-1.5;
+}
+
+.md-body pre {
+  @apply rounded-xl p-3 overflow-auto border border-base-200;
+}
+
+.md-body table {
+  @apply table my-6;
+}
+
+.md-body img {
+  @apply max-w-full h-auto;
+}
+
+.md-body hr {
+  @apply my-4 border-base-300;
+}
+
+.md-body .task-list-item {
+  @apply list-none flex items-center gap-3;
+}
+
+.md-body .task-list-item input[type='checkbox'] {
+  @apply checkbox checkbox-primary checkbox-sm rounded-md;
+}
+
+.md-body .task-list-item input[disabled] {
+  @apply opacity-100 cursor-default;
+}
+
+.md-body art {
+  @apply grid xl:grid-cols-3 grid-cols-1 gap-4;
+}
+
+.md-body art::before {
+  content: attr(title) ' Variants';
+  @apply order-1 text-2xl font-black xl:col-span-4 col-span-1;
+}
+
+.md-body art::after {
+  content: attr(description);
+  @apply order-2 text-accent xl:col-span-4 col-span-1 -mt-4;
+}
+
+.md-body art variant {
+  @apply order-3 grid bg-base-100 p-6 rounded-xl border border-base-300;
+}
+
+.md-body art variant::before {
+  content: attr(name);
+  @apply order-1 text-xs font-bold uppercase tracking-widest;
+}
+
+.md-body art variant::after {
+  content: attr(description) '';
+  @apply order-2 text-xs tracking-widest mb-4 text-accent;
+}
+
+.md-body art variant * {
+  @apply order-4;
+}

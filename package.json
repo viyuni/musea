@@ -1,0 +1,114 @@
+{
+  "name": "@viyuni/musea",
+  "version": "0.0.0",
+  "description": "Vue component gallery for you to manage demos, variants, and docs in one place.",
+  "keywords": [
+    "art-vue",
+    "cli",
+    "component-gallery",
+    "component-library",
+    "design-system",
+    "storybook-alternative",
+    "vite",
+    "vite-plugin",
+    "vue",
+    "vue3"
+  ],
+  "homepage": "https://github.com/viyuni/musea#readme",
+  "bugs": {
+    "url": "https://github.com/viyuni/musea/issues"
+  },
+  "license": "MIT",
+  "author": "Author Name <author.name@mail.com>",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/viyuni/musea.git"
+  },
+  "bin": {
+    "musea": "./dist/cli.mjs"
+  },
+  "files": [
+    "dist"
+  ],
+  "type": "module",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.mts",
+      "default": "./dist/index.mjs"
+    },
+    "./macro": {
+      "types": "./dist/macro.d.mts",
+      "default": "./dist/macro.mjs"
+    },
+    "./cli": {
+      "types": "./dist/cli.d.mts",
+      "default": "./dist/cli.mjs"
+    },
+    "./package.json": "./package.json"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "scripts": {
+    "prepare": "vp config",
+    "build": "vp pack",
+    "dev": "vp pack --watch",
+    "test": "vp test",
+    "check": "vp check",
+    "typecheck": "vue-tsc -b",
+    "prepublishOnly": "vp run build"
+  },
+  "dependencies": {
+    "@lucide/vue": "^1.8.0",
+    "@shikijs/markdown-exit": "^4.0.2",
+    "@vitest/ws-client": "^4.1.4",
+    "@viyuni/vue-component-meta": "^0.1.1",
+    "@vue/compiler-core": "^3.5.32",
+    "@vue/compiler-sfc": "^3.5.32",
+    "@vueuse/core": "^14.2.1",
+    "arg": "^5.0.2",
+    "daisyui": "^5.5.19",
+    "defu": "^6.1.7",
+    "h3": "2.0.1-rc.20",
+    "kolorist": "^1.8.0",
+    "launch-editor": "^2.13.2",
+    "magic-string": "^0.30.21",
+    "markdown-exit": "1.0.0-beta.9",
+    "markdown-it-task-lists": "^2.1.1",
+    "tinyglobby": "^0.2.16",
+    "type-fest": "^5.6.0",
+    "unconfig": "^7.5.0",
+    "unplugin-utils": "^0.3.1",
+    "unplugin-vue-markdown": "^30.0.0",
+    "vite-plugin-vue-inspector": "^5.4.0",
+    "vue": "^3.5.32",
+    "vue-component-meta": "^3.2.6",
+    "vue-router": "^4.6.4"
+  },
+  "devDependencies": {
+    "@tailwindcss/cli": "^4.2.3",
+    "@tailwindcss/typography": "^0.5.19",
+    "@tailwindcss/vite": "^4.2.2",
+    "@tsconfig/node24": "^24.0.4",
+    "@tsdown/css": "^0.21.7",
+    "@types/node": "^25.6.0",
+    "@typescript/native-preview": "7.0.0-dev.20260328.1",
+    "@vitejs/devtools": "^0.1.14",
+    "@vitejs/plugin-vue": "^6.0.6",
+    "@vitest/ui": "^4.1.4",
+    "@vue/tsconfig": "^0.9.1",
+    "bumpp": "^11.0.1",
+    "rolldown-plugin-dts": "^0.23.2",
+    "tailwindcss": "^4.2.2",
+    "typescript": "^6.0.3",
+    "vite-plugin-vue-devtools": "^8.1.1",
+    "vite-plus": "catalog:",
+    "vitest": "catalog:",
+    "vue-tsc": "^3.2.6"
+  },
+  "peerDependencies": {
+    "vite": ">=8.0.0",
+    "vue": ">=3.5.0"
+  },
+  "packageManager": "pnpm@10.29.2"
+}
