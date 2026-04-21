@@ -1,5 +1,3 @@
-import { defineVirtualModule } from './utils.ts';
-
 declare const __IS_UNPACKED__: boolean;
 
 /**
@@ -11,12 +9,12 @@ export const IS_UNPACKED = typeof __IS_UNPACKED__ !== 'undefined' ? __IS_UNPACKE
  * H3 routes
  */
 export const ROUTES = {
-  BASE: '/',
-  FRAME_VARIANT: '/frame/variant',
-  FRAME_COMPONENT: '/frame/component',
-  OPEN_IN_EDITOR: '/open-in-editor',
-  TESTS_RUN: '/tests/run',
-  TESTS_API: '/tests/api',
+  base: '/',
+  frameVariant: '/frame/variant',
+  frameComponent: '/frame/component',
+  openInEditor: '/open-in-editor',
+  testRun: '/tests/run',
+  testApi: '/tests/api',
 } as const;
 
 /**
@@ -31,19 +29,29 @@ export const MUSEA_HOT_EVENTS = {
 /**
  * Art manifest virtual module
  */
-export const VIRTUAL_ART_MANIFEST = defineVirtualModule('virtual:musea-manifest');
+export const VIRTUAL_ART_MANIFEST = {
+  id: 'virtual:musea-manifest',
+  resolvedId: '\0virtual:musea-manifest',
+  url: '/@id/__x00__virtual:musea-manifest',
+} as const;
 
 /**
  * Docs manifest virtual module
  */
-export const VIRTUAL_DOCS = defineVirtualModule('virtual:musea-docs');
+export const VIRTUAL_DOCS = {
+  id: 'virtual:musea-docs',
+  resolvedId: '\0virtual:musea-docs',
+  url: '/@id/__x00__virtual:musea-docs',
+} as const;
 
 /**
  * Art variant render virtual module
  */
-export const VIRTUAL_ART_VARIANT_RENDER = defineVirtualModule(
-  'virtual:musea-art-variant-render.art.vue',
-);
+export const VIRTUAL_ART_VARIANT_RENDER = {
+  id: 'virtual:musea-art-variant-render.art.vue',
+  resolvedId: '\0virtual:musea-art-variant-render.art.vue',
+  url: '/@id/__x00__virtual:musea-art-variant-render.art.vue',
+} as const;
 
 /**
  * Art variant render query key

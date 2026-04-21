@@ -14,7 +14,7 @@ function openInVSCode() {
   const file = props.art?.file;
   if (!file) return;
 
-  const url = new URL(ROUTES.OPEN_IN_EDITOR, window.location.origin);
+  const url = new URL(ROUTES.openInEditor, window.location.origin);
   url.searchParams.set('file', file);
   fetch(url);
 }

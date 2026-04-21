@@ -1,4 +1,4 @@
-import { MuseaConfig, MuseaSetup } from './types/index.ts';
+import type { MuseaConfig, MuseaSetup } from './types/index.ts';
 
 export function defineConfig(config: MuseaConfig) {
   return config;

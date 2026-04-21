@@ -47,7 +47,7 @@ const previewUrl = computed(() => {
 });
 
 function resolveComponentUrl(artId: string) {
-  const url = resolvePreviewUrl(ROUTES.FRAME_COMPONENT);
+  const url = resolvePreviewUrl(ROUTES.frameComponent);
   url.searchParams.set('artId', artId);
   return url.toString();
 }

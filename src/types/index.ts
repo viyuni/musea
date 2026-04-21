@@ -1,4 +1,4 @@
-import { ComponentMetaResolver } from '@viyuni/vue-component-meta';
+import type { ComponentMetaResolver } from '@viyuni/vue-component-meta';
 import type { UserConfig, ViteDevServer } from 'vite';
 import type { App } from 'vue';
 

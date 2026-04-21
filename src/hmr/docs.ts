@@ -195,7 +195,7 @@ export function attachDocsHmr(context: MuseaPluginContext) {
 
     if (event !== 'change') {
       refreshArtManifest(context);
-      notifyManifestUpdate(context, file, event);
+      notifyManifestUpdate(context);
     }
 
     await notifyDocsUpdate(context, affectedArtIds, file);

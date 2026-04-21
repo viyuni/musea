@@ -61,7 +61,7 @@ export async function ensureArtTestsClient() {
 }
 
 async function createArtTestsClient() {
-  const response = await fetch(ROUTES.TESTS_API);
+  const response = await fetch(ROUTES.testApi);
   const payload = (await response.json()) as { ok?: boolean; port?: number; token?: string };
   if (!response.ok || !payload.ok || typeof payload.port !== 'number') {
     throw new Error('Cannot resolve Vitest API connection info');

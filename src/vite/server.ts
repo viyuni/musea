@@ -14,10 +14,10 @@ import { paths } from './config.ts';
 const routePaths = Object.values(ROUTES);
 
 function shouldHandleMuseaRequest(url: string | undefined) {
-  const pathname = new URL(url ?? ROUTES.BASE, 'http://musea.local').pathname;
+  const pathname = new URL(url ?? ROUTES.base, 'http://musea.local').pathname;
 
   return (
-    pathname === ROUTES.BASE ||
+    pathname === ROUTES.base ||
     routePaths.some((route) => pathname === route || pathname === `${route}/`)
   );
 }
@@ -41,7 +41,7 @@ async function transformIndexHtml(
 export function museaServer(ctx: MuseaPluginContext): Connect.NextHandleFunction {
   const app = new H3();
 
-  app.get(ROUTES.BASE, (event) => {
+  app.get(ROUTES.base, (event) => {
     return transformIndexHtml({
       event,
       ctx,
@@ -51,7 +51,7 @@ export function museaServer(ctx: MuseaPluginContext): Connect.NextHandleFunction
     });
   });
 
-  app.get(ROUTES.FRAME_VARIANT, (event) => {
+  app.get(ROUTES.frameVariant, (event) => {
     return transformIndexHtml({
       event,
       ctx,
@@ -61,7 +61,7 @@ export function museaServer(ctx: MuseaPluginContext): Connect.NextHandleFunction
     });
   });
 
-  app.get(ROUTES.FRAME_COMPONENT, async (event) => {
+  app.get(ROUTES.frameComponent, async (event) => {
     return transformIndexHtml({
       event,
       ctx,
@@ -71,7 +71,7 @@ export function museaServer(ctx: MuseaPluginContext): Connect.NextHandleFunction
     });
   });
 
-  app.get(ROUTES.OPEN_IN_EDITOR, async (event) => {
+  app.get(ROUTES.openInEditor, async (event) => {
     const { file } = getQuery(event);
 
     if (!file) {

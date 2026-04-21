@@ -10,22 +10,6 @@ export function toAbsolutePath(file: string, root = process.cwd()) {
   return normalizePath(path.resolve(root, file));
 }
 
-export function toVirtualId(id: string) {
-  return `\0${id}` as const;
-}
-
-export function toVirtualUrl(id: string) {
-  return `/@id/__x00__${id}` as const; // equivalent to /@id/ + toVirtualId(id) with \0 escaped
-}
-
-export function defineVirtualModule(id: string) {
-  return {
-    id,
-    resolvedId: toVirtualId(id),
-    url: toVirtualUrl(id),
-  } as const;
-}
-
 export interface RenderHtmlOptions {
   title: string;
   entryFile: string;

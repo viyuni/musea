@@ -84,7 +84,7 @@ async function runTests() {
   runError.value = null;
 
   try {
-    const response = await fetch(ROUTES.TESTS_RUN, {
+    const response = await fetch(ROUTES.testRun, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ artId }),

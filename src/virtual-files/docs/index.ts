@@ -49,27 +49,16 @@ export function resolveArtDocs(artId: string, ctx: VirtualFileContext): Resolved
   const art = artManifest.find((art) => art.id === artId);
 
   if (!art) {
-    throw new Error(`Unknown art id: ${artId}`);
+    ctx.devServer?.config.logger?.warn?.(`Unknown art id: ${artId}`);
+    return [];
   }
 
-  const primaryFile = art.components[0];
-
-  if (!primaryFile) {
-    throw new Error(`Missing primary component for art id: ${artId}`);
-  }
-
-  return [
+  return art.components.map((fileName) =>
     resolveComponentDocs({
-      fileName: primaryFile,
+      fileName,
       resolver,
     }),
-    ...art.components.slice(1).map((fileName) =>
-      resolveComponentDocs({
-        fileName,
-        resolver,
-      }),
-    ),
-  ];
+  );
 }
 
 export function renderDocsDetails(artId: string, ctx: VirtualFileContext) {

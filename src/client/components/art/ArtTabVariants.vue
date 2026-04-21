@@ -12,7 +12,7 @@ const props = defineProps<{
 }>();
 
 function resolveVariantUrl(artId: string, variant?: string) {
-  const url = resolvePreviewUrl(ROUTES.FRAME_VARIANT);
+  const url = resolvePreviewUrl(ROUTES.frameVariant);
 
   url.searchParams.set('artId', artId);
 
