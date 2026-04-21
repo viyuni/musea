@@ -13,7 +13,7 @@ function getTitle(resolved: ResolvedComponentMeta) {
 }
 </script>
 <template>
-  <div class="grid gap-9">
+  <div class="grid grid-cols-1 gap-9">
     <div class="grid">
       <div class="flex items-center gap-2">
         <h2 class="text-xl select-none font-black uppercase">

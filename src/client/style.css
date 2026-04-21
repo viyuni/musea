@@ -133,11 +133,11 @@
 
 @utility h-content {
   /* On mobile: 100vh - RootLayout Header (56px) - ArtTab Header (var(--header-height)) */
-  height: calc(100svh - var(--header-height) - 56px);
+  height: calc(100dvh - var(--header-height) - 56px);
 
   /* On desktop (lg): 100vh - ArtTab Header (var(--header-height)) */
   @media (min-width: 1024px) {
-    height: calc(100svh - var(--header-height));
+    height: calc(100dvh - var(--header-height));
   }
 }
 
@@ -213,8 +213,20 @@
   @apply rounded-xl p-3 overflow-auto border border-base-200;
 }
 
+.md-body .table-wrapper {
+  @apply my-6 overflow-x-auto w-full;
+}
+
 .md-body table {
-  @apply table my-6;
+  @apply table min-w-100 w-full rounded-box border border-base-content/5 bg-base-100;
+}
+
+.md-body table thead tr {
+  @apply text-base-content text-[11px] uppercase tracking-widest;
+}
+
+.md-body table tbody tr {
+  @apply hover:bg-base-200/50 transition-colors;
 }
 
 .md-body img {

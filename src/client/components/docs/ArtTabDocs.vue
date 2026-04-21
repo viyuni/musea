@@ -13,14 +13,12 @@ const { docs = [], art } = defineProps<{
 </script>
 
 <template>
-  <div
-    class="w-full animate-in fade-in slide-in-from-bottom-3 duration-700 grid gap-4 overflow-hidden"
-  >
+  <div class="w-full animate-in fade-in slide-in-from-bottom-3 duration-700 grid grid-cols-1 gap-4">
     <ArtDetails :art />
 
     <ArtMarkdownDoc v-if="art && art.docsFile" :key="art.docsFile" :art />
 
-    <div class="grid gap-20 pb-40 overflow-hidden w-full">
+    <div class="grid grid-cols-1 gap-20 pb-40 w-full">
       <ComponentDocs
         v-for="(item, index) in docs"
         :key="item.file"

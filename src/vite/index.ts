@@ -1,5 +1,6 @@
 import Shiki from '@shikijs/markdown-exit';
 import vuePlugin from '@vitejs/plugin-vue';
+import { MarkdownExit } from 'markdown-exit';
 import taskLists from 'markdown-it-task-lists';
 import { createConfigLoader } from 'unconfig';
 import markdownPlugin from 'unplugin-vue-markdown/vite';
@@ -30,6 +31,32 @@ async function findMuseaSetupFile(cwd: string) {
 
   const [setupFile] = await loader.findConfigs();
   return setupFile;
+}
+
+function markdownTableWarp(options?: { wrapperClass?: string }) {
+  const { wrapperClass = 'table-wrapper' } = options || {};
+
+  return (md: MarkdownExit) => {
+    const defaultTableOpen =
+      md.renderer.rules.table_open ||
+      function (tokens, idx, options, env, self) {
+        return self.renderToken(tokens, idx, options);
+      };
+
+    const defaultTableClose =
+      md.renderer.rules.table_close ||
+      function (tokens, idx, options, env, self) {
+        return self.renderToken(tokens, idx, options);
+      };
+
+    md.renderer.rules.table_open = function (tokens, idx, options, env, self) {
+      return `<div class="${wrapperClass}">\n` + defaultTableOpen(tokens, idx, options, env, self);
+    };
+
+    md.renderer.rules.table_close = function (tokens, idx, options, env, self) {
+      return defaultTableClose(tokens, idx, options, env, self) + '\n</div>';
+    };
+  };
 }
 
 const DEFAULT_OPTIONS: MuseaConfig = {
@@ -122,6 +149,7 @@ export default async function museaPlugin(options = DEFAULT_OPTIONS) {
       wrapperClasses: 'md-body',
       async markdownItSetup(md) {
         md.use(taskLists);
+        md.use(markdownTableWarp());
         md.use(
           Shiki({
             themes: {
