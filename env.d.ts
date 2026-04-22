@@ -2,11 +2,18 @@
 
 declare module 'virtual:musea-manifest' {
   export const manifest: import('./src/types/index.ts').ArtManifest[];
-  export const artVariantModules: Record<
+  export const artModules: Record<string, () => Promise<import('virtual:musea-art')>>;
+}
+
+declare module 'virtual:musea-art' {
+  const artBundle: Record<
     string,
-    Record<string, () => Promise<import('vue').Component>>
+    {
+      component: import('vue').Component;
+      variants: Record<string, import('vue').Component>;
+    }
   >;
-  export const componentModules: Record<string, () => Promise<import('vue').Component>>;
+  export default artBundle;
 }
 
 declare module 'virtual:musea-docs' {

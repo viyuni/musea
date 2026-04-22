@@ -2,12 +2,13 @@ import { execSync } from 'node:child_process';
 
 import tailwindcss from '@tailwindcss/vite';
 import vue from '@vitejs/plugin-vue';
+import vueDevTools from 'vite-plugin-vue-devtools';
 import { defineConfig } from 'vite-plus';
 
 import musea from './src/vite/index.ts';
 
 export default defineConfig({
-  plugins: [tailwindcss(), musea()],
+  plugins: [tailwindcss(), vueDevTools(), musea()],
   server: {
     host: true,
   },

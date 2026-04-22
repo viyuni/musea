@@ -1,24 +1,37 @@
-import { manifest, artVariantModules, componentModules } from 'virtual:musea-manifest';
+import { manifest, artModules } from 'virtual:musea-manifest';
 import { computed, defineAsyncComponent, shallowRef } from 'vue';
 
 import { MUSEA_HOT_EVENTS, VIRTUAL_ART_MANIFEST } from '../../shared/constants';
 import type { ArtManifest } from '../../types';
 
 type Manifest = typeof manifest;
-type ArtModules = typeof artVariantModules;
-type ComponentModules = typeof componentModules;
+type ArtModules = typeof artModules;
+
+type ResolvedArtModule = {
+  component: unknown;
+  variants: Record<string, unknown>;
+};
+
+type ArtBundleModule = {
+  default: Record<string, ResolvedArtModule>;
+};
 
 type ManifestVirtualModule = {
   manifest: Manifest;
-  artVariantModules: ArtModules;
-  componentModules: ComponentModules;
+  artModules: ArtModules;
+};
+
+type ManifestVirtualModuleNormalized = {
+  manifest: Manifest;
+  artModules: ArtModules;
 };
 
 const manifestVirtualModule = shallowRef<ManifestVirtualModule>({
   manifest,
-  artVariantModules,
-  componentModules,
+  artModules,
 });
+
+const loadedArtModules = new Map<string, Promise<ResolvedArtModule>>();
 
 const arts = computed<ArtManifest[]>(() => manifestVirtualModule.value.manifest);
 
@@ -35,7 +48,37 @@ async function reloadManifestVirtualModule(timestamp: number) {
 
 async function updateManifestVirtualModule(timestamp: number) {
   const module = await reloadManifestVirtualModule(timestamp);
-  manifestVirtualModule.value = module as ManifestVirtualModule;
+  const normalized = module as ManifestVirtualModuleNormalized;
+  manifestVirtualModule.value = {
+    manifest: normalized.manifest,
+    artModules: normalized.artModules,
+  };
+  loadedArtModules.clear();
+}
+
+async function loadArtModule(artId: string) {
+  const cached = loadedArtModules.get(artId);
+
+  if (cached) {
+    return await cached;
+  }
+
+  const loader = manifestVirtualModule.value.artModules[artId];
+  if (!loader) throw new Error('Unknown art id: ' + artId);
+
+  const modulePromise = loader().then((module: unknown) => {
+    const artBundle = (module as ArtBundleModule).default;
+    const resolved = artBundle?.[artId];
+
+    if (!resolved) {
+      throw new Error('Missing bundled art module for art id: ' + artId);
+    }
+
+    return resolved;
+  });
+
+  loadedArtModules.set(artId, modulePromise);
+  return await modulePromise;
 }
 
 if (import.meta.hot) {
@@ -50,23 +93,21 @@ if (import.meta.hot) {
 }
 
 export function getVariantComponent(artId?: string, variant?: string) {
-  return defineAsyncComponent(() => {
+  return defineAsyncComponent(async () => {
     if (!artId) {
       return Promise.reject(new Error('missing art id.'));
     }
 
-    const loader = manifestVirtualModule.value.artVariantModules?.[artId]?.[variant ?? ''];
-    if (!loader) throw new Error('Unknown art variant');
+    const artModule = await loadArtModule(artId);
+    const variantComponent = artModule.variants?.[variant ?? ''];
+    if (!variantComponent) throw new Error('Unknown art variant');
 
-    return loader();
+    return variantComponent;
   });
 }
 
-export function loadComponentPreview(artId: string) {
-  const loader = manifestVirtualModule.value.componentModules[artId];
-  if (!loader) throw new Error('Unknown art id: ' + artId);
-
-  return loader();
+export async function loadComponentPreview(artId: string) {
+  return (await loadArtModule(artId)).component;
 }
 
 export const useArtManifest = () => {

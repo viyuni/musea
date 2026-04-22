@@ -17,7 +17,7 @@ function createContext(artManifest: ArtManifest[]) {
 }
 
 describe('artManifestVirtualFile', () => {
-  test('exports manifest and variant loaders including default variant key', async () => {
+  test('exports manifest and art module loaders', async () => {
     const artManifest: ArtManifest[] = [
       {
         id: 'src/Button.art.vue',
@@ -34,16 +34,13 @@ describe('artManifestVirtualFile', () => {
     const code = await artManifestVirtualFile.load(createContext(artManifest));
 
     expect(code).toContain('export const manifest =');
-    expect(code).toContain('export const artVariantModules =');
+    expect(code).toContain('export const artModules =');
     expect(code).toContain(
-      '"": () => import("virtual:musea-art-variant-render.art.vue?artId=src%2FButton.art.vue")',
-    );
-    expect(code).toContain(
-      '"primary": () => import("virtual:musea-art-variant-render.art.vue?artId=src%2FButton.art.vue&variant=primary")',
+      '"src/Button.art.vue": () => import("virtual:musea-art?artId=src%2FButton.art.vue")',
     );
   });
 
-  test('exports reject loader when art has no primary component', async () => {
+  test('still exports loader when art has no primary component', async () => {
     const artManifest: ArtManifest[] = [
       {
         id: 'src/NoComp.art.vue',
@@ -58,7 +55,9 @@ describe('artManifestVirtualFile', () => {
 
     const code = await artManifestVirtualFile.load(createContext(artManifest));
 
-    expect(code).toContain('export const componentModules =');
-    expect(code).toContain('Missing primary component for art id: src/NoComp.art.vue');
+    expect(code).toContain('export const artModules =');
+    expect(code).toContain(
+      '"src/NoComp.art.vue": () => import("virtual:musea-art?artId=src%2FNoComp.art.vue")',
+    );
   });
 });

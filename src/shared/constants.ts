@@ -54,6 +54,15 @@ export const VIRTUAL_ART_VARIANT_RENDER = {
 } as const;
 
 /**
+ * Art bundle virtual module
+ */
+export const VIRTUAL_ART = {
+  id: 'virtual:musea-art',
+  resolvedId: '\0virtual:musea-art',
+  url: '/@id/__x00__virtual:musea-art',
+} as const;
+
+/**
  * Art variant render query key
  */
 export const ART_VARIANT_RENDER_QUERY_KEY = 'musea-art-variant-render';
