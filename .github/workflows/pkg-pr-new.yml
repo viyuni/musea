@@ -1,18 +1,24 @@
-name: CI
+name: Preview Packages
 
 on:
+  pull_request:
+    types:
+      - opened
+      - synchronize
+      - reopened
   push:
     branches:
       - main
-  pull_request:
 
 concurrency:
-  group: ci-${{ github.workflow }}-${{ github.ref }}
+  group: pkg-pr-new-${{ github.ref }}
   cancel-in-progress: true
 
 jobs:
-  check:
+  publish-preview:
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
 
     steps:
       - name: Checkout
@@ -23,11 +29,8 @@ jobs:
         with:
           cache: true
 
-      - name: Run checks
-        run: vp check
-
-      - name: Run tests
-        run: vp test
-
       - name: Build package
         run: vp pack
+
+      - name: Publish preview package
+        run: vp dlx pkg-pr-new publish

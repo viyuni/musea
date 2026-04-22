@@ -22,6 +22,9 @@
   <a href="https://github.com/viyuni/musea/actions/workflows/ci.yml">
     <img alt="CI status" src="https://github.com/viyuni/musea/actions/workflows/ci.yml/badge.svg" />
   </a>
+  <a href="https://pkg.pr.new/~/viyuni/musea">
+    <img alt="pkg.pr.new" src="https://pkg.pr.new/badge/viyuni/musea" />
+  </a>
   <a href="./LICENSE">
     <img alt="License" src="https://img.shields.io/github/license/viyuni/musea" />
   </a>
@@ -49,6 +52,13 @@
 ```bash
 vp add -D @viyuni/musea
 ```
+
+## PR Preview Packages
+
+This repository publishes preview packages for every pull request via `pkg.pr.new`.
+
+- Open: `https://pkg.pr.new/~/viyuni/musea`
+- Install a specific PR/commit package from the generated URL in the PR check/comment.
 
 ## Quick Start
 

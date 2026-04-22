@@ -22,6 +22,9 @@
   <a href="https://github.com/viyuni/musea/actions/workflows/ci.yml">
     <img alt="CI status" src="https://github.com/viyuni/musea/actions/workflows/ci.yml/badge.svg" />
   </a>
+  <a href="https://pkg.pr.new/~/viyuni/musea">
+    <img alt="pkg.pr.new" src="https://pkg.pr.new/badge/viyuni/musea" />
+  </a>
   <a href="./LICENSE">
     <img alt="License" src="https://img.shields.io/github/license/viyuni/musea" />
   </a>
@@ -49,6 +52,13 @@
 ```bash
 vp add -D @viyuni/musea
 ```
+
+## PR 预览包
+
+本仓库已通过 `pkg.pr.new` 为每个 Pull Request 发布预览包。
+
+- 入口：`https://pkg.pr.new/~/viyuni/musea`
+- 在 PR 的 check/comment 中会生成可直接安装的 URL（可按指定 PR/commit 安装）。
 
 ## 快速开始
 
