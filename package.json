@@ -66,6 +66,7 @@
   "dependencies": {
     "@lucide/vue": "^1.8.0",
     "@shikijs/markdown-exit": "^4.0.2",
+    "@vitest/coverage-v8": "^4.1.5",
     "@vitest/ws-client": "^4.1.4",
     "@viyuni/vue-component-meta": "^0.1.1",
     "@vue/compiler-core": "^3.5.32",
