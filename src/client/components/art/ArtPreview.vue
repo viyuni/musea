@@ -20,6 +20,7 @@ const props = withDefaults(
   },
 );
 
+const isDev = import.meta.env.DEV;
 const containerPPadding = 8;
 const zoom = ref(1);
 const isLoading = ref(true);
@@ -231,7 +232,11 @@ defineExpose({
       <button class="btn btn-ghost btn-primary btn-square btn-xs" @click="resetZoom">
         <RotateCcw :size="16" />
       </button>
-      <button class="btn btn-ghost btn-primary btn-square btn-xs" @click="openInspector">
+      <button
+        class="btn btn-ghost btn-primary btn-square btn-xs"
+        @click="openInspector"
+        v-if="isDev"
+      >
         <SquareMousePointer :size="16" />
       </button>
     </div>
