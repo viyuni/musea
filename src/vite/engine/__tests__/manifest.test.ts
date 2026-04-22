@@ -10,7 +10,7 @@ import {
   scanArtManifest,
   upsertArtManifestCacheEntry,
   removeArtManifestCacheEntry,
-} from '../manifest.ts';
+} from '../manifest/index.ts';
 
 function createFixtureRoot() {
   return mkdtempSync(path.join(tmpdir(), 'musea-manifest-'));

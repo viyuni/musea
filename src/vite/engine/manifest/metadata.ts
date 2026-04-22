@@ -53,10 +53,6 @@ function resolveDocsFile(file: string, root: string, docs: string | undefined) {
   const docsFile = explicitDocsFile ?? file.replace(/\.vue$/, '.md');
 
   if (!existsSync(docsFile)) {
-    if (explicitDocsFile) {
-      return;
-    }
-
     return;
   }
 
@@ -67,40 +63,27 @@ function toAbsoluteDocsTarget(file: string, docs: string) {
   return path.resolve(path.dirname(file), docs);
 }
 
-function resolveExistingComponents(file: string, root: string, components: string[]) {
+function resolveExistingFiles(
+  file: string,
+  root: string,
+  files: string[],
+  kind: 'component' | 'test',
+) {
   const relativeFile = normalizePath(path.relative(root, file));
-  const resolvedComponents: string[] = [];
+  const resolvedFiles: string[] = [];
 
-  for (const component of components) {
-    const absoluteComponent = path.resolve(path.dirname(file), component);
+  for (const item of files) {
+    const absoluteFile = path.resolve(path.dirname(file), item);
 
-    if (!existsSync(absoluteComponent)) {
-      warn(`Missing component file for ${relativeFile}: ${component}`);
+    if (!existsSync(absoluteFile)) {
+      warn(`Missing ${kind} file for ${relativeFile}: ${item}`);
       continue;
     }
 
-    resolvedComponents.push(normalizePath(path.relative(root, absoluteComponent)));
+    resolvedFiles.push(normalizePath(path.relative(root, absoluteFile)));
   }
 
-  return resolvedComponents;
-}
-
-function resolveExistingTests(file: string, root: string, tests: string[]) {
-  const relativeFile = normalizePath(path.relative(root, file));
-  const resolvedTests: string[] = [];
-
-  for (const testFile of tests) {
-    const absoluteTestFile = path.resolve(path.dirname(file), testFile);
-
-    if (!existsSync(absoluteTestFile)) {
-      warn(`Missing test file for ${relativeFile}: ${testFile}`);
-      continue;
-    }
-
-    resolvedTests.push(normalizePath(path.relative(root, absoluteTestFile)));
-  }
-
-  return resolvedTests;
+  return resolvedFiles;
 }
 
 export function resolveArtDocsTarget(file: string, root = process.cwd()) {
@@ -122,8 +105,8 @@ export function toArtManifestEntry(file: string, root = process.cwd()): ArtManif
   }
 
   const { docs, ...manifestMeta } = meta;
-  const components = resolveExistingComponents(normalizedFile, root, meta.components);
-  const tests = resolveExistingTests(normalizedFile, root, meta.tests);
+  const components = resolveExistingFiles(normalizedFile, root, meta.components, 'component');
+  const tests = resolveExistingFiles(normalizedFile, root, meta.tests, 'test');
 
   return {
     ...manifestMeta,

@@ -8,7 +8,7 @@ import { type Plugin } from 'vite';
 import inspector from 'vite-plugin-vue-inspector';
 
 import type { MuseaConfig, MuseaPluginContext } from '../types/index.ts';
-import { rebuildArtManifest } from './engine/manifest.ts';
+import { rebuildArtManifest } from './engine/manifest/index.ts';
 import { createDocsChecker } from './engine/resolve-component-doc.ts';
 import { attachMuseaHmr, handleMuseaDocsHotUpdate } from './hmr/index.ts';
 import { museaServer } from './server.ts';

@@ -8,11 +8,8 @@ export type ArtManifestScanOptions = {
   ignore: string[];
 };
 
-export type ArtManifestCacheOptions = ArtManifestScanOptions & {
+export type ArtManifestCacheFileOptions = {
   cache: ArtManifestCache;
-};
-
-export type ArtManifestCacheFileOptions = Pick<ArtManifestCacheOptions, 'cache'> & {
   root: string;
   file: string;
 };

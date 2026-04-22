@@ -3,10 +3,10 @@ import path from 'node:path';
 import { globSync } from 'tinyglobby';
 import { normalizePath } from 'unplugin-utils';
 
-export function findArtFiles(patterns: string[], ignore: string[], cwd = process.cwd()) {
+export function findArtFiles(patterns: string[], ignore: string[], root = process.cwd()) {
   return globSync(patterns, {
     absolute: true,
-    cwd,
+    cwd: root,
     ignore,
     onlyFiles: true,
   });
