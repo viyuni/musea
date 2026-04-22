@@ -1,3 +1,4 @@
+import { createHash } from 'node:crypto';
 import { mkdirSync, mkdtempSync, writeFileSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import path from 'node:path';
@@ -43,11 +44,13 @@ describe('manifest files', () => {
     expect(files).toEqual(['src/keep.art.vue']);
   });
 
-  test('toManifestCacheKey always returns root-relative normalized slashes', () => {
+  test('toManifestCacheKey returns stable hash of root-relative normalized path', () => {
     const root = 'C:\\repo\\demo';
     const file = 'C:\\repo\\demo\\src\\nested\\Button.art.vue';
 
-    expect(toManifestCacheKey(file, root)).toBe('src/nested/Button.art.vue');
+    expect(toManifestCacheKey(file, root)).toBe(
+      createHash('sha256').update('src/nested/Button.art.vue').digest('hex'),
+    );
   });
 });
 

@@ -18,7 +18,7 @@ export function createArtManifestCache({
     const manifestEntry = toArtManifestEntry(file, root);
 
     if (manifestEntry) {
-      cache.set(manifestEntry.file, manifestEntry);
+      cache.set(toManifestCacheKey(file, root), manifestEntry);
     }
   }
 
@@ -41,7 +41,7 @@ export function upsertArtManifestCacheEntry({
     return;
   }
 
-  cache.set(manifestEntry.file, manifestEntry);
+  cache.set(toManifestCacheKey(file, root), manifestEntry);
   return manifestEntry;
 }
 

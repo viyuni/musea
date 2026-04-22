@@ -6,6 +6,7 @@ import { describe, expect, test, vi } from 'vite-plus/test';
 
 import { MUSEA_HOT_EVENTS, VIRTUAL_ART_MANIFEST, VIRTUAL_DOCS } from '../../../shared/constants.ts';
 import type { ArtManifest, MuseaPluginContext } from '../../../types/index.ts';
+import { toManifestCacheKey } from '../../engine/manifest/files.ts';
 import { handleMuseaDocsHotUpdate } from '../docs.ts';
 import { refreshManifestHmr } from '../manifest.ts';
 
@@ -64,7 +65,9 @@ function createContext(root: string, artManifest: ArtManifest[]) {
     root,
     options: { patterns: ['**/*.art.vue'], ignore: [] },
     artManifest,
-    artManifestCache: new Map(artManifest.map((item) => [item.file, item])),
+    artManifestCache: new Map(
+      artManifest.map((item) => [toManifestCacheKey(path.join(root, item.file), root), item]),
+    ),
     isBuild: false,
     devServer: server as never,
   };
