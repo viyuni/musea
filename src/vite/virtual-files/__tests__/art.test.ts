@@ -36,10 +36,10 @@ describe('artBundleVirtualFile', () => {
 
     expect(code).toContain('import component_0 from "/@fs/C:/repo/src/Button.vue";');
     expect(code).toContain(
-      'import variant_0 from "virtual:musea-art-variant-render.art.vue?artId=src%2FButton.art.vue";',
+      'import variant_0 from "virtual:musea-art-variant.art.vue?artId=src%2FButton.art.vue";',
     );
     expect(code).toContain(
-      'import variant_1 from "virtual:musea-art-variant-render.art.vue?artId=src%2FButton.art.vue&variant=primary";',
+      'import variant_1 from "virtual:musea-art-variant.art.vue?artId=src%2FButton.art.vue&variant=primary";',
     );
     expect(code).toContain('export default {');
     expect(code).toContain('"src/Button.art.vue": {');

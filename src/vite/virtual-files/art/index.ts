@@ -1,4 +1,4 @@
-import { VIRTUAL_ART, VIRTUAL_ART_VARIANT_RENDER } from '../../../shared/constants.ts';
+import { VIRTUAL_ART, VIRTUAL_ART_VARIANT } from '../../../shared/constants.ts';
 import { warn } from '../../../shared/logger.ts';
 import type { ArtManifest } from '../../../types/index.ts';
 import {
@@ -8,14 +8,14 @@ import {
   renderObjectLiteral,
 } from '../helpers.ts';
 
-function createRenderRequest(art: ArtManifest, variant?: string) {
+function createVariantRequest(art: ArtManifest, variant?: string) {
   const query = new URLSearchParams({ artId: art.id });
 
   if (variant) {
     query.set('variant', variant);
   }
 
-  return `${VIRTUAL_ART_VARIANT_RENDER.id}?${query.toString()}`;
+  return `${VIRTUAL_ART_VARIANT.id}?${query.toString()}`;
 }
 
 function createImportName(prefix: string, index: number) {
@@ -40,7 +40,7 @@ function renderArtModule(art: ArtManifest, root: string) {
   const variantEntries = normalVariants.map((variant, index) => {
     const variantImportName = createImportName('variant', index);
     imports.push(
-      `import ${variantImportName} from ${JSON.stringify(createRenderRequest(art, variant.name))};`,
+      `import ${variantImportName} from ${JSON.stringify(createVariantRequest(art, variant.name))};`,
     );
     return `${JSON.stringify(variant.name ?? '')}: ${variantImportName}`;
   });
