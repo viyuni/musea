@@ -40,10 +40,13 @@ export default defineConfig({
     hooks: {
       'build:done': () => {
         // Build style
-        execSync('pnpm dlx @tailwindcss/cli -i ./src/client/style.css -o ./dist/style.css', {
-          stdio: 'inherit',
-          cwd: process.cwd(),
-        });
+        execSync(
+          'npx --no-install @tailwindcss/cli -i ./src/client/style.css -o ./dist/style.css',
+          {
+            stdio: 'inherit',
+            cwd: process.cwd(),
+          },
+        );
       },
     },
   },
