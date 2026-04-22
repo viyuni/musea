@@ -1,7 +1,7 @@
 import type { ElementNode } from '@vue/compiler-core';
 import MagicString from 'magic-string';
 
-import { warn } from '../shared/logger.ts';
+import { warn } from '../../shared/logger.ts';
 import { getDefaultAttributeValue, getNameAttributeValue, parseArtSfc } from './parser.ts';
 
 interface RenderArtVariantOptions {

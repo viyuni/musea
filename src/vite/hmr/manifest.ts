@@ -1,9 +1,9 @@
-import { refreshArtManifest } from '../art/manifest.ts';
-import type { ArtManifestUpdateEvent } from '../art/manifest.ts';
-import { isArtSfc } from '../art/parser.ts';
-import { MUSEA_HOT_EVENTS, VIRTUAL_ART_MANIFEST } from '../shared/constants.ts';
-import { toRelativePath } from '../shared/utils.ts';
-import type { MuseaPluginContext } from '../types/index.ts';
+import { MUSEA_HOT_EVENTS, VIRTUAL_ART_MANIFEST } from '../../shared/constants.ts';
+import { toRelativePath } from '../../shared/utils.ts';
+import type { MuseaPluginContext } from '../../types/index.ts';
+import { refreshArtManifest } from '../engine/manifest.ts';
+import type { ArtManifestUpdateEvent } from '../engine/manifest.ts';
+import { isArtSfc } from '../engine/parser.ts';
 import { notifyArtDocsUpdate } from './docs.ts';
 import { invalidateVirtualModules } from './utils.ts';
 

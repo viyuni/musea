@@ -72,6 +72,19 @@ export interface ButtonProps {
   array2?: Array<Options>;
 
   name?: number;
+
+  ids?:
+    | Partial<{
+        anchor: string;
+        trigger: string | ((value?: string | undefined) => string);
+        content: string;
+        title: string;
+        description: string;
+        closeTrigger: string;
+        positioner: string;
+        arrow: string;
+      }>
+    | undefined;
 }
 
 export interface ButtonEmits {

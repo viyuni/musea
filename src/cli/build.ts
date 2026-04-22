@@ -6,7 +6,7 @@ import { normalizePath } from 'unplugin-utils';
 import { build, mergeConfig, type InlineConfig } from 'vite';
 
 import { renderHtml, toAbsolutePath } from '../shared/utils.ts';
-import { paths } from '../vite/config.ts';
+import { PATHS } from '../vite/config.ts';
 import musea from '../vite/index.ts';
 import { loadMuseaConfig, type ResolvedMuseaConfig } from './config.ts';
 
@@ -147,9 +147,9 @@ function mergeFullConfig(museaConfig: ResolvedMuseaConfig, cwd = process.cwd()):
       write: false,
       rollupOptions: {
         input: {
-          app: resolveViteFilePath(paths.appEntry, cwd),
-          'client-frame-variant': resolveViteFilePath(paths.variantFrameEntry, cwd),
-          'client-frame-component': resolveViteFilePath(paths.componentFrameEntry, cwd),
+          app: resolveViteFilePath(PATHS.appEntry, cwd),
+          'client-frame-variant': resolveViteFilePath(PATHS.variantFrameEntry, cwd),
+          'client-frame-component': resolveViteFilePath(PATHS.componentFrameEntry, cwd),
         },
         output: {
           assetFileNames: 'assets/[name]-[hash][extname]',

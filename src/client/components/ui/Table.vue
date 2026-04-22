@@ -18,7 +18,7 @@ const titles = computed(() => Object.keys(slots));
     </h2>
 
     <div v-if="list && list.length > 0" class="w-full overflow-x-auto">
-      <table class="table min-w-100 w-full rounded-box border border-base-content/5 bg-base-100">
+      <table class="table min-w-200 w-full rounded-box border border-base-content/5 bg-base-100">
         <thead>
           <tr class="text-base-content text-[11px] uppercase tracking-widest">
             <th v-for="title in titles" :key="title">{{ title }}</th>

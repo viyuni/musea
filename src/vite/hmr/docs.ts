@@ -1,10 +1,10 @@
 import type { HmrContext, ModuleNode, ViteDevServer } from 'vite';
 
-import { refreshArtManifest } from '../art/manifest.ts';
-import { resolveArtDocsTarget } from '../art/manifest/metadata.ts';
-import { MUSEA_HOT_EVENTS, VIRTUAL_DOCS } from '../shared/constants.ts';
-import { toAbsolutePath } from '../shared/utils.ts';
-import type { MuseaPluginContext } from '../types/index.ts';
+import { MUSEA_HOT_EVENTS, VIRTUAL_DOCS } from '../../shared/constants.ts';
+import { toAbsolutePath } from '../../shared/utils.ts';
+import type { MuseaPluginContext } from '../../types/index.ts';
+import { refreshArtManifest } from '../engine/manifest.ts';
+import { resolveArtDocsTarget } from '../engine/manifest/metadata.ts';
 import { notifyManifestUpdate } from './manifest.ts';
 import { invalidateVirtualModules } from './utils.ts';
 

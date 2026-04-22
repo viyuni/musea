@@ -1,9 +1,9 @@
 import type { ResolvedComponentMeta } from '@viyuni/vue-component-meta/types';
 import type { SetRequired } from 'type-fest';
 
-import { resolveComponentDocs } from '../../art/resolve-component-doc.ts';
-import { VIRTUAL_DOCS } from '../../shared/constants.ts';
-import type { ArtManifest, VirtualFileContext } from '../../types/index.ts';
+import { VIRTUAL_DOCS } from '../../../shared/constants.ts';
+import type { ArtManifest, VirtualFileContext } from '../../../types/index.ts';
+import { resolveComponentDocs } from '../../engine/resolve-component-doc.ts';
 import {
   createConstExport,
   createImport,
@@ -11,7 +11,7 @@ import {
   normalizeForImport,
   renderObjectLiteral,
   serializeModuleValue,
-} from '../core/index.ts';
+} from '../helpers.ts';
 
 function renderDocsModulesExport({ artManifest }: VirtualFileContext) {
   return createConstExport(

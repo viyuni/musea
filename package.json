@@ -31,6 +31,9 @@
     "dist"
   ],
   "type": "module",
+  "imports": {
+    "#/": "./src/*"
+  },
   "exports": {
     ".": {
       "types": "./dist/index.d.mts",

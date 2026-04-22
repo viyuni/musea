@@ -1,28 +1,20 @@
-import { defineVirtualFile, js, normalizeForImport } from '../core/index.ts';
+import { defineVirtualFile, normalizeForImport } from '../helpers.ts';
 
 export const VIRTUAL_SETUP_ID = 'virtual:musea-setup';
 
 function renderSetupModule(setupFile?: string, root = process.cwd()) {
   if (setupFile) {
-    return js`
-// VIRTUAL FILE START
-
+    return `
 import setup from ${JSON.stringify(normalizeForImport(setupFile, root))};
 
 export default setup;
-
-// VIRTUAL FILE EMD
 `;
   }
 
-  return js`
-// VIRTUAL FILE START
-
+  return `
 async function setup() {}
 
 export default setup;
-
-// VIRTUAL FILE EMD
 `;
 }
 

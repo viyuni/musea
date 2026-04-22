@@ -7,17 +7,12 @@ import markdownPlugin from 'unplugin-vue-markdown/vite';
 import { type Plugin } from 'vite';
 import inspector from 'vite-plugin-vue-inspector';
 
-import { rebuildArtManifest } from '../art/manifest.ts';
-import { createDocsChecker } from '../art/resolve-component-doc.ts';
-import { attachMuseaHmr, handleMuseaDocsHotUpdate } from '../hmr/index.ts';
 import type { MuseaConfig, MuseaPluginContext } from '../types/index.ts';
-import { createVirtualFileRegistry } from '../virtual-files/core/index.ts';
-import { artDocsVirtualFile } from '../virtual-files/docs/index.ts';
-import { artManifestVirtualFile } from '../virtual-files/manifest/index.ts';
-import { artVariantRenderVirtualFile } from '../virtual-files/render/index.ts';
-import { setupVirtualFile } from '../virtual-files/setup/index.ts';
-import { styleVirtualFile } from '../virtual-files/style/index.ts';
+import { rebuildArtManifest } from './engine/manifest.ts';
+import { createDocsChecker } from './engine/resolve-component-doc.ts';
+import { attachMuseaHmr, handleMuseaDocsHotUpdate } from './hmr/index.ts';
 import { museaServer } from './server.ts';
+import { virtualFileRegistry } from './virtual-files/index.ts';
 
 const museaSetupFiles = 'musea.setup';
 
@@ -70,14 +65,6 @@ const DEFAULT_OPTIONS: MuseaConfig = {
   host: false,
   vite: {},
 };
-
-const virtualFileRegistry = createVirtualFileRegistry([
-  artManifestVirtualFile,
-  artDocsVirtualFile,
-  styleVirtualFile,
-  artVariantRenderVirtualFile,
-  setupVirtualFile,
-]);
 
 export default async function museaPlugin(options = DEFAULT_OPTIONS) {
   const context: MuseaPluginContext = {

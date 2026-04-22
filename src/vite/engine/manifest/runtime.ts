@@ -1,4 +1,4 @@
-import type { MuseaPluginContext } from '../../types/index.ts';
+import type { MuseaPluginContext } from '../../../types/index.ts';
 import {
   createArtManifestCache,
   readArtManifestCache,

@@ -1,5 +1,5 @@
-import { VIRTUAL_ART_MANIFEST, VIRTUAL_ART_VARIANT_RENDER } from '../../shared/constants.ts';
-import type { ArtManifest } from '../../types/index.ts';
+import { VIRTUAL_ART_MANIFEST, VIRTUAL_ART_VARIANT_RENDER } from '../../../shared/constants.ts';
+import type { ArtManifest } from '../../../types/index.ts';
 import {
   createConstExport,
   createImport,
@@ -7,7 +7,7 @@ import {
   normalizeForImport,
   renderObjectLiteral,
   serializeModuleValue,
-} from '../core/index.ts';
+} from '../helpers.ts';
 
 function createRenderRequest(art: ArtManifest, variant?: string) {
   const query = new URLSearchParams({ artId: art.id });

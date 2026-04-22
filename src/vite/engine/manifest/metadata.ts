@@ -3,13 +3,13 @@ import path from 'node:path';
 
 import { normalizePath } from 'unplugin-utils';
 
-import { warn } from '../../shared/logger.ts';
+import { warn } from '../../../shared/logger.ts';
 import type {
   ArtManifest,
   ParsedArtProps,
   ParsedVariantProps,
   VariantProps,
-} from '../../types/index.ts';
+} from '../../../types/index.ts';
 import { collectAttributes, parseArtSfc } from '../parser.ts';
 
 type ArtMetadata = ParsedArtProps & {

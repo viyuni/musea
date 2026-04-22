@@ -218,7 +218,7 @@
 }
 
 .md-body table {
-  @apply table min-w-100 w-full rounded-box border border-base-content/5 bg-base-100;
+  @apply table min-w-200 w-full rounded-box border border-base-content/5 bg-base-100;
 }
 
 .md-body table thead tr {

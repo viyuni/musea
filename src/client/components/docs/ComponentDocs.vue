@@ -2,6 +2,7 @@
 import type { ResolvedComponentMeta } from '@viyuni/vue-component-meta/types';
 
 import Table from '../ui/Table.vue';
+import TypeBadge from './TypeBadge.vue';
 
 const { resolved, isPrimary = false } = defineProps<{
   resolved: ResolvedComponentMeta;
@@ -37,16 +38,20 @@ function getTitle(resolved: ResolvedComponentMeta) {
         </span>
       </template>
       <template #type="{ row }">
-        <code class="badge badge-sm badge-ghost whitespace-nowrap">
+        <TypeBadge>
           {{ row.originalType }}
-        </code>
+        </TypeBadge>
       </template>
       <template #default="{ row }">
-        <code class="badge badge-sm badge-ghost whitespace-nowrap">
+        <code class="badge badge-sm badge-ghost">
           {{ row.default ?? '—' }}
         </code>
       </template>
-      <template #description="{ row }">{{ row.description }}</template>
+      <template #description="{ row }">
+        <div class="text-sm leading-relaxed min-w-100">
+          {{ row.description || '—' }}
+        </div>
+      </template>
     </Table>
 
     <Table title="Slots" :list="resolved.slots ?? []" id-key="name">
@@ -56,14 +61,14 @@ function getTitle(resolved: ResolvedComponentMeta) {
         </span>
       </template>
       <template #type="{ row }">
-        <code class="badge badge-sm badge-ghost whitespace-nowrap">
+        <TypeBadge>
           {{ row.originalType }}
-        </code>
+        </TypeBadge>
       </template>
       <template #description="{ row }">
-        <span class="text-sm opacity-70 leading-relaxed">
+        <div class="text-sm leading-relaxed min-w-100">
           {{ row.description || '—' }}
-        </span>
+        </div>
       </template>
     </Table>
 
@@ -74,14 +79,14 @@ function getTitle(resolved: ResolvedComponentMeta) {
         </span>
       </template>
       <template #payload="{ row }">
-        <code class="badge badge-sm badge-ghost whitespace-nowrap">
+        <TypeBadge>
           {{ row.originalType }}
-        </code>
+        </TypeBadge>
       </template>
       <template #description="{ row }">
-        <span class="text-sm opacity-70 leading-relaxed max-w-sm whitespace-normal">
+        <div class="text-sm leading-relaxed min-w-100">
           {{ row.description || '—' }}
-        </span>
+        </div>
       </template>
     </Table>
 
@@ -92,14 +97,14 @@ function getTitle(resolved: ResolvedComponentMeta) {
         </div>
       </template>
       <template #type="{ row }">
-        <code class="badge badge-sm badge-ghost whitespace-nowrap">
+        <TypeBadge>
           {{ row.originalType }}
-        </code>
+        </TypeBadge>
       </template>
       <template #description="{ row }">
-        <span class="text-sm opacity-70 leading-relaxed max-w-sm whitespace-normal">
+        <div class="text-sm leading-relaxed min-w-100">
           {{ row.description || '—' }}
-        </span>
+        </div>
       </template>
     </Table>
   </div>

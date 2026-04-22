@@ -11,6 +11,9 @@ export default defineConfig({
   server: {
     host: true,
   },
+  define: {
+    __IS_UNPACKED__: 'true',
+  },
   pack: {
     plugins: [vue({ isProduction: true })],
     entry: {

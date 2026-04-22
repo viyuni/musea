@@ -1,4 +1,4 @@
-import type { ArtManifest, ArtManifestCache } from '../../types/index.ts';
+import type { ArtManifest, ArtManifestCache } from '../../../types/index.ts';
 import { findArtFiles, toManifestCacheKey } from './files.ts';
 import { toArtManifestEntry } from './metadata.ts';
 import type { ArtManifestCacheFileOptions, ArtManifestScanOptions } from './types.ts';

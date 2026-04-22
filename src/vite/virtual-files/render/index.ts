@@ -2,15 +2,15 @@ import { createHash } from 'node:crypto';
 import { readFileSync } from 'node:fs';
 import path from 'node:path';
 
-import { isArtSfc } from '../../art/parser.ts';
-import { renderArtVariant } from '../../art/render-art-variant.ts';
 import {
   ART_VARIANT_RENDER_QUERY_KEY,
   VIRTUAL_ART_VARIANT_RENDER,
-} from '../../shared/constants.ts';
-import { warn } from '../../shared/logger.ts';
-import { toAbsolutePath } from '../../shared/utils.ts';
-import { defineVirtualFile } from '../core/index.ts';
+} from '../../../shared/constants.ts';
+import { warn } from '../../../shared/logger.ts';
+import { toAbsolutePath } from '../../../shared/utils.ts';
+import { isArtSfc } from '../../engine/parser.ts';
+import { renderArtVariant } from '../../engine/render-art-variant.ts';
+import { defineVirtualFile } from '../helpers.ts';
 
 export interface LoadArtOptions {
   file: string;

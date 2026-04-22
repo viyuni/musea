@@ -9,7 +9,7 @@ import type { Connect } from 'vite';
 import { ROUTES } from '../shared/constants.ts';
 import { renderHtml, type RenderHtmlOptions } from '../shared/utils.ts';
 import type { MuseaPluginContext } from '../types/index.ts';
-import { paths } from './config.ts';
+import { PATHS } from './config.ts';
 
 const routePaths = Object.values(ROUTES);
 
@@ -46,8 +46,8 @@ export function museaServer(ctx: MuseaPluginContext): Connect.NextHandleFunction
       event,
       ctx,
       title: 'Musea',
-      entryFile: paths.appEntry,
-      cssFiles: [paths.styleLink],
+      entryFile: PATHS.appEntry,
+      cssFiles: [PATHS.styleLink],
     });
   });
 
@@ -56,7 +56,7 @@ export function museaServer(ctx: MuseaPluginContext): Connect.NextHandleFunction
       event,
       ctx,
       title: 'Musea Variant Preview',
-      entryFile: paths.variantFrameEntry,
+      entryFile: PATHS.variantFrameEntry,
     });
   });
 
@@ -65,7 +65,7 @@ export function museaServer(ctx: MuseaPluginContext): Connect.NextHandleFunction
       event,
       ctx,
       title: 'Musea Component Preview',
-      entryFile: paths.componentFrameEntry,
+      entryFile: PATHS.componentFrameEntry,
     });
   });
 

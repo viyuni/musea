@@ -22,6 +22,7 @@ declare module 'vite' {
   }
 }
 
+//@ts-ignore
 declare module 'vite-plus' {
   interface UserConfig {
     musea?: import('./types/index.ts').MuseaConfig;

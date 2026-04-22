@@ -1,4 +1,4 @@
-import type { ArtManifestCache } from '../../types/index.ts';
+import type { ArtManifestCache } from '../../../types/index.ts';
 
 export type ArtManifestUpdateEvent = 'add' | 'change' | 'unlink';
 

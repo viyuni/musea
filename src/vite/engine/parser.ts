@@ -8,7 +8,7 @@ import {
 } from '@vue/compiler-core';
 import { parse as parseSfc } from '@vue/compiler-sfc';
 
-import { warn } from '../shared/logger.ts';
+import { warn } from '../../shared/logger.ts';
 
 export function isArtSfc(file: string) {
   return file.endsWith('.art.vue');

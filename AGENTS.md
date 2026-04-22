@@ -107,9 +107,9 @@ For GitHub Actions, consider using [`voidzero-dev/setup-vp`](https://github.com/
 - `src/macro.ts`: type augmentation (`vue` global components and `vite` config field typing).
 - `src/cli`: command implementations and config loading.
 - `src/vite`: internal plugin + server/middleware integration.
-- `src/art`: art parsing, manifest discovery/cache, docs resolution.
-- `src/virtual-files`: virtual modules for manifest/docs/render/setup/style.
-- `src/hmr`: manifest and docs HMR updates.
+- `src/vite/engine`: art parsing, manifest discovery/cache, docs resolution.
+- `src/vite/virtual-files`: virtual modules for manifest/docs/render/setup/style.
+- `src/vite/hmr`: manifest and docs HMR updates.
 - `src/client`: gallery app and frame apps.
 - `src/shared`: shared constants and helpers.
 - `src/types`: public contracts and plugin context types.
