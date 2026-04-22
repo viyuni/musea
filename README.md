@@ -61,6 +61,7 @@ Create an `.art.vue` file next to the component you want to showcase.
     status="ready"
     tags="form,action"
     components="./Button.vue"
+    <!-- :components="['./Button.vue']" -->
     docs="./Button.md"
   >
     <variant name="Default" default>
@@ -148,6 +149,26 @@ export default defineConfig({
 });
 ```
 
+### Setup File (`musea.setup.*`)
+
+Musea auto-detects `musea.setup.*` in project root (for example `musea.setup.ts`) and runs it before mounting gallery preview apps.
+
+Use this file for global app setup shared by variant/component frames, such as registering plugins, global components, directives, or `provide` values.
+
+```ts
+import { defineSetup } from '@viyuni/musea';
+import type { App } from 'vue';
+
+export default defineSetup((app: App) => {
+  // app.use(...)
+  // app.component(...)
+  // app.directive(...)
+  // app.provide(...)
+});
+```
+
+If no `musea.setup.*` file exists, Musea uses a no-op setup by default.
+
 TypeScript note:
 
 If you configure `musea` in `vite.config.*`, include `@viyuni/musea/macro` in the config TS program:
@@ -209,7 +230,24 @@ Musea's product direction and interaction experience are inspired by:
 
 For component API docs, Musea uses [`vue-component-meta`](https://github.com/vuejs/language-tools/tree/master/packages/component-meta) to extract metadata (props, events, slots, exposed) from Vue components.
 
-## TODO List
+## Capability Boundaries And Roadmap
+
+To avoid expectation gaps, the sections below clarify what Musea supports today and what is planned next.
+
+### Currently Supported
+
+- Generate a component gallery from `*.art.vue` files (including `variant` dimensions)
+- CLI workflow: `musea dev` / `musea build` / `musea preview`
+- API docs generation from component metadata (`vue-component-meta`)
+- Global setup via `musea.setup.*` (plugins, global components, directives, provide, etc.)
+- Fixed core routes and frame previews (`/`, `/frame/variant`, `/frame/component`)
+
+### Planned Capabilities (Roadmap)
 
 - [ ] Add a Test tab with Vitest integration
-- [ ] Add A11y tab
+- [ ] Add an A11y tab
+- [ ] Allow disabling automatic docs generation
+- [ ] Allow adding custom pages
+- [ ] Allow custom `title` and `logo`
+- [ ] Allow route customization
+- [ ] Optimize Musea static build output artifacts

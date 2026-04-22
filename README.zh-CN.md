@@ -61,6 +61,7 @@ vp add -D @viyuni/musea
     status="ready"
     tags="form,action"
     components="./Button.vue"
+    <!-- :components="['./Button.vue']" -->
     docs="./Button.md"
   >
     <variant name="Default" default>
@@ -148,6 +149,26 @@ export default defineConfig({
 });
 ```
 
+### Setup 文件（`musea.setup.*`）
+
+Musea 会自动检测项目根目录下的 `musea.setup.*`（例如 `musea.setup.ts`），并在画廊预览应用挂载前执行它。
+
+这个文件适合放置在 variant/component frame 中共享的全局初始化逻辑，例如注册插件、全局组件、指令，或 `provide` 全局依赖。
+
+```ts
+import { defineSetup } from '@viyuni/musea';
+import type { App } from 'vue';
+
+export default defineSetup((app: App) => {
+  // app.use(...)
+  // app.component(...)
+  // app.directive(...)
+  // app.provide(...)
+});
+```
+
+如果项目中没有 `musea.setup.*` 文件，Musea 会使用默认的空初始化函数。
+
 TypeScript 提示：
 
 如果你在 `vite.config.*` 中配置 `musea`，请在该配置对应的 TS Program 中加入 `@viyuni/musea/macro`：
@@ -209,7 +230,24 @@ Musea 的产品方向与交互体验参考了：
 
 组件 API 文档由 [`vue-component-meta`](https://github.com/vuejs/language-tools/tree/master/packages/component-meta) 自动提取（props、events、slots、exposed）。
 
-## TODO List
+## 能力边界与路线图
+
+为避免预期偏差，下面列出 Musea 当前已支持能力与计划能力。
+
+### 当前已支持
+
+- 通过 `*.art.vue` 生成组件画廊（含 `variant` 维度）
+- CLI 工作流：`musea dev` / `musea build` / `musea preview`
+- 基于组件元信息生成 API 文档（`vue-component-meta`）
+- `musea.setup.*` 全局初始化扩展（插件、全局组件、指令、provide 等）
+- 固定核心路由与 frame 预览能力（`/`、`/frame/variant`、`/frame/component`）
+
+### 计划能力（Roadmap）
 
 - [ ] 添加 Test tab，并集成 Vitest
 - [ ] 添加 A11y tab
+- [ ] 允许关闭自动生成文档
+- [ ] 允许添加自定义页面
+- [ ] 允许自定义 `title` 和 `logo`
+- [ ] 允许修改路由
+- [ ] 优化Musea静态构建产物
