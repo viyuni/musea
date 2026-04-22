@@ -40,7 +40,7 @@ export default defineConfig({
     hooks: {
       'build:done': () => {
         // Build style
-        execSync('vpx @tailwindcss/cli -i ./src/client/style.css -o ./dist/style.css', {
+        execSync('pnpm dlx @tailwindcss/cli -i ./src/client/style.css -o ./dist/style.css', {
           stdio: 'inherit',
           cwd: process.cwd(),
         });
