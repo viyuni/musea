@@ -57,6 +57,9 @@ export function museaServer(ctx: MuseaPluginContext): Connect.NextHandleFunction
       ctx,
       title: 'Musea Variant Preview',
       entryFile: PATHS.variantFrameEntry,
+      define: {
+        __MUSEA_STYLE_LINK__: `new URL(${JSON.stringify(PATHS.styleLink)}, import.meta.url).href`,
+      },
     });
   });
 

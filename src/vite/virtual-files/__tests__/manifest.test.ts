@@ -34,7 +34,7 @@ describe('artManifestVirtualFile', () => {
     const code = await artManifestVirtualFile.load(createContext(artManifest));
 
     expect(code).toContain('export const manifest =');
-    expect(code).toContain('export const artVariantModules =');
+    expect(code).toContain('export const artModules =');
     expect(code).toContain(
       '"": () => import("virtual:musea-art-variant-render.art.vue?artId=src%2FButton.art.vue")',
     );

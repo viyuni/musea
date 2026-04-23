@@ -123,7 +123,7 @@ watch(
 
     <!-- Tab Content -->
     <div class="flex-1 min-w-0">
-      <div v-if="isChecked('variants')" class="px-4 py-4 lg:px-8 lg:py-8">
+      <div v-if="isChecked('variants')">
         <ArtTabVariants :art />
       </div>
 

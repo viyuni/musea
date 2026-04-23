@@ -1,22 +1,22 @@
-import { manifest, artVariantModules, componentModules } from 'virtual:musea-manifest';
+import { manifest, artModules, componentModules } from 'virtual:musea-manifest';
 import { computed, defineAsyncComponent, shallowRef } from 'vue';
 
 import { MUSEA_HOT_EVENTS, VIRTUAL_ART_MANIFEST } from '../../shared/constants';
 import type { ArtManifest } from '../../types';
 
 type Manifest = typeof manifest;
-type ArtModules = typeof artVariantModules;
+type ArtModules = typeof artModules;
 type ComponentModules = typeof componentModules;
 
 type ManifestVirtualModule = {
   manifest: Manifest;
-  artVariantModules: ArtModules;
+  artModules: ArtModules;
   componentModules: ComponentModules;
 };
 
 const manifestVirtualModule = shallowRef<ManifestVirtualModule>({
   manifest,
-  artVariantModules,
+  artModules,
   componentModules,
 });
 
@@ -49,13 +49,13 @@ if (import.meta.hot) {
   });
 }
 
-export function getVariantComponent(artId?: string, variant?: string) {
+export function getArtComponent(artId?: string) {
   return defineAsyncComponent(() => {
     if (!artId) {
       return Promise.reject(new Error('missing art id.'));
     }
 
-    const loader = manifestVirtualModule.value.artVariantModules?.[artId]?.[variant ?? ''];
+    const loader = manifestVirtualModule.value.artModules?.[artId];
     if (!loader) throw new Error('Unknown art variant');
 
     return loader();

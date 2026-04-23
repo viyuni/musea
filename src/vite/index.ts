@@ -117,7 +117,7 @@ export default async function museaPlugin(options = DEFAULT_OPTIONS) {
       include: [/\.vue$/, /\.md$/],
       template: {
         compilerOptions: {
-          isCustomElement: (tag) => ['art', 'variant'].includes(tag),
+          isCustomElement: (tag) => ['art', 'musea-variant'].includes(tag),
         },
       },
     }),

@@ -37,6 +37,7 @@ type MuseaPage = {
   file: string;
   title: string;
   chunk: BuildArtifacts['entryChunks'] extends Map<string, infer T> ? T : never;
+  define?: Record<string, string>;
 };
 
 function resolveViteFilePath(file: string, cwd: string) {
@@ -61,6 +62,27 @@ function isBuildOutput(result: BuildResult): result is BuildOutput {
 
 function getEntryCssFiles(entryChunk: MuseaEntryChunk | undefined) {
   return [...(entryChunk?.viteMetadata?.importedCss ?? [])];
+}
+
+function getPrimaryStyleFile(build: BuildArtifacts, appChunk: MuseaEntryChunk) {
+  const cssAssets = build.bundle.filter(
+    (item): item is OutputAsset => item.type === 'asset' && item.fileName.endsWith('.css'),
+  );
+  const appCssFiles = getEntryCssFiles(appChunk);
+  const preferredAppCssFile =
+    appCssFiles.find((file) => /(^|\/)_virtual_musea-style-.*\.css$/.test(file)) ??
+    appCssFiles.find((file) => /(^|\/)style([.-]|$)/.test(file));
+
+  if (preferredAppCssFile) {
+    return preferredAppCssFile;
+  }
+
+  const virtualMuseaStyleAsset = cssAssets.find((item) =>
+    /(^|\/)_virtual_musea-style-.*\.css$/.test(item.fileName),
+  );
+  const namedStyleAsset = cssAssets.find((item) => /(^|\/)style([.-]|$)/.test(item.fileName));
+
+  return (virtualMuseaStyleAsset ?? namedStyleAsset ?? cssAssets[0])?.fileName;
 }
 
 function toHtmlAssetPath(htmlFile: string, assetFile: string) {
@@ -126,6 +148,7 @@ async function writeMuseaPage(absoluteOutDir: string, page: MuseaPage) {
       title: page.title,
       entryFile,
       cssFiles,
+      define: page.define,
     }),
   );
 }
@@ -152,7 +175,21 @@ function mergeFullConfig(museaConfig: ResolvedMuseaConfig, cwd = process.cwd()):
           'client-frame-component': resolveViteFilePath(PATHS.componentFrameEntry, cwd),
         },
         output: {
-          assetFileNames: 'assets/[name]-[hash][extname]',
+          assetFileNames(assetInfo) {
+            const marker = [
+              ...(assetInfo.names ?? []),
+              ...(assetInfo.originalFileNames ?? []),
+            ].join(' ');
+            if (
+              marker.includes('_virtual_musea-style') ||
+              marker.includes('/style.css') ||
+              marker.endsWith('style.css')
+            ) {
+              return 'assets/style.css';
+            }
+
+            return 'assets/[name]-[hash][extname]';
+          },
           chunkFileNames: 'assets/[name]-[hash].js',
           entryFileNames: 'assets/[name].js',
         },
@@ -162,17 +199,33 @@ function mergeFullConfig(museaConfig: ResolvedMuseaConfig, cwd = process.cwd()):
 }
 
 async function writeMuseaPages(absoluteOutDir: string, build: BuildArtifacts) {
+  const appChunk = getRequiredEntryChunk(build, 'app');
+  const appCssFile = getPrimaryStyleFile(build, appChunk);
+
+  if (!appCssFile) {
+    throw new Error('Musea static build did not emit CSS required by variant frame.');
+  }
+
+  const frameVariantHtmlFile = path.join(absoluteOutDir, 'frame', 'variant', 'index.html');
+  const frameVariantStylePath = toHtmlAssetPath(
+    frameVariantHtmlFile,
+    path.join(absoluteOutDir, appCssFile),
+  );
+
   const pages = [
     {
       file: path.join(absoluteOutDir, 'index.html'),
       title: 'Musea',
-      chunk: getRequiredEntryChunk(build, 'app'),
+      chunk: appChunk,
       inlineCss: '',
     },
     {
-      file: path.join(absoluteOutDir, 'frame', 'variant', 'index.html'),
+      file: frameVariantHtmlFile,
       title: 'Musea Art Preview',
       chunk: getRequiredEntryChunk(build, 'client-frame-variant'),
+      define: {
+        __MUSEA_STYLE_LINK__: JSON.stringify(frameVariantStylePath),
+      },
     },
     {
       file: path.join(absoluteOutDir, 'frame', 'component', 'index.html'),
