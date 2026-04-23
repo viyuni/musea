@@ -1,7 +1,6 @@
-import { execSync } from 'node:child_process';
-
 import tailwindcss from '@tailwindcss/vite';
 import vue from '@vitejs/plugin-vue';
+import rolldownTailwindcss from '@viyuni/rolldown-plugin-tailwindcss';
 import { defineConfig } from 'vite-plus';
 
 import musea from './src/vite/index.ts';
@@ -15,7 +14,14 @@ export default defineConfig({
     __IS_UNPACKED__: 'true',
   },
   pack: {
-    plugins: [vue({ isProduction: true })],
+    plugins: [
+      vue({ isProduction: true }),
+      rolldownTailwindcss({
+        optimize: {
+          minify: true,
+        },
+      }),
+    ],
     entry: {
       cli: './src/cli/index.ts',
       index: './src/index.ts',
@@ -36,18 +42,6 @@ export default defineConfig({
     deps: {
       skipNodeModulesBundle: true,
       neverBundle: [/^virtual:musea/],
-    },
-    hooks: {
-      'build:done': () => {
-        // Build style
-        execSync(
-          'npx --no-install @tailwindcss/cli -i ./src/client/style.css -o ./dist/style.css',
-          {
-            stdio: 'inherit',
-            cwd: process.cwd(),
-          },
-        );
-      },
     },
   },
   test: {
