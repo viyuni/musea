@@ -7,17 +7,17 @@ defineProps<{
 </script>
 
 <template>
-  <div class="ms:p-6 ms:text-center ms:border-b ms:border-base-content/5">
+  <div class="vi:p-6 vi:text-center vi:border-b vi:border-base-content/5">
     <p
-      class="ms:text-[10px] ms:font-bold ms:uppercase ms:tracking-widest ms:text-base-content/30 ms:mb-4"
+      class="vi:text-[10px] vi:font-bold vi:uppercase vi:tracking-widest vi:text-base-content/30 vi:mb-4"
     >
       Configured Test Files
     </p>
-    <div class="ms:flex ms:flex-wrap ms:justify-center ms:gap-2">
+    <div class="vi:flex vi:flex-wrap vi:justify-center vi:gap-2">
       <span
         v-for="file in art?.tests"
         :key="file"
-        class="ms:px-2 ms:py-1 ms:bg-base-content/5 ms:rounded ms:text-[10px] ms:font-mono ms:text-base-content/60"
+        class="vi:px-2 vi:py-1 vi:bg-base-content/5 vi:rounded vi:text-[10px] vi:font-mono vi:text-base-content/60"
       >
         {{ file }}
       </span>

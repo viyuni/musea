@@ -182,8 +182,8 @@ defineExpose({
 
 <template>
   <div
-    class="ms:w-full ms:overflow-hidden ms:relative ms:group ms:transition-none"
-    :class="isAutoHeight ? 'ms:h-full' : 'ms:h-auto'"
+    class="vi:w-full vi:overflow-hidden vi:relative vi:group vi:transition-none"
+    :class="isAutoHeight ? 'vi:h-full' : 'vi:h-auto'"
     :data-theme="activeDataTheme"
     :style="{
       padding: `${containerPPadding}px`,
@@ -197,16 +197,16 @@ defineExpose({
   >
     <Transition
       mode="out-in"
-      enter-active-class="ms:transition-opacity ms:duration-80 ms:ease-out"
-      enter-from-class="ms:opacity-0"
-      enter-to-class="ms:opacity-100"
-      leave-active-class="ms:transition-opacity ms:duration-80 ms:ease-in"
-      leave-from-class="ms:opacity-100"
-      leave-to-class="ms:opacity-0"
+      enter-active-class="vi:transition-opacity vi:duration-80 vi:ease-out"
+      enter-from-class="vi:opacity-0"
+      enter-to-class="vi:opacity-100"
+      leave-active-class="vi:transition-opacity vi:duration-80 vi:ease-in"
+      leave-from-class="vi:opacity-100"
+      leave-to-class="vi:opacity-0"
     >
       <div
         v-if="isLoading"
-        class="ms:absolute ms:left-0 ms:top-0 ms:size-full ms:inset-4 ms:z-10 ms:flex ms:items-center ms:justify-center ms:bg-base-100 ms:backdrop-blur-sm"
+        class="vi:absolute vi:left-0 vi:top-0 vi:size-full vi:inset-4 vi:z-10 vi:flex vi:items-center vi:justify-center vi:bg-base-100 vi:backdrop-blur-sm"
       />
     </Transition>
 
@@ -214,35 +214,35 @@ defineExpose({
       :key="props.url"
       ref="iframe"
       :src="props.url"
-      class="ms:border-none ms:block ms:w-full"
+      class="vi:border-none vi:block vi:w-full"
       :class="isAutoHeight ? 'h-full' : ''"
       :style="iframeStyle"
       @load="handleIframeLoad"
     ></iframe>
 
     <div
-      class="ms:absolute ms:bottom-2 ms:right-2 ms:flex ms:items-center ms:gap-2 ms:transition-opacity ms:opacity-0 ms:group-hover:opacity-100"
+      class="vi:absolute vi:bottom-2 vi:right-2 vi:flex vi:items-center vi:gap-2 vi:transition-opacity vi:opacity-0 vi:group-hover:opacity-100"
     >
       <button
-        class="ms:ms-btn ms:ms-btn-ghost ms:ms-btn-primary ms:ms-btn-square ms:ms-btn-xs"
+        class="vi:vi-btn vi:vi-btn-ghost vi:vi-btn-primary vi:vi-btn-square vi:vi-btn-xs"
         @click="zoomIn"
       >
         <ZoomIn :size="16" />
       </button>
       <button
-        class="ms:ms-btn ms:ms-btn-ghost ms:ms-btn-primary ms:ms-btn-square ms:ms-btn-xs"
+        class="vi:vi-btn vi:vi-btn-ghost vi:vi-btn-primary vi:vi-btn-square vi:vi-btn-xs"
         @click="zoomOut"
       >
         <ZoomOut :size="16" />
       </button>
       <button
-        class="ms:ms-btn ms:ms-btn-ghost ms:ms-btn-primary ms:ms-btn-square ms:ms-btn-xs"
+        class="vi:vi-btn vi:vi-btn-ghost vi:vi-btn-primary vi:vi-btn-square vi:vi-btn-xs"
         @click="resetZoom"
       >
         <RotateCcw :size="16" />
       </button>
       <button
-        class="ms:ms-btn ms:ms-btn-ghost ms:ms-btn-primary ms:ms-btn-square ms:ms-btn-xs"
+        class="vi:vi-btn vi:vi-btn-ghost vi:vi-btn-primary vi:vi-btn-square vi:vi-btn-xs"
         @click="openInspector"
         v-if="isDev"
       >

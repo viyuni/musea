@@ -15,17 +15,17 @@ const titles = computed(() => Object.keys(slots));
   <div>
     <h2
       v-if="title"
-      class="ms:text-xl ms:select-none ms:font-black ms:mb-2 ms:uppercase ms:tracking-tighter"
+      class="vi:text-xl vi:select-none vi:font-black vi:mb-2 vi:uppercase vi:tracking-tighter"
     >
       {{ title }}
     </h2>
 
-    <div v-if="list && list.length > 0" class="ms:w-full ms:overflow-x-auto">
+    <div v-if="list && list.length > 0" class="vi:w-full vi:overflow-x-auto">
       <table
-        class="ms:ms-table ms:w-max ms:min-w-full ms:ms-rounded-box ms:border ms:border-base-content/5 ms:bg-base-100"
+        class="vi:vi-table vi:w-max vi:min-w-full vi:vi-rounded-box vi:border vi:border-base-content/5 vi:bg-base-100"
       >
         <thead>
-          <tr class="ms:text-base-content ms:text-[11px] ms:uppercase ms:tracking-widest">
+          <tr class="vi:text-base-content vi:text-[11px] vi:uppercase vi:tracking-widest">
             <th v-for="title in titles" :key="title">{{ title }}</th>
           </tr>
         </thead>
@@ -33,7 +33,7 @@ const titles = computed(() => Object.keys(slots));
           <tr
             v-for="item in list"
             :key="String(item[idKey])"
-            class="ms:hover:bg-base-200/30 ms:transition-colors"
+            class="vi:hover:bg-base-200/30 vi:transition-colors"
           >
             <td v-for="(slot, key) in slots" :key="key">
               <component :is="slot" :row="item" />
@@ -45,10 +45,10 @@ const titles = computed(() => Object.keys(slots));
 
     <div
       v-else
-      class="ms:grid ms:place-items-center ms:p-4 ms:border ms:border-dashed ms:border-base-content/10 ms:ms-rounded-box ms:bg-base-100"
+      class="vi:grid vi:place-items-center vi:p-4 vi:border vi:border-dashed vi:border-base-content/10 vi:vi-rounded-box vi:bg-base-100"
     >
-      <div class="ms:text-center">
-        <div class="ms:text-base-content/30 ms:font-bold ms:italic ms:tracking-widest ms:uppercase">
+      <div class="vi:text-center">
+        <div class="vi:text-base-content/30 vi:font-bold vi:italic vi:tracking-widest vi:uppercase">
           Empty
         </div>
       </div>

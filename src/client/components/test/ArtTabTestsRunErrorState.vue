@@ -8,12 +8,12 @@ defineProps<{
 
 <template>
   <div
-    class="ms:m-4 ms:p-4 ms:rounded-lg ms:bg-error/5 ms:border ms:border-error/10 ms:flex ms:gap-3"
+    class="vi:m-4 vi:p-4 vi:rounded-lg vi:bg-error/5 vi:border vi:border-error/10 vi:flex vi:gap-3"
   >
-    <AlertCircle :size="16" class="ms:text-error ms:shrink-0" />
-    <div class="ms:space-y-1">
-      <p class="ms:text-xs ms:font-bold ms:text-error ms:uppercase ms:tracking-widest">Run Error</p>
-      <p class="ms:text-xs ms:text-error/80 ms:leading-relaxed">{{ runError }}</p>
+    <AlertCircle :size="16" class="vi:text-error vi:shrink-0" />
+    <div class="vi:space-y-1">
+      <p class="vi:text-xs vi:font-bold vi:text-error vi:uppercase vi:tracking-widest">Run Error</p>
+      <p class="vi:text-xs vi:text-error/80 vi:leading-relaxed">{{ runError }}</p>
     </div>
   </div>
 </template>

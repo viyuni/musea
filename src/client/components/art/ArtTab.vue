@@ -93,30 +93,30 @@ watch(
 </script>
 
 <template>
-  <div class="ms:w-full ms:min-h-full ms:flex ms:flex-col">
+  <div class="vi:w-full vi:min-h-full vi:flex vi:flex-col">
     <!-- Sticky Top Area: Header + Navigation (Only sticky on desktop) -->
     <div
-      class="ms:shrink-0 ms:lg:sticky ms:lg:top-0 ms:z-30 ms:bg-base-100/90 ms:backdrop-blur-md ms:border-b ms:border-base-content/5 ms:px-4 ms:lg:px-8 ms:h-header ms:flex ms:flex-col ms:justify-center"
+      class="vi:shrink-0 vi:lg:sticky vi:lg:top-0 vi:z-30 vi:bg-base-100/90 vi:backdrop-blur-md vi:border-b vi:border-base-content/5 vi:px-4 vi:lg:px-8 vi:h-header vi:flex vi:flex-col vi:justify-center"
     >
-      <ArtHeader :art="art" class="ms:mb-4" />
+      <ArtHeader :art="art" class="vi:mb-4" />
 
-      <div class="ms:flex ms:items-center ms:overflow-x-auto ms:scrollbar-hide ms:shrink-0">
-        <div class="ms:flex ms:items-center ms:gap-4 ms:sm:gap-8">
+      <div class="vi:flex vi:items-center vi:overflow-x-auto vi:scrollbar-hide vi:shrink-0">
+        <div class="vi:flex vi:items-center vi:gap-4 vi:sm:gap-8">
           <button
             v-for="tab in TABS"
             :key="tab"
-            class="ms:relative ms:pb-1 ms:text-[10px] ms:font-black ms:uppercase ms:tracking-widest ms:outline-none ms:cursor-pointer ms:whitespace-nowrap ms:transition-colors"
+            class="vi:relative vi:pb-1 vi:text-[10px] vi:font-black vi:uppercase vi:tracking-widest vi:outline-none vi:cursor-pointer vi:whitespace-nowrap vi:transition-colors"
             :class="[
               isChecked(tab)
-                ? 'ms:text-primary'
-                : 'ms:text-base-content/40 ms:hover:text-base-content/70',
+                ? 'vi:text-primary'
+                : 'vi:text-base-content/40 vi:hover:text-base-content/70',
             ]"
             @click="toggle(tab)"
           >
             {{ tab === 'documents' ? 'Docs' : tab }}
             <div
               v-if="isChecked(tab)"
-              class="ms:absolute ms:bottom-0 ms:left-0 ms:w-full ms:h-0.5 ms:bg-primary ms:rounded-full"
+              class="vi:absolute vi:bottom-0 vi:left-0 vi:w-full vi:h-0.5 vi:bg-primary vi:rounded-full"
             ></div>
           </button>
         </div>
@@ -124,17 +124,17 @@ watch(
     </div>
 
     <!-- Tab Content -->
-    <div class="ms:flex-1 ms:min-w-0">
-      <div v-if="isChecked('variants')" class="ms:px-4 ms:py-4 ms:lg:px-8 ms:lg:py-8">
+    <div class="vi:flex-1 vi:min-w-0">
+      <div v-if="isChecked('variants')" class="vi:px-4 vi:py-4 vi:lg:px-8 vi:lg:py-8">
         <ArtTabVariants :art />
       </div>
 
       <!-- h-content on Debug means it fits exactly the viewport, so it won't scroll the main page -->
-      <div v-if="isChecked('debug')" class="ms:h-content">
+      <div v-if="isChecked('debug')" class="vi:h-content">
         <ArtTabDebug :art :docs />
       </div>
 
-      <div v-if="isChecked('documents')" class="ms:px-4 ms:py-4 ms:lg:px-8 ms:lg:py-8">
+      <div v-if="isChecked('documents')" class="vi:px-4 vi:py-4 vi:lg:px-8 vi:lg:py-8">
         <ArtTabDocs :art :docs />
       </div>
     </div>

@@ -105,36 +105,36 @@ onClickOutside(eventsPanel, () => {
 </script>
 
 <template>
-  <div class="ms:flex ms:flex-col ms:h-content ms:w-full ms:overflow-hidden ms:relative">
+  <div class="vi:flex vi:flex-col vi:h-content vi:w-full vi:overflow-hidden vi:relative">
     <!-- Top Section: Preview & Inspector -->
-    <div class="ms:flex-1 ms:flex ms:flex-col ms:lg:flex-row ms:min-h-0">
+    <div class="vi:flex-1 vi:flex vi:flex-col vi:lg:flex-row vi:min-h-0">
       <!-- Preview Area -->
-      <section class="ms:flex-1 ms:relative ms:flex ms:flex-col ms:min-w-0 ms:overflow-hidden">
+      <section class="vi:flex-1 vi:relative vi:flex vi:flex-col vi:min-w-0 vi:overflow-hidden">
         <header
-          class="ms:flex ms:items-center ms:justify-between ms:px-4 ms:h-10 ms:border-b ms:border-base-content/5 ms:shrink-0"
+          class="vi:flex vi:items-center vi:justify-between vi:px-4 vi:h-10 vi:border-b vi:border-base-content/5 vi:shrink-0"
         >
-          <div class="ms:flex ms:items-center ms:gap-2">
-            <span class="ms:text-[10px] ms:font-black ms:uppercase ms:tracking-widest ms:opacity-30"
+          <div class="vi:flex vi:items-center vi:gap-2">
+            <span class="vi:text-[10px] vi:font-black vi:uppercase vi:tracking-widest vi:opacity-30"
               >Preview</span
             >
           </div>
           <ArtThemeSwitcher />
         </header>
-        <div class="ms:flex-1 ms:relative ms:overflow-hidden ms:lg:pb-10">
+        <div class="vi:flex-1 vi:relative vi:overflow-hidden vi:lg:pb-10">
           <ArtPreview
             ref="artPreview"
             :url="previewUrl"
             height-mode="auto"
-            class="ms:w-full ms:h-full"
+            class="vi:w-full vi:h-full"
           />
         </div>
       </section>
 
       <!-- Inspector Sidebar -->
       <aside
-        class="ms:w-full ms:lg:w-80 ms:xl:w-96 ms:border-t ms:lg:border-t-0 ms:lg:border-l ms:border-base-content/5 ms:flex ms:flex-col ms:flex-1 ms:lg:flex-none ms:lg:shrink-0 ms:overflow-hidden"
+        class="vi:w-full vi:lg:w-80 vi:xl:w-96 vi:border-t vi:lg:border-t-0 vi:lg:border-l vi:border-base-content/5 vi:flex vi:flex-col vi:flex-1 vi:lg:flex-none vi:lg:shrink-0 vi:overflow-hidden"
       >
-        <div class="ms:flex-1 ms:overflow-y-auto ms:overflow-x-hidden ms:pb-10">
+        <div class="vi:flex-1 vi:overflow-y-auto vi:overflow-x-hidden vi:pb-10">
           <ArtDebugInspector
             v-model:prop-values="propValues"
             v-model:slot-debug-states="slotDebugStates"
@@ -148,22 +148,22 @@ onClickOutside(eventsPanel, () => {
     <!-- Bottom Section: Events Collapsible (Full Width) -->
     <footer
       ref="eventsPanel"
-      class="ms:absolute ms:bottom-0 ms:left-0 ms:right-0 ms:z-20 ms:border-t ms:border-base-content/5 ms:flex ms:flex-col ms:transition-all ms:duration-200 ms:ease-in-out ms:bg-base-100 ms:overflow-hidden"
-      :class="isEventsExpanded ? 'ms:h-106' : 'ms:h-10'"
+      class="vi:absolute vi:bottom-0 vi:left-0 vi:right-0 vi:z-20 vi:border-t vi:border-base-content/5 vi:flex vi:flex-col vi:transition-all vi:duration-200 vi:ease-in-out vi:bg-base-100 vi:overflow-hidden"
+      :class="isEventsExpanded ? 'vi:h-106' : 'vi:h-10'"
     >
       <div
-        class="ms:h-10 ms:flex ms:items-center ms:justify-between ms:px-4 ms:bg-base-content/2 ms:cursor-pointer ms:hover:bg-base-content/4 ms:transition-colors ms:shrink-0"
+        class="vi:h-10 vi:flex vi:items-center vi:justify-between vi:px-4 vi:bg-base-content/2 vi:cursor-pointer vi:hover:bg-base-content/4 vi:transition-colors vi:shrink-0"
         @click="isEventsExpanded = !isEventsExpanded"
       >
-        <div class="ms:flex ms:items-center ms:gap-2">
+        <div class="vi:flex vi:items-center vi:gap-2">
           <ChevronDown v-if="isEventsExpanded" :size="16" />
           <ChevronUp v-else :size="16" />
-          <span class="ms:text-[10px] ms:font-black ms:uppercase ms:tracking-widest">Events</span>
+          <span class="vi:text-[10px] vi:font-black vi:uppercase vi:tracking-widest">Events</span>
         </div>
-        <div class="ms:flex ms:items-center ms:gap-4">
+        <div class="vi:flex vi:items-center vi:gap-4">
           <button
             v-if="isEventsExpanded"
-            class="ms:ms-btn ms:ms-btn-ghost ms:ms-btn-xs ms:h-6 ms:gap-1.5 ms:text-[8px] ms:font-bold ms:uppercase ms:tracking-widest ms:opacity-30 ms:hover:opacity-100 ms:px-2"
+            class="vi:vi-btn vi:vi-btn-ghost vi:vi-btn-xs vi:h-6 vi:gap-1.5 vi:text-[8px] vi:font-bold vi:uppercase vi:tracking-widest vi:opacity-30 vi:hover:opacity-100 vi:px-2"
             @click.stop="eventsMonitor?.clearLogs()"
           >
             <Trash2 :size="10" />
@@ -173,8 +173,8 @@ onClickOutside(eventsPanel, () => {
       </div>
 
       <div
-        class="ms:h-96 ms:border-t ms:border-base-content/5 ms:overflow-y-auto ms:transition-opacity ms:duration-100 ms:delay-100"
-        :class="{ 'ms:opacity-0': !isEventsExpanded, 'ms:opacity-100': isEventsExpanded }"
+        class="vi:h-96 vi:border-t vi:border-base-content/5 vi:overflow-y-auto vi:transition-opacity vi:duration-100 vi:delay-100"
+        :class="{ 'vi:opacity-0': !isEventsExpanded, 'vi:opacity-100': isEventsExpanded }"
       >
         <ArtDebugEvents ref="eventsMonitor" :event-docs="eventDocs" />
       </div>

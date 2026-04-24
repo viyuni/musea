@@ -29,63 +29,63 @@ const closeDrawer = () => {
 </script>
 
 <template>
-  <div class="ms:ms-drawer ms:lg:ms-drawer-open ms:h-full ms:font-sans">
-    <input id="musea-drawer" ref="drawerCheckbox" type="checkbox" class="ms:ms-drawer-toggle" />
+  <div class="vi:vi-drawer vi:lg:vi-drawer-open vi:h-full vi:font-sans">
+    <input id="musea-drawer" ref="drawerCheckbox" type="checkbox" class="vi:vi-drawer-toggle" />
 
     <!-- Main Content Area -->
     <div
-      class="ms:ms-drawer-content ms:flex ms:flex-col ms:overflow-hidden ms:bg-base-100 ms:relative"
+      class="vi:vi-drawer-content vi:flex vi:flex-col vi:overflow-hidden vi:bg-base-100 vi:relative"
     >
       <!-- Mobile Header (Visible only on mobile) -->
       <header
-        class="ms:lg:hidden ms:h-14 ms:border-b ms:border-base-content/5 ms:flex ms:items-center ms:justify-between ms:px-4 ms:shrink-0 ms:bg-base-100/80 ms:backdrop-blur-xl ms:sticky ms:top-0 ms:z-40"
+        class="vi:lg:hidden vi:h-14 vi:border-b vi:border-base-content/5 vi:flex vi:items-center vi:justify-between vi:px-4 vi:shrink-0 vi:bg-base-100/80 vi:backdrop-blur-xl vi:sticky vi:top-0 vi:z-40"
       >
-        <div class="ms:flex ms:items-center ms:gap-3">
-          <label for="musea-drawer" class="ms:ms-btn ms:ms-btn-ghost ms:ms-btn-sm ms:ms-btn-square">
-            <Menu class="ms:size-5" />
+        <div class="vi:flex vi:items-center vi:gap-3">
+          <label for="musea-drawer" class="vi:vi-btn vi:vi-btn-ghost vi:vi-btn-sm vi:vi-btn-square">
+            <Menu class="vi:size-5" />
           </label>
           <MuseaLogo width="80" />
         </div>
 
-        <div class="ms:flex ms:items-center ms:gap-3">
+        <div class="vi:flex vi:items-center vi:gap-3">
           <!-- Small Theme Switcher for mobile -->
           <button
             v-if="theme === 'light'"
-            class="ms:ms-btn ms:ms-btn-xs ms:ms-btn-ghost ms:ms-btn-square"
+            class="vi:vi-btn vi:vi-btn-xs vi:vi-btn-ghost vi:vi-btn-square"
             @click="setTheme('auto')"
           >
-            <Moon class="ms:size-4" />
+            <Moon class="vi:size-4" />
           </button>
           <button
             v-else-if="theme === 'dark'"
-            class="ms:ms-btn ms:ms-btn-xs ms:ms-btn-ghost ms:ms-btn-square"
+            class="vi:vi-btn vi:vi-btn-xs vi:vi-btn-ghost vi:vi-btn-square"
             @click="setTheme('light')"
           >
-            <Sun class="ms:size-4" />
+            <Sun class="vi:size-4" />
           </button>
 
           <button
             v-else
-            class="ms:ms-btn ms:ms-btn-xs ms:ms-btn-ghost ms:ms-btn-square"
+            class="vi:vi-btn vi:vi-btn-xs vi:vi-btn-ghost vi:vi-btn-square"
             @click="setTheme('dark')"
           >
-            <Monitor class="ms:size-4" />
+            <Monitor class="vi:size-4" />
           </button>
 
-          <Search class="ms:size-4" @click="searchModal?.open" />
+          <Search class="vi:size-4" @click="searchModal?.open" />
         </div>
       </header>
 
       <!-- View Container -->
-      <main class="ms:flex-1 ms:relative ms:overflow-hidden">
+      <main class="vi:flex-1 vi:relative vi:overflow-hidden">
         <RouterView v-slot="{ Component }">
           <transition
-            enter-active-class="ms:transition ms:duration-150 ms:ease-out"
-            enter-from-class="ms:opacity-0"
-            enter-to-class="ms:opacity-100"
-            leave-active-class="ms:transition ms:duration-100 ms:ease-in"
-            leave-from-class="ms:opacity-100"
-            leave-to-class="ms:opacity-0"
+            enter-active-class="vi:transition vi:duration-150 vi:ease-out"
+            enter-from-class="vi:opacity-0"
+            enter-to-class="vi:opacity-100"
+            leave-active-class="vi:transition vi:duration-100 vi:ease-in"
+            leave-from-class="vi:opacity-100"
+            leave-to-class="vi:opacity-0"
             mode="out-in"
           >
             <component :is="Component" :key="route.params.id || route.name" />
@@ -95,82 +95,82 @@ const closeDrawer = () => {
     </div>
 
     <!-- Sidebar -->
-    <div class="ms:ms-drawer-side ms:z-50">
-      <label for="musea-drawer" aria-label="close sidebar" class="ms:ms-drawer-overlay"></label>
+    <div class="vi:vi-drawer-side vi:z-50">
+      <label for="musea-drawer" aria-label="close sidebar" class="vi:vi-drawer-overlay"></label>
       <aside
-        class="ms:w-64 ms:border-r ms:border-base-content/5 ms:flex ms:flex-col ms:shrink-0 ms:h-full ms:bg-base-100"
+        class="vi:w-64 vi:border-r vi:border-base-content/5 vi:flex vi:flex-col vi:shrink-0 vi:h-full vi:bg-base-100"
       >
         <!-- Sidebar Header: Logo + Theme Switcher -->
         <div
-          class="ms:h-16 ms:flex ms:items-center ms:justify-between ms:px-6 ms:border-b ms:border-base-content/5 ms:gap-3 ms:shrink-0"
+          class="vi:h-16 vi:flex vi:items-center vi:justify-between vi:px-4 vi:border-b vi:border-base-content/5 vi:shrink-0"
         >
-          <MuseaLogo width="110" />
+          <MuseaLogo width="100" />
 
-          <div class="ms:flex ms:items-center">
+          <div class="vi:flex vi:items-center vi:gap-1">
             <button
               v-if="theme === 'light'"
-              class="ms:ms-btn ms:ms-btn-xs ms:ms-btn-ghost ms:ms-btn-square ms:rounded-lg"
+              class="vi:vi-btn vi:vi-btn-sm vi:vi-btn-ghost vi:vi-btn-square vi:rounded-lg"
               @click="setTheme('auto')"
             >
-              <Moon class="ms:size-3.5 ms:text-indigo-400" />
+              <Moon class="vi:size-4 vi:text-indigo-400" />
             </button>
             <button
               v-else-if="theme === 'dark'"
-              class="ms:ms-btn ms:ms-btn-xs ms:ms-btn-ghost ms:ms-btn-square ms:rounded-lg"
+              class="vi:vi-btn vi:vi-btn-sm vi:vi-btn-ghost vi:vi-btn-square vi:rounded-lg"
               @click="setTheme('light')"
             >
-              <Sun class="ms:size-3.5 ms:text-amber-500" />
+              <Sun class="vi:size-4 vi:text-amber-500" />
             </button>
             <button
               v-else
-              class="ms:ms-btn ms:ms-btn-xs ms:ms-btn-ghost ms:ms-btn-square ms:rounded-lg"
+              class="vi:vi-btn vi:vi-btn-sm vi:vi-btn-ghost vi:vi-btn-square vi:rounded-lg"
               @click="setTheme('dark')"
             >
-              <Monitor class="ms:size-3.5" />
+              <Monitor class="vi:size-4" />
             </button>
           </div>
         </div>
 
         <!-- Sidebar Search -->
-        <div class="ms:p-3 ms:shrink-0">
+        <div class="vi:p-3 vi:shrink-0">
           <SearchModal ref="searchModal" />
           <div
-            class="ms:flex ms:items-center ms:gap-3 ms:px-3 ms:py-2 ms:rounded-xl ms:bg-base-content/2 ms:hover:bg-base-content/5 ms:cursor-pointer ms:transition-all ms:border ms:border-transparent ms:hover:border-base-content/5"
+            class="vi:flex vi:items-center vi:gap-3 vi:px-3 vi:py-2 vi:rounded-xl vi:bg-base-content/2 vi:hover:bg-base-content/5 vi:cursor-pointer vi:transition-all vi:border vi:border-transparent vi:hover:border-base-content/5"
             @click="searchModal?.open"
           >
-            <Search class="ms:size-3.5 ms:opacity-40" />
-            <span class="ms:text-[10px] ms:font-black ms:uppercase ms:tracking-widest ms:opacity-30"
+            <Search class="vi:size-3.5 vi:opacity-40" />
+            <span class="vi:text-[10px] vi:font-black vi:uppercase vi:tracking-widest vi:opacity-30"
               >Search</span
             >
-            <kbd class="ms:ms-kbd ms:ms-kbd-xs ms:ml-auto ms:opacity-50 ms:bg-base-100">⌘K</kbd>
+            <kbd class="vi:vi-kbd vi:vi-kbd-xs vi:ml-auto vi:opacity-50 vi:bg-base-100">⌘K</kbd>
           </div>
         </div>
 
-        <nav class="ms:overflow-y-auto ms:flex-1">
-          <ul class="ms:ms-menu ms:w-full ms:p-2">
-            <li class="ms:mb-2">
+        <nav class="vi:overflow-y-auto vi:flex-1">
+          <ul class="vi:vi-menu vi:w-full vi:p-2">
+            <li class="vi:mb-2">
               <RouterLink
                 :to="{ name: 'home' }"
-                :class="{ 'ms:ms-menu-active': route.name === 'home' }"
+                :class="{ 'vi:vi-menu-active': route.name === 'home' }"
                 @click="closeDrawer"
               >
-                <Home class="ms:size-3.5" />
-                <span class="ms:text-[10px] ms:font-black ms:uppercase ms:tracking-[0.2em]">
+                <Home class="vi:size-3.5" />
+                <span class="vi:text-[10px] vi:font-black vi:uppercase vi:tracking-[0.2em]">
                   Home
                 </span>
               </RouterLink>
             </li>
-            <li v-for="(items, category) in groupedArts" :key="category" class="ms:mb-2">
+            <li v-for="(items, category) in groupedArts" :key="category" class="vi:mb-2">
               <details open>
-                <summary class="ms:group ms:flex ms:items-center ms:gap-2 ms:w-full">
-                  <Layers class="ms:size-3.5 ms:transition-opacity" />
+                <summary class="vi:group vi:flex vi:items-center vi:gap-2 vi:w-full">
+                  <Layers class="vi:size-3.5 vi:transition-opacity" />
 
-                  <span class="ms:text-[10px] ms:font-black ms:uppercase ms:tracking-[0.2em]">
+                  <span class="vi:text-[10px] vi:font-black vi:uppercase vi:tracking-[0.2em]">
                     {{ category }}
                   </span>
 
                   <span
-                    class="ms:ms-badge ms:ms-badge-xs ms:ms-badge-ghost ms:ml-auto ms:font-mono"
+                    class="vi:vi-badge vi:vi-badge-xs vi:vi-badge-ghost vi:ml-auto vi:font-mono"
                   >
                     {{ items.length }}
                   </span>
@@ -180,18 +180,18 @@ const closeDrawer = () => {
                   <li
                     v-for="item in items"
                     :key="item.id"
-                    class="ms:rounded-md"
+                    class="vi:rounded-md"
                     :class="{
-                      'ms:ms-menu-active': currentId === item.id,
+                      'vi:vi-menu-active': currentId === item.id,
                     }"
                   >
                     <RouterLink
                       :to="{ name: 'art', params: { id: item.id }, query: currentTabQuery }"
-                      class="ms:flex ms:items-center"
+                      class="vi:flex vi:items-center"
                       @click="closeDrawer"
                     >
-                      <Component class="ms:size-3.5 ms:text-primary" />
-                      <span class="ms:truncate">{{ item.title }}</span>
+                      <Component class="vi:size-3.5 vi:text-primary" />
+                      <span class="vi:truncate">{{ item.title }}</span>
                     </RouterLink>
                   </li>
                 </ul>

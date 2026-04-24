@@ -25,24 +25,24 @@ function updateItem(index: number, value: unknown) {
 
 <template>
   <div
-    class="ms:grid ms:gap-3 ms:w-full ms:relative ms:pl-5 ms:mt-2 ms:before:content-[''] ms:before:block ms:before:absolute ms:before:w-px ms:before:h-[calc(100%-40px)] ms:before:left-1 ms:before:top-1 ms:before:bg-base-content/10"
+    class="vi:grid vi:gap-3 vi:w-full vi:relative vi:pl-5 vi:mt-2 vi:before:content-[''] vi:before:block vi:before:absolute vi:before:w-px vi:before:h-[calc(100%-40px)] vi:before:left-1 vi:before:top-1 vi:before:bg-base-content/10"
   >
-    <div v-for="(item, index) in items" :key="index" class="ms:group ms:relative">
-      <div class="ms:flex ms:items-center ms:justify-between ms:mb-2">
+    <div v-for="(item, index) in items" :key="index" class="vi:group vi:relative">
+      <div class="vi:flex vi:items-center vi:justify-between vi:mb-2">
         <span
-          class="ms:text-[10px] ms:font-bold ms:font-mono ms:text-base-content/40 ms:uppercase ms:tracking-wider"
+          class="vi:text-[10px] vi:font-bold vi:font-mono vi:text-base-content/40 vi:uppercase vi:tracking-wider"
           >Item #{{ index }}</span
         >
         <button
           type="button"
-          class="ms:ms-btn ms:ms-btn-xs ms:ms-btn-circle ms:ms-btn-error ms:ms-btn-ghost ms:opacity-0 ms:group-hover:opacity-100 ms:transition-opacity"
+          class="vi:vi-btn vi:vi-btn-xs vi:vi-btn-circle vi:vi-btn-error vi:vi-btn-ghost vi:opacity-0 vi:group-hover:opacity-100 vi:transition-opacity"
           title="Remove item"
           @click="remove(index)"
         >
           <Trash2 :size="12" />
         </button>
       </div>
-      <div class="ms:w-full">
+      <div class="vi:w-full">
         <SchemaFormItem
           :schema="schema.value"
           :model-value="item"
@@ -53,7 +53,7 @@ function updateItem(index: number, value: unknown) {
 
     <button
       type="button"
-      class="ms:ms-btn ms:ms-btn-sm ms:ms-btn-outline ms:ms-btn-primary ms:w-full ms:gap-1 ms:border-dashed"
+      class="vi:vi-btn vi:vi-btn-sm vi:vi-btn-outline vi:vi-btn-primary vi:w-full vi:gap-1 vi:border-dashed"
       @click="add"
     >
       <Plus :size="14" />

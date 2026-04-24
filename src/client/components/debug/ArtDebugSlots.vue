@@ -53,35 +53,35 @@ function updateSlotText(name: string, event: Event) {
 </script>
 
 <template>
-  <div class="ms:bg-base-100">
-    <div v-if="slotDocs.length > 0" class="ms:divide-y ms:divide-base-content/5">
+  <div class="vi:bg-base-100">
+    <div v-if="slotDocs.length > 0" class="vi:divide-y vi:divide-base-content/5">
       <article
         v-for="slotDoc in slotDocs"
         :key="slotDoc.name"
-        class="ms:p-4 ms:transition-colors ms:hover:bg-base-content/2"
+        class="vi:p-4 vi:transition-colors vi:hover:bg-base-content/2"
       >
-        <div class="ms:flex ms:items-center ms:justify-between ms:mb-3">
-          <div class="ms:flex ms:flex-col ms:gap-0.5">
+        <div class="vi:flex vi:items-center vi:justify-between vi:mb-3">
+          <div class="vi:flex vi:flex-col vi:gap-0.5">
             <span
-              class="ms:text-[10px] ms:font-black ms:text-primary ms:uppercase ms:tracking-tight"
+              class="vi:text-[10px] vi:font-black vi:text-primary vi:uppercase vi:tracking-tight"
               >{{ slotDoc.name || 'default' }}</span
             >
             <p
               v-if="slotDoc.description"
-              class="ms:text-[10px] ms:text-base-content/40 ms:leading-relaxed ms:italic"
+              class="vi:text-[10px] vi:text-base-content/40 vi:leading-relaxed vi:italic"
             >
               {{ slotDoc.description }}
             </p>
           </div>
-          <div class="ms:flex ms:items-center ms:gap-3 ms:shrink-0">
+          <div class="vi:flex vi:items-center vi:gap-3 vi:shrink-0">
             <span
-              class="ms:text-[9px] ms:font-bold ms:uppercase ms:tracking-widest ms:text-base-content/20"
+              class="vi:text-[9px] vi:font-bold vi:uppercase vi:tracking-widest vi:text-base-content/20"
               >Active</span
             >
             <input
               :checked="getSlotState(slotDoc.name)?.enabled ?? false"
               type="checkbox"
-              class="ms:ms-toggle ms:ms-toggle-primary ms:ms-toggle-xs"
+              class="vi:vi-toggle vi:vi-toggle-primary vi:vi-toggle-xs"
               @change="updateSlotEnabled(slotDoc.name, $event)"
             />
           </div>
@@ -89,17 +89,17 @@ function updateSlotText(name: string, event: Event) {
 
         <div
           v-if="getSlotState(slotDoc.name)?.enabled"
-          class="ms:mt-3 ms:animate-in ms:fade-in ms:slide-in-from-top-1 ms:duration-200"
+          class="vi:mt-3 vi:animate-in vi:fade-in vi:slide-in-from-top-1 vi:duration-200"
         >
-          <div class="ms:flex ms:flex-col ms:gap-2">
+          <div class="vi:flex vi:flex-col vi:gap-2">
             <label
-              class="ms:text-[9px] ms:font-bold ms:uppercase ms:tracking-widest ms:text-base-content/30"
+              class="vi:text-[9px] vi:font-bold vi:uppercase vi:tracking-widest vi:text-base-content/30"
               >Slot Content</label
             >
             <textarea
               :value="getSlotState(slotDoc.name)?.text ?? ''"
               rows="3"
-              class="ms:ms-textarea ms:ms-textarea-bordered ms:ms-textarea-sm ms:w-full ms:bg-base-content/2 ms:font-mono ms:text-[11px] ms:leading-relaxed ms:resize-none ms:focus:ms-textarea-primary ms:transition-all"
+              class="vi:vi-textarea vi:vi-textarea-bordered vi:vi-textarea-sm vi:w-full vi:bg-base-content/2 vi:font-mono vi:text-[11px] vi:leading-relaxed vi:resize-none vi:focus:vi-textarea-primary vi:transition-all"
               placeholder="Enter text or HTML content..."
               @input="updateSlotText(slotDoc.name, $event)"
             ></textarea>
@@ -107,14 +107,14 @@ function updateSlotText(name: string, event: Event) {
         </div>
       </article>
     </div>
-    <div v-else class="ms:h-full ms:flex ms:flex-col ms:items-center ms:justify-center ms:py-20">
+    <div v-else class="vi:h-full vi:flex vi:flex-col vi:items-center vi:justify-center vi:py-20">
       <div
-        class="ms:w-12 ms:h-12 ms:rounded-2xl ms:bg-base-200 ms:flex ms:items-center ms:justify-center ms:mb-4 ms:opacity-40"
+        class="vi:w-12 vi:h-12 vi:rounded-2xl vi:bg-base-200 vi:flex vi:items-center vi:justify-center vi:mb-4 vi:opacity-40"
       >
-        <Layers :size="24" class="ms:text-base-content" />
+        <Layers :size="24" class="vi:text-base-content" />
       </div>
       <p
-        class="ms:text-[10px] ms:font-black ms:uppercase ms:tracking-[0.2em] ms:text-base-content/20"
+        class="vi:text-[10px] vi:font-black vi:uppercase vi:tracking-[0.2em] vi:text-base-content/20"
       >
         No slots defined
       </p>

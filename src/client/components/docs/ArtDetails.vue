@@ -7,24 +7,24 @@ const { art } = defineProps<{ art?: ArtManifest | null }>();
 </script>
 
 <template>
-  <div class="ms:flex ms:flex-wrap ms:items-center ms:gap-2">
+  <div class="vi:flex vi:flex-wrap vi:items-center vi:gap-2">
     <div
-      class="ms:flex ms:items-center ms:gap-1 ms:bg-base-300/40 ms:border ms:border-base-300 ms:rounded ms:px-2 ms:py-1 ms:text-[10px] ms:font-bold ms:opacity-60"
+      class="vi:flex vi:items-center vi:gap-1 vi:bg-base-300/40 vi:border vi:border-base-300 vi:rounded vi:px-2 vi:py-1 vi:text-[10px] vi:font-bold vi:opacity-60"
     >
-      <Box class="ms:w-3 ms:h-3" />
+      <Box class="vi:w-3 vi:h-3" />
       {{ art?.variants?.length || 0 }} variants
     </div>
     <div
-      class="ms:flex ms:items-center ms:gap-1 ms:bg-base-300/40 ms:border ms:border-base-300 ms:rounded ms:px-2 ms:py-1 ms:text-[10px] ms:font-bold ms:opacity-60"
+      class="vi:flex vi:items-center vi:gap-1 vi:bg-base-300/40 vi:border vi:border-base-300 vi:rounded vi:px-2 vi:py-1 vi:text-[10px] vi:font-bold vi:opacity-60"
     >
-      <Tag class="ms:w-3 ms:h-3" />
+      <Tag class="vi:w-3 vi:h-3" />
       {{ art?.category || 'Components' }}
     </div>
 
     <div
       v-for="tag in art?.tags"
       :key="tag"
-      class="ms:bg-base-300/20 ms:border ms:border-base-300/30 ms:rounded ms:px-2 ms:py-1 ms:text-[10px] ms:font-bold ms:opacity-40"
+      class="vi:bg-base-300/20 vi:border vi:border-base-300/30 vi:rounded vi:px-2 vi:py-1 vi:text-[10px] vi:font-bold vi:opacity-40"
     >
       #{{ tag }}
     </div>

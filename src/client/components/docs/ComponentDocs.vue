@@ -14,27 +14,27 @@ function getTitle(resolved: ResolvedComponentMeta) {
 }
 </script>
 <template>
-  <div class="ms:grid ms:grid-cols-1 ms:gap-9">
-    <div class="ms:grid">
-      <div class="ms:flex ms:items-center ms:gap-2">
-        <h2 class="ms:text-xl ms:select-none ms:font-black ms:uppercase">
+  <div class="vi:grid vi:grid-cols-1 vi:gap-9">
+    <div class="vi:grid">
+      <div class="vi:flex vi:items-center vi:gap-2">
+        <h2 class="vi:text-xl vi:select-none vi:font-black vi:uppercase">
           {{ getTitle(resolved) }}
         </h2>
         <span
-          class="ms:ms-badge ms:ms-badge-sm ms:capitalize"
-          :class="isPrimary ? 'ms:ms-badge-primary' : 'ms:ms-badge-ghost'"
+          class="vi:vi-badge vi:vi-badge-sm vi:capitalize"
+          :class="isPrimary ? 'vi:vi-badge-primary' : 'vi:vi-badge-ghost'"
         >
           {{ isPrimary ? 'primary' : 'sub' }}
         </span>
       </div>
 
-      <code class="ms:text-xs ms:opacity-60">{{ resolved.file }}</code>
+      <code class="vi:text-xs vi:opacity-60">{{ resolved.file }}</code>
     </div>
 
     <Table title="Props" :list="resolved.props ?? []" id-key="name">
       <template #name="{ row }">
         <span
-          class="ms:ms-badge ms:ms-badge-soft ms:ms-badge-primary ms:ms-badge-sm ms:whitespace-nowrap"
+          class="vi:vi-badge vi:vi-badge-soft vi:vi-badge-primary vi:vi-badge-sm vi:whitespace-nowrap"
         >
           {{ row.name }}
         </span>
@@ -45,12 +45,12 @@ function getTitle(resolved: ResolvedComponentMeta) {
         </TypeBadge>
       </template>
       <template #default="{ row }">
-        <code class="ms:ms-badge ms:ms-badge-sm ms:ms-badge-ghost">
+        <code class="vi:vi-badge vi:vi-badge-sm vi:vi-badge-ghost">
           {{ row.default ?? '—' }}
         </code>
       </template>
       <template #description="{ row }">
-        <div class="ms:text-sm ms:leading-relaxed ms:min-w-100">
+        <div class="vi:text-sm vi:leading-relaxed vi:min-w-100">
           {{ row.description || '—' }}
         </div>
       </template>
@@ -59,7 +59,7 @@ function getTitle(resolved: ResolvedComponentMeta) {
     <Table title="Slots" :list="resolved.slots ?? []" id-key="name">
       <template #name="{ row }">
         <span
-          class="ms:ms-badge ms:ms-badge-soft ms:ms-badge-primary ms:ms-badge-sm ms:whitespace-nowrap"
+          class="vi:vi-badge vi:vi-badge-soft vi:vi-badge-primary vi:vi-badge-sm vi:whitespace-nowrap"
         >
           {{ row.name }}
         </span>
@@ -70,7 +70,7 @@ function getTitle(resolved: ResolvedComponentMeta) {
         </TypeBadge>
       </template>
       <template #description="{ row }">
-        <div class="ms:text-sm ms:leading-relaxed ms:min-w-100">
+        <div class="vi:text-sm vi:leading-relaxed vi:min-w-100">
           {{ row.description || '—' }}
         </div>
       </template>
@@ -79,7 +79,7 @@ function getTitle(resolved: ResolvedComponentMeta) {
     <Table title="Events" :list="resolved.events ?? []" id-key="name">
       <template #name="{ row }">
         <span
-          class="ms:ms-badge ms:ms-badge-soft ms:ms-badge-primary ms:ms-badge-sm ms:whitespace-nowrap"
+          class="vi:vi-badge vi:vi-badge-soft vi:vi-badge-primary vi:vi-badge-sm vi:whitespace-nowrap"
         >
           {{ row.name }}
         </span>
@@ -90,7 +90,7 @@ function getTitle(resolved: ResolvedComponentMeta) {
         </TypeBadge>
       </template>
       <template #description="{ row }">
-        <div class="ms:text-sm ms:leading-relaxed ms:min-w-100">
+        <div class="vi:text-sm vi:leading-relaxed vi:min-w-100">
           {{ row.description || '—' }}
         </div>
       </template>
@@ -99,7 +99,7 @@ function getTitle(resolved: ResolvedComponentMeta) {
     <Table title="Exposed" :list="resolved.exposed ?? []" id-key="name">
       <template #name="{ row }">
         <div
-          class="ms:ms-badge ms:ms-badge-info ms:ms-badge-outline ms:font-mono ms:font-bold ms:text-xs"
+          class="vi:vi-badge vi:vi-badge-info vi:vi-badge-outline vi:font-mono vi:font-bold vi:text-xs"
         >
           {{ row.name }}
         </div>
@@ -110,7 +110,7 @@ function getTitle(resolved: ResolvedComponentMeta) {
         </TypeBadge>
       </template>
       <template #description="{ row }">
-        <div class="ms:text-sm ms:leading-relaxed ms:min-w-100">
+        <div class="vi:text-sm vi:leading-relaxed vi:min-w-100">
           {{ row.description || '—' }}
         </div>
       </template>

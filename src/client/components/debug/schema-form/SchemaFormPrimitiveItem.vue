@@ -16,36 +16,36 @@ const {
 </script>
 
 <template>
-  <div class="ms:w-full">
-    <div v-if="type === 'boolean'" class="ms:flex ms:items-center">
+  <div class="vi:w-full">
+    <div v-if="type === 'boolean'" class="vi:flex vi:items-center">
       <input
         v-model="booleanValue"
         type="checkbox"
-        class="ms:ms-toggle ms:ms-toggle-primary ms:ms-toggle-sm"
+        class="vi:vi-toggle vi:vi-toggle-primary vi:vi-toggle-sm"
       />
     </div>
     <textarea
       v-else-if="type === 'string'"
       v-model="stringValue"
-      class="ms:ms-textarea ms:ms-textarea-bordered ms:ms-textarea-sm ms:w-full ms:min-h-20 ms:font-mono ms:text-xs ms:focus:ms-textarea-primary ms:leading-tight"
+      class="vi:vi-textarea vi:vi-textarea-bordered vi:vi-textarea-sm vi:w-full vi:min-h-20 vi:font-mono vi:text-xs vi:focus:vi-textarea-primary vi:leading-tight"
       placeholder="Enter string..."
     ></textarea>
     <input
       v-else-if="type === 'number' || type === 'bigint'"
       :value="numberInput"
       type="number"
-      class="ms:ms-input ms:ms-input-bordered ms:ms-input-sm ms:w-full ms:font-mono ms:text-xs ms:focus:ms-input-primary"
+      class="vi:vi-input vi:vi-input-bordered vi:vi-input-sm vi:w-full vi:font-mono vi:text-xs vi:focus:vi-input-primary"
       placeholder="0"
       @input="updateNumberInput(($event.target as HTMLInputElement).value)"
     />
-    <div v-else class="ms:grid ms:gap-1.5">
+    <div v-else class="vi:grid vi:gap-1.5">
       <textarea
         :value="jsonInput"
-        class="ms:ms-textarea ms:ms-textarea-bordered ms:ms-textarea-sm ms:w-full ms:min-h-20 ms:font-mono ms:text-xs ms:focus:ms-textarea-primary ms:leading-tight"
+        class="vi:vi-textarea vi:vi-textarea-bordered vi:vi-textarea-sm vi:w-full vi:min-h-20 vi:font-mono vi:text-xs vi:focus:vi-textarea-primary vi:leading-tight"
         placeholder="JSON data..."
         @input="updateJsonInput(($event.target as HTMLTextAreaElement).value)"
       ></textarea>
-      <p v-if="jsonError" class="ms:text-[10px] ms:font-medium ms:text-error">{{ jsonError }}</p>
+      <p v-if="jsonError" class="vi:text-[10px] vi:font-medium vi:text-error">{{ jsonError }}</p>
     </div>
   </div>
 </template>

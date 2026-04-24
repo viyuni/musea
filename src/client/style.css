@@ -1,9 +1,9 @@
-@import 'tailwindcss' prefix(ms);
+@import 'tailwindcss' prefix(vi);
 
 @plugin "@tailwindcss/typography";
 
 @plugin "daisyui" {
-  prefix: 'ms-';
+  prefix: 'vi-';
   themes: 'musea-light', 'musea-dark';
   root: '#musea-app';
 }
@@ -125,7 +125,7 @@
 }
 
 @utility size-screen {
-  @apply ms:w-screen ms:h-screen;
+  @apply vi:w-screen vi:h-screen;
 }
 
 @utility text-md {
@@ -167,121 +167,121 @@
 }
 
 #musea-app .md-body {
-  @apply ms:text-base-content ms:leading-relaxed ms:text-sm ms:sm:text-base;
+  @apply vi:text-base-content vi:leading-relaxed vi:text-sm vi:sm:text-base;
 }
 
 #musea-app .md-body h1 {
-  @apply ms:text-2xl ms:font-bold ms:mb-6 ms:pb-2 ms:border-b ms:border-base-300 ms:text-primary ms:mt-4;
+  @apply vi:text-2xl vi:font-bold vi:mb-6 vi:pb-2 vi:border-b vi:border-base-300 vi:text-primary vi:mt-4;
 }
 
 #musea-app .md-body h2 {
-  @apply ms:text-xl ms:font-bold ms:mb-4 ms:mt-8 ms:pb-1 ms:border-b ms:border-base-200;
+  @apply vi:text-xl vi:font-bold vi:mb-4 vi:mt-8 vi:pb-1 vi:border-b vi:border-base-200;
 }
 
 #musea-app .md-body h3 {
-  @apply ms:text-lg ms:font-bold ms:mb-3 ms:mt-6;
+  @apply vi:text-lg vi:font-bold vi:mb-3 vi:mt-6;
 }
 
 #musea-app .md-body h4 {
-  @apply ms:text-base ms:font-bold ms:mb-2 ms:mt-5;
+  @apply vi:text-base vi:font-bold vi:mb-2 vi:mt-5;
 }
 
 #musea-app .md-body p {
-  @apply ms:mb-4;
+  @apply vi:mb-4;
 }
 
 #musea-app .md-body a {
-  @apply ms:ms-link ms:ms-link-primary ms:no-underline ms:hover:underline;
+  @apply vi:vi-link vi:vi-link-primary vi:no-underline vi:hover:underline;
 }
 
 #musea-app .md-body blockquote {
-  @apply ms:border-l-4 ms:border-primary ms:bg-base-200/50 ms:px-4 ms:py-3 ms:my-5 ms:italic;
+  @apply vi:border-l-4 vi:border-primary vi:bg-base-200/50 vi:px-4 vi:py-3 vi:my-5 vi:italic;
 }
 
 #musea-app .md-body blockquote > p:last-child {
-  @apply ms:mb-0;
+  @apply vi:mb-0;
 }
 
 #musea-app .md-body blockquote > *:last-child {
-  @apply ms:mb-0;
+  @apply vi:mb-0;
 }
 
 #musea-app .md-body ul {
-  @apply ms:list-disc ms:list-inside ms:mb-4 ms:space-y-1.5;
+  @apply vi:list-disc vi:list-inside vi:mb-4 vi:space-y-1.5;
 }
 
 #musea-app .md-body ol {
-  @apply ms:list-decimal ms:list-inside ms:mb-4 ms:space-y-1.5;
+  @apply vi:list-decimal vi:list-inside vi:mb-4 vi:space-y-1.5;
 }
 
 #musea-app .md-body pre {
-  @apply ms:rounded-xl ms:p-3 ms:overflow-auto ms:border ms:border-base-200;
+  @apply vi:rounded-xl vi:p-3 vi:overflow-auto vi:border vi:border-base-200;
 }
 
 #musea-app .md-body .table-wrapper {
-  @apply ms:my-6 ms:overflow-x-auto ms:w-full;
+  @apply vi:my-6 vi:overflow-x-auto vi:w-full;
 }
 
 #musea-app .md-body table {
-  @apply ms:ms-table ms:min-w-200 ms:w-full ms:ms-rounded-box ms:border ms:border-base-content/5 ms:bg-base-100;
+  @apply vi:vi-table vi:min-w-200 vi:w-full vi:vi-rounded-box vi:border vi:border-base-content/5 vi:bg-base-100;
 }
 
 #musea-app .md-body table thead tr {
-  @apply ms:text-base-content ms:text-[11px] ms:uppercase ms:tracking-widest;
+  @apply vi:text-base-content vi:text-[11px] vi:uppercase vi:tracking-widest;
 }
 
 #musea-app .md-body table tbody tr {
-  @apply ms:hover:bg-base-200/50 ms:transition-colors;
+  @apply vi:hover:bg-base-200/50 vi:transition-colors;
 }
 
 #musea-app .md-body img {
-  @apply ms:max-w-full ms:h-auto;
+  @apply vi:max-w-full vi:h-auto;
 }
 
 #musea-app .md-body hr {
-  @apply ms:my-4 ms:border-base-300;
+  @apply vi:my-4 vi:border-base-300;
 }
 
 #musea-app .md-body .task-list-item {
-  @apply ms:list-none ms:flex ms:items-center ms:gap-3;
+  @apply vi:list-none vi:flex vi:items-center vi:gap-3;
 }
 
 #musea-app .md-body .task-list-item input[type='checkbox'] {
-  @apply ms:ms-checkbox ms:ms-checkbox-primary ms:ms-checkbox-sm ms:rounded-md;
+  @apply vi:vi-checkbox vi:vi-checkbox-primary vi:vi-checkbox-sm vi:rounded-md;
 }
 
 #musea-app .md-body .task-list-item input[disabled] {
-  @apply ms:opacity-100 ms:cursor-default;
+  @apply vi:opacity-100 vi:cursor-default;
 }
 
 #musea-app .md-body art {
-  @apply ms:grid ms:xl:grid-cols-3 ms:grid-cols-1 ms:gap-4;
+  @apply vi:grid vi:xl:grid-cols-3 vi:grid-cols-1 vi:gap-4;
 }
 
 #musea-app .md-body art::before {
   content: attr(title) ' Variants';
-  @apply ms:order-1 ms:text-2xl ms:font-black ms:xl:col-span-4 ms:col-span-1;
+  @apply vi:order-1 vi:text-2xl vi:font-black vi:xl:col-span-4 vi:col-span-1;
 }
 
 #musea-app .md-body art::after {
   content: attr(description);
-  @apply ms:order-2 ms:text-accent ms:xl:col-span-4 ms:col-span-1 ms:-mt-4;
+  @apply vi:order-2 vi:text-accent vi:xl:col-span-4 vi:col-span-1 vi:-mt-4;
 }
 
 #musea-app .md-body art variant {
-  @apply ms:order-3 ms:grid ms:bg-base-100 ms:p-6 ms:rounded-xl ms:border ms:border-base-300;
+  @apply vi:order-3 vi:grid vi:bg-base-100 vi:p-6 vi:rounded-xl vi:border vi:border-base-300;
 }
 
 #musea-app .md-body art variant::before {
   content: attr(name);
-  @apply ms:order-1 ms:text-xs ms:font-bold ms:uppercase ms:tracking-widest;
+  @apply vi:order-1 vi:text-xs vi:font-bold vi:uppercase vi:tracking-widest;
 }
 
 #musea-app .md-body art variant::after {
   content: attr(description) '';
-  @apply ms:order-2 ms:text-xs ms:tracking-widest ms:mb-4 ms:text-accent;
+  @apply vi:order-2 vi:text-xs vi:tracking-widest vi:mb-4 vi:text-accent;
 }
 
 #musea-app .md-body art variant * {
-  @apply ms:order-4;
+  @apply vi:order-4;
 }

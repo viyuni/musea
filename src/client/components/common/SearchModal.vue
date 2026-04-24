@@ -123,95 +123,95 @@ defineExpose({ open, close });
 
 <template>
   <dialog
-    class="ms:ms-modal ms:backdrop:backdrop-blur-sm ms:w-screen"
+    class="vi:vi-modal vi:backdrop:backdrop-blur-sm vi:w-screen"
     role="dialog"
     ref="searchModal"
   >
     <div
-      class="ms:ms-modal-box ms:p-0 ms:w-11/12 ms:max-w-2xl ms:border ms:border-base-content/5 ms:bg-base-100 ms:shadow-2xl ms:overflow-hidden ms:rounded-2xl"
+      class="vi:vi-modal-box vi:p-0 vi:w-11/12 vi:max-w-2xl vi:border vi:border-base-content/5 vi:bg-base-100 vi:shadow-2xl vi:overflow-hidden vi:rounded-2xl"
     >
       <!-- Search Input Area -->
       <div
-        class="ms:flex ms:items-center ms:px-4 ms:py-4 ms:border-b ms:border-base-content/5 ms:bg-base-content/2"
+        class="vi:flex vi:items-center vi:px-4 vi:py-4 vi:border-b vi:border-base-content/5 vi:bg-base-content/2"
       >
-        <Search class="ms:size-4 ms:opacity-30 ms:mr-3 ms:shrink-0" />
+        <Search class="vi:size-4 vi:opacity-30 vi:mr-3 vi:shrink-0" />
         <input
           ref="searchInput"
           v-model="keywords"
-          class="ms:bg-transparent ms:border-none ms:outline-none ms:w-full ms:text-sm ms:font-medium ms:placeholder:text-base-content/20"
+          class="vi:bg-transparent vi:border-none vi:outline-none vi:w-full vi:text-sm vi:font-medium vi:placeholder:text-base-content/20"
           placeholder="Search components, categories, or tags..."
           type="text"
           spellcheck="false"
         />
-        <div class="ms:flex ms:items-center ms:gap-1 ms:shrink-0 ms:ml-2">
-          <kbd class="ms:ms-kbd ms:ms-kbd-xs ms:bg-base-200 ms:border-base-300">ESC</kbd>
+        <div class="vi:flex vi:items-center vi:gap-1 vi:shrink-0 vi:ml-2">
+          <kbd class="vi:vi-kbd vi:vi-kbd-xs vi:bg-base-200 vi:border-base-300">ESC</kbd>
         </div>
       </div>
 
       <!-- Results Area -->
-      <div class="ms:max-h-[60vh] ms:overflow-y-auto ms:no-scrollbar ms:py-2">
+      <div class="vi:max-h-[60vh] vi:overflow-y-auto vi:no-scrollbar vi:py-2">
         <div v-if="filteredArts.length > 0">
           <div
             v-for="(item, index) in filteredArts"
             :key="item.id"
             :data-index="index"
-            class="ms:px-2"
+            class="vi:px-2"
           >
             <div
-              class="ms:group ms:flex ms:items-center ms:gap-3 ms:px-3 ms:py-3 ms:rounded-xl ms:cursor-pointer ms:transition-all"
+              class="vi:group vi:flex vi:items-center vi:gap-3 vi:px-3 vi:py-3 vi:rounded-xl vi:cursor-pointer vi:transition-all"
               :class="[
                 selectedIndex === index
-                  ? 'ms:bg-primary ms:text-primary-content ms:shadow-lg ms:shadow-primary/20'
-                  : 'ms:hover:bg-base-content/5',
+                  ? 'vi:bg-primary vi:text-primary-content vi:shadow-lg vi:shadow-primary/20'
+                  : 'vi:hover:bg-base-content/5',
               ]"
               @mouseenter="selectedIndex = index"
               @click="goArt(item.id)"
             >
               <div
-                class="ms:size-8 ms:rounded-lg ms:flex ms:items-center ms:justify-center ms:shrink-0"
+                class="vi:size-8 vi:rounded-lg vi:flex vi:items-center vi:justify-center vi:shrink-0"
                 :class="[
-                  selectedIndex === index ? 'ms:bg-primary-content/20' : 'ms:bg-base-content/5',
+                  selectedIndex === index ? 'vi:bg-primary-content/20' : 'vi:bg-base-content/5',
                 ]"
               >
                 <Command
                   :size="16"
-                  :class="[selectedIndex === index ? 'ms:text-primary-content' : 'ms:opacity-40']"
+                  :class="[selectedIndex === index ? 'vi:text-primary-content' : 'vi:opacity-40']"
                 />
               </div>
 
-              <div class="ms:flex-1 ms:min-w-0">
-                <div class="ms:flex ms:items-center ms:gap-2">
+              <div class="vi:flex-1 vi:min-w-0">
+                <div class="vi:flex vi:items-center vi:gap-2">
                   <span
-                    class="ms:text-xs ms:font-black ms:uppercase ms:tracking-wider ms:truncate"
+                    class="vi:text-xs vi:font-black vi:uppercase vi:tracking-wider vi:truncate"
                     >{{ item.title }}</span
                   >
                   <span
-                    class="ms:text-[9px] ms:font-bold ms:uppercase ms:tracking-widest ms:px-1.5 ms:py-0.5 ms:rounded ms:bg-black/5"
+                    class="vi:text-[9px] vi:font-bold vi:uppercase vi:tracking-widest vi:px-1.5 vi:py-0.5 vi:rounded vi:bg-black/5"
                     :class="[
                       selectedIndex === index
-                        ? 'ms:bg-white/10 ms:text-primary-content/80'
-                        : 'ms:text-base-content/30',
+                        ? 'vi:bg-white/10 vi:text-primary-content/80'
+                        : 'vi:text-base-content/30',
                     ]"
                   >
                     {{ item.category }}
                   </span>
                 </div>
                 <p
-                  class="ms:text-[10px] ms:mt-0.5 ms:truncate ms:leading-relaxed"
+                  class="vi:text-[10px] vi:mt-0.5 vi:truncate vi:leading-relaxed"
                   :class="[
-                    selectedIndex === index ? 'ms:text-primary-content/70' : 'ms:opacity-40',
+                    selectedIndex === index ? 'vi:text-primary-content/70' : 'vi:opacity-40',
                   ]"
                 >
                   {{ item.description || item.file }}
                 </p>
               </div>
 
-              <div class="ms:shrink-0 ms:flex ms:items-center ms:gap-2">
-                <CornerDownLeft v-if="selectedIndex === index" :size="12" class="ms:opacity-60" />
+              <div class="vi:shrink-0 vi:flex vi:items-center vi:gap-2">
+                <CornerDownLeft v-if="selectedIndex === index" :size="12" class="vi:opacity-60" />
                 <ArrowRight
                   v-else
                   :size="12"
-                  class="ms:opacity-0 ms:group-hover:opacity-20 ms:transition-opacity"
+                  class="vi:opacity-0 vi:group-hover:opacity-20 vi:transition-opacity"
                 />
               </div>
             </div>
@@ -221,10 +221,10 @@ defineExpose({ open, close });
         <!-- Empty State -->
         <div
           v-else-if="hasNoResults"
-          class="ms:py-12 ms:flex ms:flex-col ms:items-center ms:justify-center ms:gap-3 ms:opacity-20"
+          class="vi:py-12 vi:flex vi:flex-col vi:items-center vi:justify-center vi:gap-3 vi:opacity-20"
         >
           <Search :size="32" stroke-width="1.5" />
-          <p class="ms:text-[10px] ms:font-black ms:uppercase ms:tracking-[0.2em]">
+          <p class="vi:text-[10px] vi:font-black vi:uppercase vi:tracking-[0.2em]">
             No results for "{{ keywords }}"
           </p>
         </div>
@@ -232,27 +232,27 @@ defineExpose({ open, close });
 
       <!-- Footer Hints -->
       <div
-        class="ms:px-4 ms:py-2 ms:border-t ms:border-base-content/5 ms:flex ms:items-center ms:gap-4 ms:bg-base-content/1"
+        class="vi:px-4 vi:py-2 vi:border-t vi:border-base-content/5 vi:flex vi:items-center vi:gap-4 vi:bg-base-content/1"
       >
-        <div class="ms:flex ms:items-center ms:gap-1.5">
-          <kbd class="ms:ms-kbd ms:ms-kbd-xs ms:bg-base-200 ms:border-base-300">↵</kbd>
-          <span class="ms:text-[9px] ms:font-bold ms:uppercase ms:tracking-widest ms:opacity-30"
+        <div class="vi:flex vi:items-center vi:gap-1.5">
+          <kbd class="vi:vi-kbd vi:vi-kbd-xs vi:bg-base-200 vi:border-base-300">↵</kbd>
+          <span class="vi:text-[9px] vi:font-bold vi:uppercase vi:tracking-widest vi:opacity-30"
             >Select</span
           >
         </div>
-        <div class="ms:flex ms:items-center ms:gap-1.5">
-          <div class="ms:flex ms:items-center ms:gap-0.5">
-            <kbd class="ms:ms-kbd ms:ms-kbd-xs ms:bg-base-200 ms:border-base-300">↑</kbd>
-            <kbd class="ms:ms-kbd ms:ms-kbd-xs ms:bg-base-200 ms:border-base-300">↓</kbd>
+        <div class="vi:flex vi:items-center vi:gap-1.5">
+          <div class="vi:flex vi:items-center vi:gap-0.5">
+            <kbd class="vi:vi-kbd vi:vi-kbd-xs vi:bg-base-200 vi:border-base-300">↑</kbd>
+            <kbd class="vi:vi-kbd vi:vi-kbd-xs vi:bg-base-200 vi:border-base-300">↓</kbd>
           </div>
-          <span class="ms:text-[9px] ms:font-bold ms:uppercase ms:tracking-widest ms:opacity-30"
+          <span class="vi:text-[9px] vi:font-bold vi:uppercase vi:tracking-widest vi:opacity-30"
             >Navigate</span
           >
         </div>
       </div>
     </div>
 
-    <form method="dialog" class="ms:ms-modal-backdrop">
+    <form method="dialog" class="vi:vi-modal-backdrop">
       <button>close</button>
     </form>
   </dialog>

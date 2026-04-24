@@ -19,7 +19,7 @@ const logoUrl = computed(() => {
 <template>
   <img
     :width="width || 130"
-    class="ms:select-none ms:pointer-events-none"
+    class="vi:select-none vi:pointer-events-none"
     draggable="false"
     :src="logoUrl"
     alt="Viyuni Musea"

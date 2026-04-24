@@ -6,54 +6,54 @@ const { arts, totalVariants, categoryCount, totalArts } = useArtManifest();
 </script>
 
 <template>
-  <main class="ms:h-full ms:overflow-y-auto ms:scroll-smooth">
-    <div class="ms:w-full ms:px-4 ms:py-4 ms:lg:px-8 ms:lg:py-8">
+  <main class="vi:h-full vi:overflow-y-auto vi:scroll-smooth">
+    <div class="vi:w-full vi:px-4 vi:py-4 vi:lg:px-8 vi:lg:py-8">
       <header
-        class="ms:flex ms:flex-col ms:lg:flex-row ms:lg:items-center ms:justify-between ms:gap-8 ms:mb-12"
+        class="vi:flex vi:flex-col vi:lg:flex-row vi:lg:items-center vi:justify-between vi:gap-8 vi:mb-12"
       >
-        <div class="ms:space-y-2">
-          <h1 class="ms:text-4xl ms:font-black ms:tracking-tighter">Overview</h1>
-          <p class="ms:text-sm ms:text-base-content/50 ms:max-w-2xl ms:leading-relaxed">
-            Welcome to the <span class="ms:text-primary ms:font-bold">Musea Art Gallery</span>.
+        <div class="vi:space-y-2">
+          <h1 class="vi:text-4xl vi:font-black vi:tracking-tighter">Overview</h1>
+          <p class="vi:text-sm vi:text-base-content/50 vi:max-w-2xl vi:leading-relaxed">
+            Welcome to the <span class="vi:text-primary vi:font-bold">Musea Art Gallery</span>.
             Explore and preview your Arts across
-            <span class="ms:font-bold ms:text-base-content">{{ categoryCount }}</span> categories.
+            <span class="vi:font-bold vi:text-base-content">{{ categoryCount }}</span> categories.
           </p>
         </div>
 
-        <div class="ms:ms-stats ms:ms-stats-horizontal">
-          <div class="ms:ms-stat ms:py-3 ms:px-6">
+        <div class="vi:vi-stats vi:vi-stats-horizontal">
+          <div class="vi:vi-stat vi:py-3 vi:px-6">
             <div
-              class="ms:ms-stat-title ms:text-[10px] ms:uppercase ms:font-black ms:tracking-widest"
+              class="vi:vi-stat-title vi:text-[10px] vi:uppercase vi:font-black vi:tracking-widest"
             >
               Total Arts
             </div>
-            <div class="ms:ms-stat-value ms:text-2xl ms:font-black ms:text-primary ms:text-center">
+            <div class="vi:vi-stat-value vi:text-2xl vi:font-black vi:text-primary vi:text-center">
               {{ totalArts }}
             </div>
           </div>
-          <div class="ms:ms-stat ms:py-3 ms:px-6">
+          <div class="vi:vi-stat vi:py-3 vi:px-6">
             <div
-              class="ms:ms-stat-title ms:text-[10px] ms:uppercase ms:font-black ms:tracking-widest"
+              class="vi:vi-stat-title vi:text-[10px] vi:uppercase vi:font-black vi:tracking-widest"
             >
               Total Variants
             </div>
-            <div class="ms:ms-stat-value ms:text-2xl ms:font-black ms:text-center">
+            <div class="vi:vi-stat-value vi:text-2xl vi:font-black vi:text-center">
               {{ totalVariants }}
             </div>
           </div>
         </div>
       </header>
 
-      <div v-if="arts.length === 0" class="ms:py-32 ms:text-center ms:space-y-6">
-        <div class="ms:text-8xl ms:opacity-10 ms:font-black">EMPTY</div>
-        <p class="ms:text-base-content/40 ms:font-medium">No Arts found in your workspace yet.</p>
+      <div v-if="arts.length === 0" class="vi:py-32 vi:text-center vi:space-y-6">
+        <div class="vi:text-8xl vi:opacity-10 vi:font-black">EMPTY</div>
+        <p class="vi:text-base-content/40 vi:font-medium">No Arts found in your workspace yet.</p>
       </div>
 
       <div
         v-else
-        class="ms:grid ms:grid-cols-1 ms:sm:grid-cols-2 ms:md:grid-cols-3 ms:lg:grid-cols-4 ms:xl:grid-cols-5 ms:2xl:grid-cols-6 ms:gap-6"
+        class="vi:grid vi:grid-cols-1 vi:sm:grid-cols-2 vi:md:grid-cols-3 vi:lg:grid-cols-4 vi:xl:grid-cols-5 vi:2xl:grid-cols-6 vi:gap-6"
       >
-        <ArtCard v-for="item in arts" :key="item.id" :data="item" class="ms:animate-pop-in" />
+        <ArtCard v-for="item in arts" :key="item.id" :data="item" class="vi:animate-pop-in" />
       </div>
     </div>
   </main>

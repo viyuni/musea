@@ -37,24 +37,24 @@ function resetSlots() {
 </script>
 
 <template>
-  <aside class="ms:w-full ms:flex ms:flex-col">
+  <aside class="vi:w-full vi:flex vi:flex-col">
     <header
-      class="ms:flex ms:items-center ms:justify-between ms:border-b ms:border-base-content/5 ms:bg-base-100 ms:px-2 ms:h-10 ms:shrink-0 ms:sticky ms:top-0 ms:z-10"
+      class="vi:flex vi:items-center vi:justify-between vi:border-b vi:border-base-content/5 vi:bg-base-100 vi:px-2 vi:h-10 vi:shrink-0 vi:sticky vi:top-0 vi:z-10"
     >
-      <div role="tablist" class="ms:flex ms:gap-4">
+      <div role="tablist" class="vi:flex vi:gap-4">
         <button
           v-for="tab in ['props', 'slots', 'json'] as const"
           :key="tab"
           role="tab"
-          class="ms:relative ms:py-2.5 ms:text-[10px] ms:font-black ms:uppercase ms:tracking-widest ms:transition-all ms:outline-none"
+          class="vi:relative vi:py-2.5 vi:text-[10px] vi:font-black vi:uppercase vi:tracking-widest vi:transition-all vi:outline-none"
           :class="[
             activeInspectorTab === tab
-              ? 'ms:text-primary'
-              : 'ms:text-base-content/40 ms:hover:text-base-content/70',
+              ? 'vi:text-primary'
+              : 'vi:text-base-content/40 vi:hover:text-base-content/70',
           ]"
           @click="activeInspectorTab = tab"
         >
-          <div class="ms:flex ms:items-center ms:gap-1.5 ms:px-2">
+          <div class="vi:flex vi:items-center vi:gap-1.5 vi:px-2">
             <Settings2 v-if="tab === 'props'" :size="10" />
             <Layers v-else-if="tab === 'slots'" :size="10" />
             <Code2 v-else :size="10" />
@@ -63,23 +63,23 @@ function resetSlots() {
           <!-- Tab active indicator -->
           <div
             v-if="activeInspectorTab === tab"
-            class="ms:absolute ms:-bottom-px ms:left-0 ms:w-full ms:h-0.5 ms:bg-primary ms:rounded-full"
+            class="vi:absolute vi:-bottom-px vi:left-0 vi:w-full vi:h-0.5 vi:bg-primary vi:rounded-full"
           ></div>
         </button>
       </div>
     </header>
 
-    <main class="ms:flex-1 ms:overflow-y-auto">
+    <main class="vi:flex-1 vi:overflow-y-auto">
       <!-- Props Inspector -->
-      <div v-if="activeInspectorTab === 'props'" class="ms:h-full">
+      <div v-if="activeInspectorTab === 'props'" class="vi:h-full">
         <div
-          class="ms:flex ms:items-center ms:justify-between ms:px-4 ms:py-2 ms:border-b ms:border-base-content/5 ms:bg-base-200/5 ms:backdrop-blur-md"
+          class="vi:flex vi:items-center vi:justify-between vi:px-4 vi:py-2 vi:border-b vi:border-base-content/5 vi:bg-base-200/5 vi:backdrop-blur-md"
         >
-          <span class="ms:text-[10px] ms:font-black ms:uppercase ms:tracking-widest ms:opacity-30"
+          <span class="vi:text-[10px] vi:font-black vi:uppercase vi:tracking-widest vi:opacity-30"
             >Properties</span
           >
           <button
-            class="ms:ms-btn ms:ms-btn-ghost ms:ms-btn-xs ms:h-7 ms:gap-1.5 ms:text-[9px] ms:font-bold ms:uppercase ms:tracking-widest ms:opacity-30 ms:hover:opacity-100"
+            class="vi:vi-btn vi:vi-btn-ghost vi:vi-btn-xs vi:h-7 vi:gap-1.5 vi:text-[9px] vi:font-bold vi:uppercase vi:tracking-widest vi:opacity-30 vi:hover:opacity-100"
             @click="resetProps"
           >
             <RefreshCcw :size="10" />
@@ -90,15 +90,15 @@ function resetSlots() {
       </div>
 
       <!-- Slots Inspector -->
-      <div v-else-if="activeInspectorTab === 'slots'" class="ms:h-full">
+      <div v-else-if="activeInspectorTab === 'slots'" class="vi:h-full">
         <div
-          class="ms:flex ms:items-center ms:justify-between ms:px-4 ms:py-2 ms:border-b ms:border-base-content/5 ms:bg-base-200/5 ms:sticky ms:top-0 ms:z-10 ms:backdrop-blur-md"
+          class="vi:flex vi:items-center vi:justify-between vi:px-4 vi:py-2 vi:border-b vi:border-base-content/5 vi:bg-base-200/5 vi:sticky vi:top-0 vi:z-10 vi:backdrop-blur-md"
         >
-          <span class="ms:text-[10px] ms:font-black ms:uppercase ms:tracking-widest ms:opacity-30"
+          <span class="vi:text-[10px] vi:font-black vi:uppercase vi:tracking-widest vi:opacity-30"
             >Slots</span
           >
           <button
-            class="ms:ms-btn ms:ms-btn-ghost ms:ms-btn-xs ms:h-7 ms:gap-1.5 ms:text-[9px] ms:font-bold ms:uppercase ms:tracking-widest ms:opacity-30 ms:hover:opacity-100"
+            class="vi:vi-btn vi:vi-btn-ghost vi:vi-btn-xs vi:h-7 vi:gap-1.5 vi:text-[9px] vi:font-bold vi:uppercase vi:tracking-widest vi:opacity-30 vi:hover:opacity-100"
             @click="resetSlots"
           >
             <RefreshCcw :size="10" />
@@ -109,9 +109,9 @@ function resetSlots() {
       </div>
 
       <!-- JSON Monitor -->
-      <div v-else class="ms:h-full">
+      <div v-else class="vi:h-full">
         <pre
-          class="ms:h-full ms:bg-base-content/2 ms:p-5 ms:text-[11px] ms:font-mono ms:leading-relaxed ms:text-base-content/70"
+          class="vi:h-full vi:bg-base-content/2 vi:p-5 vi:text-[11px] vi:font-mono vi:leading-relaxed vi:text-base-content/70"
           >{{ propValuesPreview }}</pre
         >
       </div>

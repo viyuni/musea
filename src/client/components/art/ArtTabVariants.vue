@@ -33,38 +33,38 @@ const variants = computed(() => {
 </script>
 
 <template>
-  <div class="ms:space-y-12">
+  <div class="vi:space-y-12">
     <!-- Header with Theme Switcher -->
-    <div v-if="variants.length" class="ms:flex ms:items-center ms:justify-between ms:mb-4">
-      <div class="ms:text-[10px] ms:font-bold ms:uppercase ms:tracking-widest ms:opacity-30">
+    <div v-if="variants.length" class="vi:flex vi:items-center vi:justify-between vi:mb-4">
+      <div class="vi:text-[10px] vi:font-bold vi:uppercase vi:tracking-widest vi:opacity-30">
         {{ variants.length }} variants available
       </div>
-      <ArtThemeSwitcher class="ms:bg-base-200/50 ms:rounded-lg ms:p-0.5" />
+      <ArtThemeSwitcher class="vi:bg-base-200/50 vi:rounded-lg vi:p-0.5" />
     </div>
 
-    <div v-for="v in variants" :key="v.name" class="ms:space-y-4">
-      <div class="ms:flex ms:items-center ms:gap-2 ms:px-1">
-        <h3 class="ms:text-sm ms:font-bold ms:opacity-80 ms:uppercase ms:tracking-wider">
+    <div v-for="v in variants" :key="v.name" class="vi:space-y-4">
+      <div class="vi:flex vi:items-center vi:gap-2 vi:px-1">
+        <h3 class="vi:text-sm vi:font-bold vi:opacity-80 vi:uppercase vi:tracking-wider">
           {{ v.name }}
         </h3>
         <span
           v-if="v.default"
-          class="ms:px-1.5 ms:py-0.5 ms:rounded ms:bg-primary/10 ms:text-primary ms:text-[10px] ms:font-bold ms:uppercase"
+          class="vi:px-1.5 vi:py-0.5 vi:rounded vi:bg-primary/10 vi:text-primary vi:text-[10px] vi:font-bold vi:uppercase"
         >
           Default
         </span>
       </div>
 
-      <div class="ms:border ms:border-base-300">
+      <div class="vi:border vi:border-base-300">
         <ArtPreview :url="v.url" height-mode="adaptive" />
       </div>
     </div>
 
     <div
       v-if="!variants.length"
-      class="ms:flex ms:flex-col ms:items-center ms:justify-center ms:py-20 ms:text-base-content/40"
+      class="vi:flex vi:flex-col vi:items-center vi:justify-center vi:py-20 vi:text-base-content/40"
     >
-      <p class="ms:text-sm">No variants found for this art.</p>
+      <p class="vi:text-sm">No variants found for this art.</p>
     </div>
   </div>
 </template>

@@ -17,12 +17,12 @@ function updateFieldValue(key: string, value: unknown) {
 </script>
 <template>
   <div
-    class="ms:grid ms:gap-4 ms:relative ms:pl-5 ms:mt-2 ms:before:content-[''] ms:before:block ms:before:absolute ms:before:w-px ms:before:h-[calc(100%-8px)] ms:before:left-1 ms:before:top-1 ms:before:bg-base-content/10"
+    class="vi:grid vi:gap-4 vi:relative vi:pl-5 vi:mt-2 vi:before:content-[''] vi:before:block vi:before:absolute vi:before:w-px vi:before:h-[calc(100%-8px)] vi:before:left-1 vi:before:top-1 vi:before:bg-base-content/10"
   >
-    <div v-for="(field, key) in schema.value" :key="key" class="ms:grid ms:gap-1.5">
-      <div class="ms:flex ms:items-center ms:gap-2">
+    <div v-for="(field, key) in schema.value" :key="key" class="vi:grid vi:gap-1.5">
+      <div class="vi:flex vi:items-center vi:gap-2">
         <span
-          class="ms:text-[10px] ms:font-bold ms:font-mono ms:text-base-content/40 ms:uppercase ms:tracking-wider"
+          class="vi:text-[10px] vi:font-bold vi:font-mono vi:text-base-content/40 vi:uppercase vi:tracking-wider"
           >{{ key }}</span
         >
       </div>

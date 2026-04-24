@@ -8,13 +8,13 @@ const { schema, required } = defineProps<{ schema: ResolvedEnumSchema; required?
 const modelValue = defineModel<unknown>();
 </script>
 <template>
-  <div class="ms:w-full">
+  <div class="vi:w-full">
     <select
       v-model="modelValue"
-      class="ms:ms-select ms:ms-select-bordered ms:ms-select-sm ms:w-full ms:font-mono ms:text-xs ms:focus:ms-select-primary"
+      class="vi:vi-select vi:vi-select-bordered vi:vi-select-sm vi:w-full vi:font-mono vi:text-xs vi:focus:vi-select-primary"
     >
-      <option v-if="!schema.required" :value="undefined" class="ms:text-error">undefined</option>
-      <option v-if="schema.nullable" :value="null" class="ms:text-error">null</option>
+      <option v-if="!schema.required" :value="undefined" class="vi:text-error">undefined</option>
+      <option v-if="schema.nullable" :value="null" class="vi:text-error">null</option>
       <option v-for="item in schema.value" :key="String(item)" :value="item">
         {{ String(item) }}
       </option>

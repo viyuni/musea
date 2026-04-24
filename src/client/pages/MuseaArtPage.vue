@@ -15,7 +15,7 @@ const { artDoc } = useArtDoc(() => currentArt.value?.id);
 </script>
 
 <template>
-  <main class="ms:h-full ms:overflow-y-auto ms:overflow-x-hidden ms:font-sans ms:scroll-smooth">
+  <main class="vi:h-full vi:overflow-y-auto vi:overflow-x-hidden vi:font-sans vi:scroll-smooth">
     <ArtTab :art="currentArt" :docs="artDoc" />
   </main>
 </template>

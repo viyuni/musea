@@ -191,44 +191,44 @@ function getRunResultSignature(result: ArtTestsRunResponse) {
 </script>
 
 <template>
-  <div class="ms:flex ms:flex-col ms:h-full">
+  <div class="vi:flex vi:flex-col vi:h-full">
     <header
-      class="ms:flex ms:items-center ms:justify-between ms:px-4 ms:py-2 ms:border-b ms:border-base-content/5 ms:bg-base-200/5 ms:sticky ms:top-content ms:z-20 ms:backdrop-blur-md ms:shrink-0"
+      class="vi:flex vi:items-center vi:justify-between vi:px-4 vi:py-2 vi:border-b vi:border-base-content/5 vi:bg-base-200/5 vi:sticky vi:top-content vi:z-20 vi:backdrop-blur-md vi:shrink-0"
     >
-      <div class="ms:flex ms:items-center ms:gap-2">
-        <Beaker :size="14" class="ms:text-primary ms:opacity-70" />
-        <span class="ms:text-[10px] ms:font-black ms:uppercase ms:tracking-widest ms:opacity-40"
+      <div class="vi:flex vi:items-center vi:gap-2">
+        <Beaker :size="14" class="vi:text-primary vi:opacity-70" />
+        <span class="vi:text-[10px] vi:font-black vi:uppercase vi:tracking-widest vi:opacity-40"
           >Test Runner</span
         >
       </div>
-      <div class="ms:flex ms:items-center ms:gap-2">
+      <div class="vi:flex vi:items-center vi:gap-2">
         <button
           v-if="runHistory.length > 0"
-          class="ms:ms-btn ms:ms-btn-ghost ms:ms-btn-xs ms:h-7 ms:gap-1.5 ms:text-[9px] ms:font-bold ms:uppercase ms:tracking-widest ms:opacity-30 ms:hover:opacity-100 ms:px-2"
+          class="vi:vi-btn vi:vi-btn-ghost vi:vi-btn-xs vi:h-7 vi:gap-1.5 vi:text-[9px] vi:font-bold vi:uppercase vi:tracking-widest vi:opacity-30 vi:hover:opacity-100 vi:px-2"
           @click="clearRunHistory"
         >
           <Trash2 :size="10" />
           Clear History
         </button>
         <button
-          class="ms:ms-btn ms:ms-btn-primary ms:ms-btn-xs ms:h-7 ms:gap-1.5 ms:text-[9px] ms:font-bold ms:uppercase ms:tracking-widest"
+          class="vi:vi-btn vi:vi-btn-primary vi:vi-btn-xs vi:h-7 vi:gap-1.5 vi:text-[9px] vi:font-bold vi:uppercase vi:tracking-widest"
           :disabled="!hasTests || isRunning"
           @click="runTests"
         >
           <component
             :is="isRunning ? RotateCcw : Play"
             :size="10"
-            :class="{ 'ms:animate-spin': isRunning }"
+            :class="{ 'vi:animate-spin': isRunning }"
           />
           {{ isRunning ? 'Running' : 'Run Tests' }}
         </button>
       </div>
     </header>
 
-    <main class="ms:flex-1 ms:overflow-y-auto ms:overflow-x-hidden">
+    <main class="vi:flex-1 vi:overflow-y-auto vi:overflow-x-hidden">
       <ArtTabTestsEmptyState v-if="!hasTests" />
 
-      <div v-else class="ms:flex ms:flex-col ms:h-full">
+      <div v-else class="vi:flex vi:flex-col vi:h-full">
         <ArtTabTestsConfiguredFilesState v-if="runHistory.length === 0 && !runError" :art="art" />
         <ArtTabTestsRunErrorState v-if="runError" :run-error="runError" />
         <ArtTabTestsRunHistory :run-history="runHistory" />

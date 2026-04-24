@@ -25,28 +25,28 @@ const { getPropValue, setPropValue } = useSchemaFormPropsModel(
 </script>
 
 <template>
-  <div class="ms:w-full ms:divide-y ms:divide-base-content/5">
+  <div class="vi:w-full vi:divide-y vi:divide-base-content/5">
     <div
       v-for="prop in props.resolvedProps"
       :key="prop.name"
-      class="ms:px-4 ms:py-4 ms:hover:bg-base-content/2 ms:transition-colors"
+      class="vi:px-4 vi:py-4 vi:hover:bg-base-content/2 vi:transition-colors"
     >
-      <div class="ms:flex ms:flex-col ms:gap-1 ms:mb-3">
-        <div class="ms:flex ms:items-center ms:gap-1">
+      <div class="vi:flex vi:flex-col vi:gap-1 vi:mb-3">
+        <div class="vi:flex vi:items-center vi:gap-1">
           <span
-            class="ms:text-xs ms:font-bold ms:font-mono ms:tracking-tight ms:text-base-content/80"
+            class="vi:text-xs vi:font-bold vi:font-mono vi:tracking-tight vi:text-base-content/80"
             >{{ prop.name }}</span
           >
-          <span v-if="prop.required" class="ms:text-[10px] ms:text-error ms:font-medium">*</span>
+          <span v-if="prop.required" class="vi:text-[10px] vi:text-error vi:font-medium">*</span>
         </div>
         <p
           v-if="prop.description"
-          class="ms:text-[11px] ms:leading-relaxed ms:text-base-content/50"
+          class="vi:text-[11px] vi:leading-relaxed vi:text-base-content/50"
         >
           {{ prop.description }}
         </p>
       </div>
-      <div class="ms:w-full">
+      <div class="vi:w-full">
         <SchemaFormItem
           :schema="prop.resolved"
           :required="prop.required"

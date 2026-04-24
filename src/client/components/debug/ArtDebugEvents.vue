@@ -79,53 +79,53 @@ defineExpose({
 </script>
 
 <template>
-  <div class="ms:h-full ms:bg-base-100">
-    <div v-if="eventLogs.length > 0" class="ms:divide-y ms:divide-base-content/5">
+  <div class="vi:h-full vi:bg-base-100">
+    <div v-if="eventLogs.length > 0" class="vi:divide-y vi:divide-base-content/5">
       <article
         v-for="entry in eventLogs"
         :key="entry.id"
-        class="ms:hover:bg-base-content/2 ms:transition-colors"
+        class="vi:hover:bg-base-content/2 vi:transition-colors"
       >
         <div
-          class="ms:flex ms:items-center ms:justify-between ms:px-4 ms:py-1.5 ms:bg-base-content/2 ms:border-b ms:border-base-content/5"
+          class="vi:flex vi:items-center vi:justify-between vi:px-4 vi:py-1.5 vi:bg-base-content/2 vi:border-b vi:border-base-content/5"
         >
-          <div class="ms:flex ms:items-center ms:gap-2">
-            <div class="ms:w-1 ms:h-3 ms:bg-secondary ms:rounded-full ms:opacity-60"></div>
+          <div class="vi:flex vi:items-center vi:gap-2">
+            <div class="vi:w-1 vi:h-3 vi:bg-secondary vi:rounded-full vi:opacity-60"></div>
             <span
-              class="ms:text-[10px] ms:font-black ms:text-secondary ms:uppercase ms:tracking-tight"
+              class="vi:text-[10px] vi:font-black vi:text-secondary vi:uppercase vi:tracking-tight"
               >{{ entry.event }}</span
             >
           </div>
-          <span class="ms:text-[8px] ms:font-mono ms:text-base-content/40">{{
+          <span class="vi:text-[8px] vi:font-mono vi:text-base-content/40">{{
             entry.timestamp
           }}</span>
         </div>
-        <div class="ms:px-4 ms:py-2.5 ms:space-y-1.5">
+        <div class="vi:px-4 vi:py-2.5 vi:space-y-1.5">
           <div
             v-for="(payloadItem, index) in entry.payload"
             :key="`${entry.id}-${index}`"
-            class="ms:flex ms:items-start ms:gap-3"
+            class="vi:flex vi:items-start vi:gap-3"
           >
             <span
-              class="ms:text-[9px] ms:font-bold ms:uppercase ms:tracking-widest ms:text-base-content/30 ms:shrink-0 ms:mt-0.5"
+              class="vi:text-[9px] vi:font-bold vi:uppercase vi:tracking-widest vi:text-base-content/30 vi:shrink-0 vi:mt-0.5"
               >{{ payloadItem.type }}</span
             >
             <pre
-              class="ms:flex-1 ms:overflow-x-auto ms:text-[10px] ms:font-mono ms:leading-relaxed ms:text-base-content/80"
+              class="vi:flex-1 vi:overflow-x-auto vi:text-[10px] vi:font-mono vi:leading-relaxed vi:text-base-content/80"
               >{{ formatDebugValue(payloadItem.value) }}</pre
             >
           </div>
         </div>
       </article>
     </div>
-    <div v-else class="ms:h-full ms:flex ms:flex-col ms:items-center ms:justify-center ms:py-20">
+    <div v-else class="vi:h-full vi:flex vi:flex-col vi:items-center vi:justify-center vi:py-20">
       <div
-        class="ms:w-12 ms:h-12 ms:rounded-2xl ms:bg-base-200 ms:flex ms:items-center ms:justify-center ms:mb-4 ms:opacity-40"
+        class="vi:w-12 vi:h-12 vi:rounded-2xl vi:bg-base-200 vi:flex vi:items-center vi:justify-center vi:mb-4 vi:opacity-40"
       >
-        <Activity :size="24" class="ms:text-base-content" />
+        <Activity :size="24" class="vi:text-base-content" />
       </div>
       <p
-        class="ms:text-[10px] ms:font-black ms:uppercase ms:tracking-[0.2em] ms:text-base-content/20"
+        class="vi:text-[10px] vi:font-black vi:uppercase vi:tracking-[0.2em] vi:text-base-content/20"
       >
         Listening for component events
       </p>

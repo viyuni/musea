@@ -7,42 +7,42 @@ const { theme, setTheme } = useSubTheme();
 </script>
 
 <template>
-  <div class="ms:flex ms:items-center">
+  <div class="vi:flex vi:items-center">
     <button
-      class="ms:p-1.5 ms:rounded-md ms:transition-colors ms:cursor-pointer"
+      class="vi:p-1.5 vi:rounded-md vi:transition-colors vi:cursor-pointer"
       :class="[
         theme === 'auto'
-          ? 'ms:bg-base-100 ms:shadow-sm ms:text-primary'
-          : 'ms:text-base-content/50 ms:hover:text-base-content',
+          ? 'vi:bg-base-100 vi:shadow-sm vi:text-primary'
+          : 'vi:text-base-content/50 vi:hover:text-base-content',
       ]"
       title="Auto"
       @click="setTheme('auto')"
     >
-      <Monitor class="ms:w-3.5 ms:h-3.5" />
+      <Monitor class="vi:w-3.5 vi:h-3.5" />
     </button>
     <button
-      class="ms:p-1.5 ms:rounded-md ms:transition-colors ms:cursor-pointer"
+      class="vi:p-1.5 vi:rounded-md vi:transition-colors vi:cursor-pointer"
       :class="[
         theme === 'light'
-          ? 'ms:bg-base-100 ms:shadow-sm ms:text-amber-500'
-          : 'ms:text-base-content/50 ms:hover:text-base-content',
+          ? 'vi:bg-base-100 vi:shadow-sm vi:text-amber-500'
+          : 'vi:text-base-content/50 vi:hover:text-base-content',
       ]"
       title="Light"
       @click="setTheme('light')"
     >
-      <Sun class="ms:w-3.5 ms:h-3.5" />
+      <Sun class="vi:w-3.5 vi:h-3.5" />
     </button>
     <button
-      class="ms:p-1.5 ms:rounded-md ms:transition-colors ms:cursor-pointer"
+      class="vi:p-1.5 vi:rounded-md vi:transition-colors vi:cursor-pointer"
       :class="[
         theme === 'dark'
-          ? 'ms:bg-base-100 ms:shadow-sm ms:text-indigo-400'
-          : 'ms:text-base-content/50 ms:hover:text-base-content',
+          ? 'vi:bg-base-100 vi:shadow-sm vi:text-indigo-400'
+          : 'vi:text-base-content/50 vi:hover:text-base-content',
       ]"
       title="Dark"
       @click="setTheme('dark')"
     >
-      <Moon class="ms:w-3.5 ms:h-3.5" />
+      <Moon class="vi:w-3.5 vi:h-3.5" />
     </button>
   </div>
 </template>

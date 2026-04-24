@@ -19,30 +19,30 @@ const currentTabQuery = computed(() => {
 <template>
   <RouterLink
     :to="{ name: 'art', params: { id: data.id }, query: currentTabQuery }"
-    class="ms:ms-card ms:bg-base-100 ms:border ms:border-base-300 ms:transition-all ms:duration-200 ms:hover:border-primary/40 ms:hover:-translate-y-1 ms:hover:shadow-xl ms:group"
+    class="vi:vi-card vi:bg-base-100 vi:border vi:border-base-300 vi:transition-all vi:duration-200 vi:hover:border-primary/40 vi:hover:-translate-y-1 vi:hover:shadow-xl vi:group"
   >
-    <div class="ms:ms-card-body ms:p-5 ms:gap-4">
-      <div class="ms:flex ms:items-start ms:justify-between ms:gap-3">
+    <div class="vi:vi-card-body vi:p-5 vi:gap-4">
+      <div class="vi:flex vi:items-start vi:justify-between vi:gap-3">
         <h3
-          class="ms:ms-card-title ms:text-xl ms:font-bold ms:group-hover:text-primary ms:transition-colors"
+          class="vi:vi-card-title vi:text-xl vi:font-bold vi:group-hover:text-primary vi:transition-colors"
         >
           {{ data.title }}
         </h3>
         <ArtTag :status="data.status" />
       </div>
 
-      <div class="ms:flex ms:flex-wrap ms:gap-1.5 ms:mt-auto">
+      <div class="vi:flex vi:flex-wrap vi:gap-1.5 vi:mt-auto">
         <div
           v-for="tag in data.tags"
           :key="tag"
-          class="ms:ms-badge ms:ms-badge-sm ms:ms-badge-outline ms:opacity-70"
+          class="vi:vi-badge vi:vi-badge-sm vi:vi-badge-outline vi:opacity-70"
         >
           {{ tag }}
         </div>
       </div>
 
       <div
-        class="ms:flex ms:items-center ms:justify-between ms:text-xs ms:font-medium ms:uppercase ms:tracking-wider ms:text-base-content/40"
+        class="vi:flex vi:items-center vi:justify-between vi:text-xs vi:font-medium vi:uppercase vi:tracking-wider vi:text-base-content/40"
       >
         <span>{{ data.category || 'Uncategorized' }}</span>
         <span>{{ data.variants?.length ?? 0 }} Variants</span>
