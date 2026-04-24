@@ -11,7 +11,7 @@ export const IS_UNPACKED = typeof __IS_UNPACKED__ !== 'undefined' ? __IS_UNPACKE
 export const ROUTES = {
   base: '/',
   frameVariant: '/frame/variant',
-  frameComponent: '/frame/component',
+  frameDebug: '/frame/debug',
   openInEditor: '/open-in-editor',
   testRun: '/tests/run',
   testApi: '/tests/api',
@@ -42,6 +42,15 @@ export const VIRTUAL_DOCS = {
   id: 'virtual:musea-docs',
   resolvedId: '\0virtual:musea-docs',
   url: '/@id/__x00__virtual:musea-docs',
+} as const;
+
+/**
+ * Art bundle virtual module
+ */
+export const VIRTUAL_ART = {
+  id: 'virtual:musea-art',
+  resolvedId: '\0virtual:musea-art',
+  url: '/@id/__x00__virtual:musea-art',
 } as const;
 
 /**

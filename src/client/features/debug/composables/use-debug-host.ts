@@ -77,7 +77,7 @@ export function useDebugHost(options: DebugHostOptions) {
       return '';
     }
 
-    const url = resolvePreviewUrl(ROUTES.frameComponent);
+    const url = resolvePreviewUrl(ROUTES.frameDebug);
     url.searchParams.set('artId', art.id);
     return url.toString();
   });

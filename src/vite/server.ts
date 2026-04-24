@@ -60,7 +60,7 @@ export function museaServer(ctx: MuseaPluginContext): Connect.NextHandleFunction
     });
   });
 
-  app.get(ROUTES.frameComponent, async (event) => {
+  app.get(ROUTES.frameDebug, async (event) => {
     return transformIndexHtml({
       event,
       ctx,
