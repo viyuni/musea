@@ -10,7 +10,7 @@ import {
 } from 'vue';
 
 import type { SlotDebugState } from '../../../types/index.ts';
-import { loadComponentPreview } from '../../art/composables/use-art-manifest.ts';
+import { loadArtComponent } from '../../art/composables/use-art-manifest.ts';
 import { useDebugBridge } from './use-debug-bridge.ts';
 
 interface DebugFrameOptions {
@@ -88,7 +88,7 @@ export function useDebugFrame(options: DebugFrameOptions) {
       throw new Error('missing art id.');
     }
 
-    loadedComponent.value = normalizeLoadedComponent(await loadComponentPreview(options.artId));
+    loadedComponent.value = normalizeLoadedComponent(await loadArtComponent(options.artId));
     schedulePatch();
   }
 

@@ -54,15 +54,15 @@ export const VIRTUAL_ART = {
 } as const;
 
 /**
- * Art variant render virtual module
+ * Art variant virtual module
  */
-export const VIRTUAL_ART_VARIANT_RENDER = {
-  id: 'virtual:musea-art-variant-render.art.vue',
-  resolvedId: '\0virtual:musea-art-variant-render.art.vue',
-  url: '/@id/__x00__virtual:musea-art-variant-render.art.vue',
+export const VIRTUAL_ART_VARIANT = {
+  id: 'virtual:musea-art-variant.art.vue',
+  resolvedId: '\0virtual:musea-art-variant.art.vue',
+  url: '/@id/__x00__virtual:musea-art-variant.art.vue',
 } as const;
 
 /**
- * Art variant render query key
+ * Art variant query key
  */
-export const ART_VARIANT_RENDER_QUERY_KEY = 'musea-art-variant-render';
+export const ART_VARIANT_QUERY_KEY = 'musea-art-variant';

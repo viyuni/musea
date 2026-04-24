@@ -9,10 +9,10 @@ import type {
   VirtualFileContext,
   VirtualFileResolveContext,
 } from '../../../types/index.ts';
-import { artVariantRenderVirtualFile, loadArtModule } from '../render/index.ts';
+import { artVariantVirtualFile, loadArtModule } from '../variant/index.ts';
 
 function createFixtureRoot() {
-  return mkdtempSync(path.join(tmpdir(), 'musea-render-vf-'));
+  return mkdtempSync(path.join(tmpdir(), 'musea-variant-vf-'));
 }
 
 function writeFixture(root: string, file: string, content = '') {
@@ -23,7 +23,7 @@ function writeFixture(root: string, file: string, content = '') {
 
 function createContext(root: string, artManifest: ArtManifest[]) {
   return {
-    requestId: 'virtual:musea-art-variant-render.art.vue?artId=src%2FButton.art.vue',
+    requestId: 'virtual:musea-art-variant.art.vue?artId=src%2FButton.art.vue',
     resolvedId: '',
     searchParams: new URLSearchParams(),
     root,
@@ -35,19 +35,19 @@ function createContext(root: string, artManifest: ArtManifest[]) {
   } satisfies VirtualFileContext;
 }
 
-describe('artVariantRenderVirtualFile', () => {
+describe('artVariantVirtualFile', () => {
   test('id returns undefined and warns when artId is missing', () => {
     const warn = vi.spyOn(console, 'warn').mockImplementation(() => {});
     const ctx = createContext('/repo', []);
-    const idResolver = artVariantRenderVirtualFile.id;
+    const idResolver = artVariantVirtualFile.id;
 
     if (typeof idResolver !== 'function') {
-      throw new Error('Expected render virtual file id resolver to be a function');
+      throw new Error('Expected variant virtual file id resolver to be a function');
     }
 
     const resolved = idResolver({
       ...ctx,
-      requestId: 'virtual:musea-art-variant-render.art.vue',
+      requestId: 'virtual:musea-art-variant.art.vue',
       searchParams: new URLSearchParams(),
     } satisfies VirtualFileResolveContext);
 
@@ -58,14 +58,14 @@ describe('artVariantRenderVirtualFile', () => {
 
   test('matchLoad matches only requests with render query key', () => {
     expect(
-      artVariantRenderVirtualFile.matchLoad?.(
-        '\0id?musea-art-variant-render=true&artId=a',
-        new URLSearchParams('musea-art-variant-render=true&artId=a'),
+      artVariantVirtualFile.matchLoad?.(
+        '\0id?musea-art-variant=true&artId=a',
+        new URLSearchParams('musea-art-variant=true&artId=a'),
       ),
-    ).toBe('virtual:musea-art-variant-render.art.vue?musea-art-variant-render=true&artId=a');
+    ).toBe('virtual:musea-art-variant.art.vue?musea-art-variant=true&artId=a');
 
     expect(
-      artVariantRenderVirtualFile.matchLoad?.('\0id?artId=a', new URLSearchParams('artId=a')),
+      artVariantVirtualFile.matchLoad?.('\0id?artId=a', new URLSearchParams('artId=a')),
     ).toBeNull();
   });
 
@@ -91,11 +91,11 @@ describe('artVariantRenderVirtualFile', () => {
     ctx.searchParams = new URLSearchParams({
       artId: 'src/Button.art.vue',
       variant: 'a',
-      'musea-art-variant-render': 'true',
+      'musea-art-variant': 'true',
     });
-    ctx.requestId = `virtual:musea-art-variant-render.art.vue?${ctx.searchParams.toString()}`;
+    ctx.requestId = `virtual:musea-art-variant.art.vue?${ctx.searchParams.toString()}`;
 
-    const result = await artVariantRenderVirtualFile.load(ctx);
+    const result = await artVariantVirtualFile.load(ctx);
 
     expect(ctx.addWatchFile).toHaveBeenCalledWith(
       path.join(root, 'src/Button.art.vue').replaceAll('\\', '/'),
