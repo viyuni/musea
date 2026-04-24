@@ -4,8 +4,8 @@ import { computed } from 'vue';
 import { ROUTES } from '../../../shared/constants.ts';
 import type { ArtManifest } from '../../../types/index.ts';
 import { resolvePreviewUrl } from '../../utils/index.ts';
-import ArtPreview from './ArtPreview.vue';
 import ArtThemeSwitcher from './ArtThemeSwitcher.vue';
+import ArtVariantFrame from './ArtVariantFrame.vue';
 
 const props = defineProps<{
   art?: ArtManifest | null;
@@ -39,7 +39,6 @@ const variants = computed(() => {
       <div class="vi:text-[10px] vi:font-bold vi:uppercase vi:tracking-widest vi:opacity-30">
         {{ variants.length }} variants available
       </div>
-      <ArtThemeSwitcher class="vi:bg-base-200/50 vi:rounded-lg vi:p-0.5" />
     </div>
 
     <div v-for="v in variants" :key="v.name" class="vi:space-y-4">
@@ -53,11 +52,11 @@ const variants = computed(() => {
         >
           Default
         </span>
+
+        <h3>{{ v.description }}</h3>
       </div>
 
-      <div class="vi:border vi:border-base-300">
-        <ArtPreview :url="v.url" height-mode="adaptive" />
-      </div>
+      <ArtVariantFrame :url="v.url" />
     </div>
 
     <div

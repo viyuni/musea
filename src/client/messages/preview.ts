@@ -32,14 +32,18 @@ export type PreviewMessage = PreviewInboundMessage | PreviewOutboundMessage;
 export function createUpdatePropsMessage(props: Record<string, unknown>): UpdatePropsMessage {
   return {
     type: 'MUSEA_UPDATE_PROPS',
-    props,
+    props: serializeRecord(props),
   };
 }
 
 export function createUpdateSlotsMessage(slots: SlotDebugState[]): UpdateSlotsMessage {
   return {
     type: 'MUSEA_UPDATE_SLOTS',
-    slots,
+    slots: slots.map((slot) => ({
+      name: String(serializePreviewValue(slot.name)),
+      enabled: Boolean(serializePreviewValue(slot.enabled)),
+      text: String(serializePreviewValue(slot.text)),
+    })),
   };
 }
 
@@ -49,7 +53,7 @@ export function createEmitEventMessage(event: string, args: unknown[]): EmitEven
     event,
     payload: args.map((value) => ({
       type: Object.prototype.toString.call(value),
-      value: serializeEventValue(value),
+      value: serializePreviewValue(value),
     })),
   };
 }
@@ -80,7 +84,14 @@ export function isInspectorMessage(value: unknown): value is InspectorMessage {
   return isPreviewMessage(value) && value.type === 'MUSEA_INSPECTOR';
 }
 
-function serializeEventValue(value: unknown, seen = new WeakSet<object>()): unknown {
+function serializeRecord(value: Record<string, unknown>): Record<string, unknown> {
+  const serialized = serializePreviewValue(value);
+  return serialized && typeof serialized === 'object' && !Array.isArray(serialized)
+    ? serialized
+    : {};
+}
+
+function serializePreviewValue(value: unknown, seen = new WeakSet<object>()): unknown {
   if (
     value == null ||
     typeof value === 'string' ||
@@ -100,17 +111,17 @@ function serializeEventValue(value: unknown, seen = new WeakSet<object>()): unkn
 
   if (value instanceof Map) {
     return Array.from(value.entries()).map(([key, entryValue]) => [
-      serializeEventValue(key, seen),
-      serializeEventValue(entryValue, seen),
+      serializePreviewValue(key, seen),
+      serializePreviewValue(entryValue, seen),
     ]);
   }
 
   if (value instanceof Set) {
-    return Array.from(value.values()).map((entryValue) => serializeEventValue(entryValue, seen));
+    return Array.from(value.values()).map((entryValue) => serializePreviewValue(entryValue, seen));
   }
 
   if (Array.isArray(value)) {
-    return value.map((entryValue) => serializeEventValue(entryValue, seen));
+    return value.map((entryValue) => serializePreviewValue(entryValue, seen));
   }
 
   if (typeof value === 'object') {
@@ -123,7 +134,7 @@ function serializeEventValue(value: unknown, seen = new WeakSet<object>()): unkn
     return Object.fromEntries(
       Object.entries(value).map(([key, entryValue]) => [
         key,
-        serializeEventValue(entryValue, seen),
+        serializePreviewValue(entryValue, seen),
       ]),
     );
   }

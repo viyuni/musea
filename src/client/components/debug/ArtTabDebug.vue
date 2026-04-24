@@ -9,7 +9,7 @@ import type { ArtManifest } from '../../../types/index.ts';
 import { createUpdatePropsMessage, createUpdateSlotsMessage } from '../../messages/preview';
 import type { SlotDebugState } from '../../types/index.ts';
 import { resolvePreviewUrl } from '../../utils/index.ts';
-import ArtPreview from '../art/ArtPreview.vue';
+import ArtDebugFrame from '../art/ArtDebugFrame.vue';
 import ArtThemeSwitcher from '../art/ArtThemeSwitcher.vue';
 import MuseaLogo from '../common/MuseaLogo.vue';
 import ArtDebugEvents from './ArtDebugEvents.vue';
@@ -121,11 +121,12 @@ onClickOutside(eventsPanel, () => {
           <ArtThemeSwitcher />
         </header>
         <div class="vi:flex-1 vi:relative vi:overflow-hidden vi:lg:pb-10">
-          <ArtPreview
+          <ArtDebugFrame
             ref="artPreview"
             :url="previewUrl"
-            height-mode="auto"
+            height-mode="fill"
             class="vi:w-full vi:h-full"
+            @load="postCurrentDebugState"
           />
         </div>
       </section>
