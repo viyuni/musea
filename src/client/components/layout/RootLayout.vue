@@ -1,10 +1,20 @@
 <script setup lang="ts">
-import { Layers, Home, Component, Search, Monitor, Menu } from '@lucide/vue';
+import {
+  Layers,
+  Home,
+  Component,
+  Search,
+  Monitor,
+  Menu,
+  PanelLeftClose,
+  PanelLeftOpen,
+} from '@lucide/vue';
 import { Sun, Moon } from '@lucide/vue';
 import { computed, useTemplateRef } from 'vue';
 import { useRoute } from 'vue-router';
 
 import { useArtManifest } from '../../composables/use-art-manifest';
+import { useSidebar } from '../../composables/use-sidebar';
 import { useTheme } from '../../composables/use-theme';
 import MuseaLogo from '../common/MuseaLogo.vue';
 import SearchModal from '../common/SearchModal.vue';
@@ -12,6 +22,7 @@ import SearchModal from '../common/SearchModal.vue';
 const searchModal = useTemplateRef('searchModal');
 const drawerCheckbox = useTemplateRef<HTMLInputElement>('drawerCheckbox');
 const { groupedArts } = useArtManifest();
+const { isSidebarOpen, toggleSidebar } = useSidebar();
 const route = useRoute();
 const { theme, setTheme } = useTheme();
 
@@ -29,7 +40,10 @@ const closeDrawer = () => {
 </script>
 
 <template>
-  <div class="vi:vi-drawer vi:lg:vi-drawer-open vi:h-full vi:font-sans">
+  <div
+    class="vi:vi-drawer vi:h-full vi:font-sans"
+    :class="{ 'vi:lg:vi-drawer-open': isSidebarOpen }"
+  >
     <input id="musea-drawer" ref="drawerCheckbox" type="checkbox" class="vi:vi-drawer-toggle" />
 
     <!-- Main Content Area -->
@@ -102,7 +116,7 @@ const closeDrawer = () => {
       >
         <!-- Sidebar Header: Logo + Theme Switcher -->
         <div
-          class="vi:h-16 vi:flex vi:items-center vi:justify-between vi:px-4 vi:border-b vi:border-base-content/5 vi:shrink-0"
+          class="vi:h-16 vi:flex vi:items-center vi:justify-between vi:px-4 vi:border-b vi:border-base-content/5 vi:shrink-0 vi:gap-2"
         >
           <MuseaLogo width="100" />
 
@@ -127,6 +141,14 @@ const closeDrawer = () => {
               @click="setTheme('dark')"
             >
               <Monitor class="vi:size-4" />
+            </button>
+
+            <button
+              class="vi:hidden vi:lg:block vi:vi-btn vi:vi-btn-sm vi:vi-btn-ghost vi:vi-btn-square vi:rounded-lg vi:hover:vi-bg-base-content/10"
+              title="Collapse Sidebar"
+              @click="toggleSidebar"
+            >
+              <PanelLeftClose class="vi:size-4" />
             </button>
           </div>
         </div>
@@ -200,6 +222,16 @@ const closeDrawer = () => {
           </ul>
         </nav>
       </aside>
+    </div>
+
+    <!-- Floating Button -->
+    <div>
+      <button
+        class="vi:vi-btn vi:vi-btn-circle vi:fixed vi:bottom-[50svh] vi:-translate-y-1/2 vi:tri vi:left-5 vi:drop-shadow-2xl vi:lg:flex vi:hidden"
+        @click="toggleSidebar"
+      >
+        <PanelLeftOpen class="vi:size-4" />
+      </button>
     </div>
   </div>
 </template>
