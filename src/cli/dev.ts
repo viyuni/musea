@@ -19,6 +19,9 @@ export async function devMusea(
     server: {
       host: museaConfig.host,
       port: museaConfig.port,
+      watch: {
+        ignored: ['**/dist/**'],
+      },
     },
   } satisfies InlineConfig);
 

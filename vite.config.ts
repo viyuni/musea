@@ -1,12 +1,16 @@
+import postcssTailwindcss from '@tailwindcss/postcss';
 import tailwindcss from '@tailwindcss/vite';
 import vue from '@vitejs/plugin-vue';
-import rolldownTailwindcss from '@viyuni/rolldown-plugin-tailwindcss';
+import postcssImport from 'postcss-import';
 import { defineConfig } from 'vite-plus';
 
 import musea from './src/vite/index.ts';
 
 export default defineConfig({
   plugins: [tailwindcss(), musea()],
+  optimizeDeps: {
+    include: ['@lucide/vue', '@vueuse/core', 'vue-router'],
+  },
   server: {
     host: true,
   },
@@ -14,14 +18,13 @@ export default defineConfig({
     __IS_UNPACKED__: 'true',
   },
   pack: {
-    plugins: [
-      vue({ isProduction: true }),
-      rolldownTailwindcss({
-        optimize: {
-          minify: true,
-        },
-      }),
-    ],
+    plugins: [vue({ isProduction: true })],
+    css: {
+      transformer: 'postcss',
+      postcss: {
+        plugins: [postcssImport(), postcssTailwindcss()],
+      },
+    },
     entry: {
       cli: './src/cli/index.ts',
       index: './src/index.ts',

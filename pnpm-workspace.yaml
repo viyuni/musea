@@ -9,6 +9,7 @@ catalog:
 overrides:
   vite: 'catalog:'
   vitest: 'catalog:'
+  '@tailwindcss/vite': 0.0.0-insiders.f3fdda2
 
 peerDependencyRules:
   allowAny:
