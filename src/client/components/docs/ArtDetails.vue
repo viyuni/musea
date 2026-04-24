@@ -7,24 +7,24 @@ const { art } = defineProps<{ art?: ArtManifest | null }>();
 </script>
 
 <template>
-  <div class="flex flex-wrap items-center gap-2">
+  <div class="ms:flex ms:flex-wrap ms:items-center ms:gap-2">
     <div
-      class="flex items-center gap-1 bg-base-300/40 border border-base-300 rounded px-2 py-1 text-[10px] font-bold opacity-60"
+      class="ms:flex ms:items-center ms:gap-1 ms:bg-base-300/40 ms:border ms:border-base-300 ms:rounded ms:px-2 ms:py-1 ms:text-[10px] ms:font-bold ms:opacity-60"
     >
-      <Box class="w-3 h-3" />
+      <Box class="ms:w-3 ms:h-3" />
       {{ art?.variants?.length || 0 }} variants
     </div>
     <div
-      class="flex items-center gap-1 bg-base-300/40 border border-base-300 rounded px-2 py-1 text-[10px] font-bold opacity-60"
+      class="ms:flex ms:items-center ms:gap-1 ms:bg-base-300/40 ms:border ms:border-base-300 ms:rounded ms:px-2 ms:py-1 ms:text-[10px] ms:font-bold ms:opacity-60"
     >
-      <Tag class="w-3 h-3" />
+      <Tag class="ms:w-3 ms:h-3" />
       {{ art?.category || 'Components' }}
     </div>
 
     <div
       v-for="tag in art?.tags"
       :key="tag"
-      class="bg-base-300/20 border border-base-300/30 rounded px-2 py-1 text-[10px] font-bold opacity-40"
+      class="ms:bg-base-300/20 ms:border ms:border-base-300/30 ms:rounded ms:px-2 ms:py-1 ms:text-[10px] ms:font-bold ms:opacity-40"
     >
       #{{ tag }}
     </div>

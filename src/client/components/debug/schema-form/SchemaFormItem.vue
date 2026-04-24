@@ -28,7 +28,7 @@ const modelValue = defineModel<unknown>();
   <div v-else>
     <input
       type="text"
-      class="input input-bordered input-sm w-full font-mono text-xs focus:input-primary"
+      class="ms:input ms:input-bordered ms:input-sm ms:w-full ms:font-mono ms:text-xs ms:focus:input-primary"
       placeholder="Unknown type"
     />
   </div>

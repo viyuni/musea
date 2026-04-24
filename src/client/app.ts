@@ -33,4 +33,4 @@ const router = createRouter({
 
 const app = createApp(MuseaApp);
 app.use(router);
-app.mount('#app');
+app.mount('#musea-app');

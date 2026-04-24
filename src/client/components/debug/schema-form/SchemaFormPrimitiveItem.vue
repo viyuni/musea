@@ -16,32 +16,36 @@ const {
 </script>
 
 <template>
-  <div class="w-full">
-    <div v-if="type === 'boolean'" class="flex items-center">
-      <input v-model="booleanValue" type="checkbox" class="toggle toggle-primary toggle-sm" />
+  <div class="ms:w-full">
+    <div v-if="type === 'boolean'" class="ms:flex ms:items-center">
+      <input
+        v-model="booleanValue"
+        type="checkbox"
+        class="ms:toggle ms:toggle-primary ms:toggle-sm"
+      />
     </div>
     <textarea
       v-else-if="type === 'string'"
       v-model="stringValue"
-      class="textarea textarea-bordered textarea-sm w-full min-h-20 font-mono text-xs focus:textarea-primary leading-tight"
+      class="ms:textarea ms:textarea-bordered ms:textarea-sm ms:w-full ms:min-h-20 ms:font-mono ms:text-xs ms:focus:textarea-primary ms:leading-tight"
       placeholder="Enter string..."
     ></textarea>
     <input
       v-else-if="type === 'number' || type === 'bigint'"
       :value="numberInput"
       type="number"
-      class="input input-bordered input-sm w-full font-mono text-xs focus:input-primary"
+      class="ms:input ms:input-bordered ms:input-sm ms:w-full ms:font-mono ms:text-xs ms:focus:input-primary"
       placeholder="0"
       @input="updateNumberInput(($event.target as HTMLInputElement).value)"
     />
-    <div v-else class="grid gap-1.5">
+    <div v-else class="ms:grid ms:gap-1.5">
       <textarea
         :value="jsonInput"
-        class="textarea textarea-bordered textarea-sm w-full min-h-20 font-mono text-xs focus:textarea-primary leading-tight"
+        class="ms:textarea ms:textarea-bordered ms:textarea-sm ms:w-full ms:min-h-20 ms:font-mono ms:text-xs ms:focus:textarea-primary ms:leading-tight"
         placeholder="JSON data..."
         @input="updateJsonInput(($event.target as HTMLTextAreaElement).value)"
       ></textarea>
-      <p v-if="jsonError" class="text-[10px] font-medium text-error">{{ jsonError }}</p>
+      <p v-if="jsonError" class="ms:text-[10px] ms:font-medium ms:text-error">{{ jsonError }}</p>
     </div>
   </div>
 </template>

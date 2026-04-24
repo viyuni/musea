@@ -79,49 +79,54 @@ defineExpose({
 </script>
 
 <template>
-  <div class="h-full bg-base-100">
-    <div v-if="eventLogs.length > 0" class="divide-y divide-base-content/5">
+  <div class="ms:h-full ms:bg-base-100">
+    <div v-if="eventLogs.length > 0" class="ms:divide-y ms:divide-base-content/5">
       <article
         v-for="entry in eventLogs"
         :key="entry.id"
-        class="hover:bg-base-content/2 transition-colors"
+        class="ms:hover:bg-base-content/2 ms:transition-colors"
       >
         <div
-          class="flex items-center justify-between px-4 py-1.5 bg-base-content/2 border-b border-base-content/5"
+          class="ms:flex ms:items-center ms:justify-between ms:px-4 ms:py-1.5 ms:bg-base-content/2 ms:border-b ms:border-base-content/5"
         >
-          <div class="flex items-center gap-2">
-            <div class="w-1 h-3 bg-secondary rounded-full opacity-60"></div>
-            <span class="text-[10px] font-black text-secondary uppercase tracking-tight">{{
-              entry.event
-            }}</span>
+          <div class="ms:flex ms:items-center ms:gap-2">
+            <div class="ms:w-1 ms:h-3 ms:bg-secondary ms:rounded-full ms:opacity-60"></div>
+            <span
+              class="ms:text-[10px] ms:font-black ms:text-secondary ms:uppercase ms:tracking-tight"
+              >{{ entry.event }}</span
+            >
           </div>
-          <span class="text-[8px] font-mono text-base-content/40">{{ entry.timestamp }}</span>
+          <span class="ms:text-[8px] ms:font-mono ms:text-base-content/40">{{
+            entry.timestamp
+          }}</span>
         </div>
-        <div class="px-4 py-2.5 space-y-1.5">
+        <div class="ms:px-4 ms:py-2.5 ms:space-y-1.5">
           <div
             v-for="(payloadItem, index) in entry.payload"
             :key="`${entry.id}-${index}`"
-            class="flex items-start gap-3"
+            class="ms:flex ms:items-start ms:gap-3"
           >
             <span
-              class="text-[9px] font-bold uppercase tracking-widest text-base-content/30 shrink-0 mt-0.5"
+              class="ms:text-[9px] ms:font-bold ms:uppercase ms:tracking-widest ms:text-base-content/30 ms:shrink-0 ms:mt-0.5"
               >{{ payloadItem.type }}</span
             >
             <pre
-              class="flex-1 overflow-x-auto text-[10px] font-mono leading-relaxed text-base-content/80"
+              class="ms:flex-1 ms:overflow-x-auto ms:text-[10px] ms:font-mono ms:leading-relaxed ms:text-base-content/80"
               >{{ formatDebugValue(payloadItem.value) }}</pre
             >
           </div>
         </div>
       </article>
     </div>
-    <div v-else class="h-full flex flex-col items-center justify-center py-20">
+    <div v-else class="ms:h-full ms:flex ms:flex-col ms:items-center ms:justify-center ms:py-20">
       <div
-        class="w-12 h-12 rounded-2xl bg-base-200 flex items-center justify-center mb-4 opacity-40"
+        class="ms:w-12 ms:h-12 ms:rounded-2xl ms:bg-base-200 ms:flex ms:items-center ms:justify-center ms:mb-4 ms:opacity-40"
       >
-        <Activity :size="24" class="text-base-content" />
+        <Activity :size="24" class="ms:text-base-content" />
       </div>
-      <p class="text-[10px] font-black uppercase tracking-[0.2em] text-base-content/20">
+      <p
+        class="ms:text-[10px] ms:font-black ms:uppercase ms:tracking-[0.2em] ms:text-base-content/20"
+      >
         Listening for component events
       </p>
     </div>

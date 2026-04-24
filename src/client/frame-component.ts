@@ -27,4 +27,4 @@ const App = defineComponent({
 
 const app = createApp(App);
 await setupMuseaApp(app);
-app.mount('#app');
+app.mount('#musea-app');

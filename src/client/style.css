@@ -1,13 +1,16 @@
-@import 'tailwindcss';
+@import 'tailwindcss' prefix(ms);
+
 @plugin "@tailwindcss/typography";
 
 @plugin "daisyui" {
-  themes: light, dark;
+  themes: 'musea-light', 'musea-dark';
+  root: '#musea-app';
 }
 
 @plugin "daisyui/theme" {
-  name: 'light';
+  name: 'musea-light';
   default: true;
+  root: '#musea-app';
   prefersdark: false;
   color-scheme: light;
   --root-bg: #ffffff;
@@ -45,8 +48,9 @@
 }
 
 @plugin "daisyui/theme" {
-  name: 'dark';
+  name: 'musea-dark';
   default: false;
+  root: '#musea-app';
   prefersdark: true;
   color-scheme: dark;
   --root-bg: #09090b;
@@ -84,32 +88,32 @@
 }
 
 @layer base {
-  ::selection {
+  /* ::selection {
     background-color: var(--selection-background);
     color: var(--selection-color);
-  }
+  } */
 
   /* 兼容火狐浏览器 */
-  ::-moz-selection {
+  /* ::-moz-selection {
     background-color: var(--selection-background);
     color: var(--selection-color);
-  }
+  } */
 
-  [data-theme='dark'] {
+  [data-theme='musea-dark'] {
     color-scheme: dark;
   }
 
-  [data-theme='light'] {
+  [data-theme='musea-light'] {
     color-scheme: light;
   }
 
-  .shiki,
-  .shiki span {
+  #musea-app .shiki,
+  #musea-app .shiki span {
     background-color: var(--color-base-100) !important;
   }
 
-  [data-theme='dark'] .shiki,
-  [data-theme='dark'] .shiki span {
+  #musea-app [data-theme='musea-dark'] .shiki,
+  #musea-app [data-theme='musea-dark'] .shiki span {
     color: var(--shiki-dark) !important;
     /* background-color: var(--shiki-dark-bg) !important; */
     /* Optional, if you also want font styles */
@@ -120,7 +124,7 @@
 }
 
 @utility size-screen {
-  @apply w-screen h-screen;
+  @apply ms:w-screen ms:h-screen;
 }
 
 @utility text-md {
@@ -161,122 +165,122 @@
   }
 }
 
-.md-body {
-  @apply text-base-content leading-relaxed text-sm sm:text-base;
+#musea-app .md-body {
+  @apply ms:text-base-content ms:leading-relaxed ms:text-sm ms:sm:text-base;
 }
 
-.md-body h1 {
-  @apply text-2xl font-bold mb-6 pb-2 border-b border-base-300 text-primary mt-4;
+#musea-app .md-body h1 {
+  @apply ms:text-2xl ms:font-bold ms:mb-6 ms:pb-2 ms:border-b ms:border-base-300 ms:text-primary ms:mt-4;
 }
 
-.md-body h2 {
-  @apply text-xl font-bold mb-4 mt-8 pb-1 border-b border-base-200;
+#musea-app .md-body h2 {
+  @apply ms:text-xl ms:font-bold ms:mb-4 ms:mt-8 ms:pb-1 ms:border-b ms:border-base-200;
 }
 
-.md-body h3 {
-  @apply text-lg font-bold mb-3 mt-6;
+#musea-app .md-body h3 {
+  @apply ms:text-lg ms:font-bold ms:mb-3 ms:mt-6;
 }
 
-.md-body h4 {
-  @apply text-base font-bold mb-2 mt-5;
+#musea-app .md-body h4 {
+  @apply ms:text-base ms:font-bold ms:mb-2 ms:mt-5;
 }
 
-.md-body p {
-  @apply mb-4;
+#musea-app .md-body p {
+  @apply ms:mb-4;
 }
 
-.md-body a {
-  @apply link link-primary no-underline hover:underline;
+#musea-app .md-body a {
+  @apply ms:link ms:link-primary ms:no-underline ms:hover:underline;
 }
 
-.md-body blockquote {
-  @apply border-l-4 border-primary bg-base-200/50 px-4 py-3 my-5 italic;
+#musea-app .md-body blockquote {
+  @apply ms:border-l-4 ms:border-primary ms:bg-base-200/50 ms:px-4 ms:py-3 ms:my-5 ms:italic;
 }
 
-.md-body blockquote > p:last-child {
-  @apply mb-0;
+#musea-app .md-body blockquote > p:last-child {
+  @apply ms:mb-0;
 }
 
-.md-body blockquote > *:last-child {
-  @apply mb-0;
+#musea-app .md-body blockquote > *:last-child {
+  @apply ms:mb-0;
 }
 
-.md-body ul {
-  @apply list-disc list-inside mb-4 space-y-1.5;
+#musea-app .md-body ul {
+  @apply ms:list-disc ms:list-inside ms:mb-4 ms:space-y-1.5;
 }
 
-.md-body ol {
-  @apply list-decimal list-inside mb-4 space-y-1.5;
+#musea-app .md-body ol {
+  @apply ms:list-decimal ms:list-inside ms:mb-4 ms:space-y-1.5;
 }
 
-.md-body pre {
-  @apply rounded-xl p-3 overflow-auto border border-base-200;
+#musea-app .md-body pre {
+  @apply ms:rounded-xl ms:p-3 ms:overflow-auto ms:border ms:border-base-200;
 }
 
-.md-body .table-wrapper {
-  @apply my-6 overflow-x-auto w-full;
+#musea-app .md-body .table-wrapper {
+  @apply ms:my-6 ms:overflow-x-auto ms:w-full;
 }
 
-.md-body table {
-  @apply table min-w-200 w-full rounded-box border border-base-content/5 bg-base-100;
+#musea-app .md-body table {
+  @apply ms:table ms:min-w-200 ms:w-full ms:rounded-box ms:border ms:border-base-content/5 ms:bg-base-100;
 }
 
-.md-body table thead tr {
-  @apply text-base-content text-[11px] uppercase tracking-widest;
+#musea-app .md-body table thead tr {
+  @apply ms:text-base-content ms:text-[11px] ms:uppercase ms:tracking-widest;
 }
 
-.md-body table tbody tr {
-  @apply hover:bg-base-200/50 transition-colors;
+#musea-app .md-body table tbody tr {
+  @apply ms:hover:bg-base-200/50 ms:transition-colors;
 }
 
-.md-body img {
-  @apply max-w-full h-auto;
+#musea-app .md-body img {
+  @apply ms:max-w-full ms:h-auto;
 }
 
-.md-body hr {
-  @apply my-4 border-base-300;
+#musea-app .md-body hr {
+  @apply ms:my-4 ms:border-base-300;
 }
 
-.md-body .task-list-item {
-  @apply list-none flex items-center gap-3;
+#musea-app .md-body .task-list-item {
+  @apply ms:list-none ms:flex ms:items-center ms:gap-3;
 }
 
-.md-body .task-list-item input[type='checkbox'] {
-  @apply checkbox checkbox-primary checkbox-sm rounded-md;
+#musea-app .md-body .task-list-item input[type='checkbox'] {
+  @apply ms:checkbox ms:checkbox-primary ms:checkbox-sm ms:rounded-md;
 }
 
-.md-body .task-list-item input[disabled] {
-  @apply opacity-100 cursor-default;
+#musea-app .md-body .task-list-item input[disabled] {
+  @apply ms:opacity-100 ms:cursor-default;
 }
 
-.md-body art {
-  @apply grid xl:grid-cols-3 grid-cols-1 gap-4;
+#musea-app .md-body art {
+  @apply ms:grid ms:xl:grid-cols-3 ms:grid-cols-1 ms:gap-4;
 }
 
-.md-body art::before {
+#musea-app .md-body art::before {
   content: attr(title) ' Variants';
-  @apply order-1 text-2xl font-black xl:col-span-4 col-span-1;
+  @apply ms:order-1 ms:text-2xl ms:font-black ms:xl:col-span-4 ms:col-span-1;
 }
 
-.md-body art::after {
+#musea-app .md-body art::after {
   content: attr(description);
-  @apply order-2 text-accent xl:col-span-4 col-span-1 -mt-4;
+  @apply ms:order-2 ms:text-accent ms:xl:col-span-4 ms:col-span-1 ms:-mt-4;
 }
 
-.md-body art variant {
-  @apply order-3 grid bg-base-100 p-6 rounded-xl border border-base-300;
+#musea-app .md-body art variant {
+  @apply ms:order-3 ms:grid ms:bg-base-100 ms:p-6 ms:rounded-xl ms:border ms:border-base-300;
 }
 
-.md-body art variant::before {
+#musea-app .md-body art variant::before {
   content: attr(name);
-  @apply order-1 text-xs font-bold uppercase tracking-widest;
+  @apply ms:order-1 ms:text-xs ms:font-bold ms:uppercase ms:tracking-widest;
 }
 
-.md-body art variant::after {
+#musea-app .md-body art variant::after {
   content: attr(description) '';
-  @apply order-2 text-xs tracking-widest mb-4 text-accent;
+  @apply ms:order-2 ms:text-xs ms:tracking-widest ms:mb-4 ms:text-accent;
 }
 
-.md-body art variant * {
-  @apply order-4;
+#musea-app .md-body art variant * {
+  @apply ms:order-4;
 }

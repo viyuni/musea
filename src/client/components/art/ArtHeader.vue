@@ -21,22 +21,22 @@ function openInVSCode() {
 </script>
 
 <template>
-  <header class="space-y-4">
-    <div class="flex items-start justify-between">
+  <header class="ms:space-y-4">
+    <div class="ms:flex ms:items-start ms:justify-between">
       <div>
-        <div class="flex items-center gap-3">
-          <h1 class="text-3xl font-black tracking-tight">{{ art?.title }}</h1>
+        <div class="ms:flex ms:items-center ms:gap-3">
+          <h1 class="ms:text-3xl ms:font-black ms:tracking-tight">{{ art?.title }}</h1>
           <ArtTag v-if="art" :status="art.status" />
         </div>
       </div>
 
       <button
         v-if="isDev"
-        class="btn btn-sm btn-ghost gap-2 px-3 font-medium text-base-content"
+        class="ms:btn ms:btn-sm ms:btn-ghost ms:gap-2 ms:px-3 ms:font-medium ms:text-base-content"
         @click="openInVSCode"
       >
         <VSCodeIcon width="16" height="16" />
-        <span class="hidden sm:inline">Open in Editor</span>
+        <span class="ms:hidden ms:sm:inline">Open in Editor</span>
       </button>
     </div>
   </header>

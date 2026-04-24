@@ -3,6 +3,18 @@ import { watchEffect, computed } from 'vue';
 
 import type { ThemeMode } from '../types';
 
+export type ThemeName = `musea-${Exclude<ThemeMode, 'auto'>}`;
+
+function toThemeName(theme: Exclude<ThemeMode, 'auto'>): ThemeName {
+  return `musea-${theme}`;
+}
+
+function applyTheme(theme: ThemeName) {
+  const appEl = document.querySelector('#musea-app');
+
+  appEl?.setAttribute('data-theme', theme);
+}
+
 export const useTheme = createSharedComposable(() => {
   const theme = useLocalStorage<ThemeMode>('musea-theme', 'auto');
   const isSystemDark = useMediaQuery('(prefers-color-scheme: dark)');
@@ -13,14 +25,16 @@ export const useTheme = createSharedComposable(() => {
     }
     return theme.value;
   });
+  const activeDataTheme = computed(() => toThemeName(activeTheme.value));
 
   watchEffect(() => {
-    document.documentElement.setAttribute('data-theme', activeTheme.value);
+    applyTheme(activeDataTheme.value);
   });
 
   return {
     theme,
     activeTheme,
+    activeDataTheme,
     setTheme: (val: ThemeMode) => (theme.value = val),
   };
 });
@@ -35,10 +49,12 @@ export const useSubTheme = createSharedComposable(() => {
     }
     return theme.value;
   });
+  const activeDataTheme = computed(() => toThemeName(activeTheme.value));
 
   return {
     theme,
     activeTheme,
+    activeDataTheme,
     setTheme: (val: ThemeMode) => (theme.value = val),
   };
 });

@@ -53,33 +53,35 @@ function updateSlotText(name: string, event: Event) {
 </script>
 
 <template>
-  <div class="bg-base-100">
-    <div v-if="slotDocs.length > 0" class="divide-y divide-base-content/5">
+  <div class="ms:bg-base-100">
+    <div v-if="slotDocs.length > 0" class="ms:divide-y ms:divide-base-content/5">
       <article
         v-for="slotDoc in slotDocs"
         :key="slotDoc.name"
-        class="p-4 transition-colors hover:bg-base-content/2"
+        class="ms:p-4 ms:transition-colors ms:hover:bg-base-content/2"
       >
-        <div class="flex items-center justify-between mb-3">
-          <div class="flex flex-col gap-0.5">
-            <span class="text-[10px] font-black text-primary uppercase tracking-tight">{{
-              slotDoc.name || 'default'
-            }}</span>
+        <div class="ms:flex ms:items-center ms:justify-between ms:mb-3">
+          <div class="ms:flex ms:flex-col ms:gap-0.5">
+            <span
+              class="ms:text-[10px] ms:font-black ms:text-primary ms:uppercase ms:tracking-tight"
+              >{{ slotDoc.name || 'default' }}</span
+            >
             <p
               v-if="slotDoc.description"
-              class="text-[10px] text-base-content/40 leading-relaxed italic"
+              class="ms:text-[10px] ms:text-base-content/40 ms:leading-relaxed ms:italic"
             >
               {{ slotDoc.description }}
             </p>
           </div>
-          <div class="flex items-center gap-3 shrink-0">
-            <span class="text-[9px] font-bold uppercase tracking-widest text-base-content/20"
+          <div class="ms:flex ms:items-center ms:gap-3 ms:shrink-0">
+            <span
+              class="ms:text-[9px] ms:font-bold ms:uppercase ms:tracking-widest ms:text-base-content/20"
               >Active</span
             >
             <input
               :checked="getSlotState(slotDoc.name)?.enabled ?? false"
               type="checkbox"
-              class="toggle toggle-primary toggle-xs"
+              class="ms:toggle ms:toggle-primary ms:toggle-xs"
               @change="updateSlotEnabled(slotDoc.name, $event)"
             />
           </div>
@@ -87,16 +89,17 @@ function updateSlotText(name: string, event: Event) {
 
         <div
           v-if="getSlotState(slotDoc.name)?.enabled"
-          class="mt-3 animate-in fade-in slide-in-from-top-1 duration-200"
+          class="ms:mt-3 ms:animate-in ms:fade-in ms:slide-in-from-top-1 ms:duration-200"
         >
-          <div class="flex flex-col gap-2">
-            <label class="text-[9px] font-bold uppercase tracking-widest text-base-content/30"
+          <div class="ms:flex ms:flex-col ms:gap-2">
+            <label
+              class="ms:text-[9px] ms:font-bold ms:uppercase ms:tracking-widest ms:text-base-content/30"
               >Slot Content</label
             >
             <textarea
               :value="getSlotState(slotDoc.name)?.text ?? ''"
               rows="3"
-              class="textarea textarea-bordered textarea-sm w-full bg-base-content/2 font-mono text-[11px] leading-relaxed resize-none focus:textarea-primary transition-all"
+              class="ms:textarea ms:textarea-bordered ms:textarea-sm ms:w-full ms:bg-base-content/2 ms:font-mono ms:text-[11px] ms:leading-relaxed ms:resize-none ms:focus:textarea-primary ms:transition-all"
               placeholder="Enter text or HTML content..."
               @input="updateSlotText(slotDoc.name, $event)"
             ></textarea>
@@ -104,13 +107,15 @@ function updateSlotText(name: string, event: Event) {
         </div>
       </article>
     </div>
-    <div v-else class="h-full flex flex-col items-center justify-center py-20">
+    <div v-else class="ms:h-full ms:flex ms:flex-col ms:items-center ms:justify-center ms:py-20">
       <div
-        class="w-12 h-12 rounded-2xl bg-base-200 flex items-center justify-center mb-4 opacity-40"
+        class="ms:w-12 ms:h-12 ms:rounded-2xl ms:bg-base-200 ms:flex ms:items-center ms:justify-center ms:mb-4 ms:opacity-40"
       >
-        <Layers :size="24" class="text-base-content" />
+        <Layers :size="24" class="ms:text-base-content" />
       </div>
-      <p class="text-[10px] font-black uppercase tracking-[0.2em] text-base-content/20">
+      <p
+        class="ms:text-[10px] ms:font-black ms:uppercase ms:tracking-[0.2em] ms:text-base-content/20"
+      >
         No slots defined
       </p>
     </div>

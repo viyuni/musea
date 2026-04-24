@@ -36,7 +36,7 @@ export function renderHtml({
     ${inlineCss ? `<style>${inlineCss}</style>` : ''}
   </head>
   <body>
-    <div id="app"></div>
+    <div id="musea-app"></div>
     <script type="module" src=${JSON.stringify(entryFile)}></script>
   </body>
 </html>

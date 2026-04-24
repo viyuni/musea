@@ -13,12 +13,14 @@ const { docs = [], art } = defineProps<{
 </script>
 
 <template>
-  <div class="w-full animate-in fade-in slide-in-from-bottom-3 duration-700 grid grid-cols-1 gap-4">
+  <div
+    class="ms:w-full ms:animate-in ms:fade-in ms:slide-in-from-bottom-3 ms:duration-700 ms:grid ms:grid-cols-1 ms:gap-4"
+  >
     <ArtDetails :art />
 
     <ArtMarkdownDoc v-if="art && art.docsFile" :key="art.docsFile" :art />
 
-    <div class="grid grid-cols-1 gap-20 pb-40 w-full">
+    <div class="ms:grid ms:grid-cols-1 ms:gap-20 ms:pb-40 ms:w-full">
       <ComponentDocs
         v-for="(item, index) in docs"
         :key="item.file"
@@ -26,10 +28,12 @@ const { docs = [], art } = defineProps<{
         :is-primary="index === 0"
       />
 
-      <div v-if="docs?.length === 0" class="grid place-items-center p-12 text-center">
-        <div class="space-y-2">
-          <p class="text-sm font-black uppercase tracking-[0.3em] opacity-40">No Docs</p>
-          <p class="text-sm opacity-60">This art has no component docs configured yet.</p>
+      <div v-if="docs?.length === 0" class="ms:grid ms:place-items-center ms:p-12 ms:text-center">
+        <div class="ms:space-y-2">
+          <p class="ms:text-sm ms:font-black ms:uppercase ms:tracking-[0.3em] ms:opacity-40">
+            No Docs
+          </p>
+          <p class="ms:text-sm ms:opacity-60">This art has no component docs configured yet.</p>
         </div>
       </div>
     </div>

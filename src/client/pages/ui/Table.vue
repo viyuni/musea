@@ -13,14 +13,19 @@ const titles = computed(() => Object.keys(slots));
 
 <template>
   <div>
-    <h2 v-if="title" class="text-xl select-none font-black mb-2 uppercase tracking-tighter">
+    <h2
+      v-if="title"
+      class="ms:text-xl ms:select-none ms:font-black ms:mb-2 ms:uppercase ms:tracking-tighter"
+    >
       {{ title }}
     </h2>
 
-    <div v-if="list && list.length > 0" class="w-full overflow-x-auto">
-      <table class="table w-max min-w-full rounded-box border border-base-content/5 bg-base-100">
+    <div v-if="list && list.length > 0" class="ms:w-full ms:overflow-x-auto">
+      <table
+        class="ms:table ms:w-max ms:min-w-full ms:rounded-box ms:border ms:border-base-content/5 ms:bg-base-100"
+      >
         <thead>
-          <tr class="text-base-content text-[11px] uppercase tracking-widest">
+          <tr class="ms:text-base-content ms:text-[11px] ms:uppercase ms:tracking-widest">
             <th v-for="title in titles" :key="title">{{ title }}</th>
           </tr>
         </thead>
@@ -28,7 +33,7 @@ const titles = computed(() => Object.keys(slots));
           <tr
             v-for="item in list"
             :key="String(item[idKey])"
-            class="hover:bg-base-200/30 transition-colors"
+            class="ms:hover:bg-base-200/30 ms:transition-colors"
           >
             <td v-for="(slot, key) in slots" :key="key">
               <component :is="slot" :row="item" />
@@ -40,10 +45,12 @@ const titles = computed(() => Object.keys(slots));
 
     <div
       v-else
-      class="grid place-items-center p-4 border border-dashed border-base-content/10 rounded-box bg-base-100"
+      class="ms:grid ms:place-items-center ms:p-4 ms:border ms:border-dashed ms:border-base-content/10 ms:rounded-box ms:bg-base-100"
     >
-      <div class="text-center">
-        <div class="text-base-content/30 font-bold italic tracking-widest uppercase">Empty</div>
+      <div class="ms:text-center">
+        <div class="ms:text-base-content/30 ms:font-bold ms:italic ms:tracking-widest ms:uppercase">
+          Empty
+        </div>
       </div>
     </div>
   </div>

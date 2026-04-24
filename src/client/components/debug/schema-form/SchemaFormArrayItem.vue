@@ -25,23 +25,24 @@ function updateItem(index: number, value: unknown) {
 
 <template>
   <div
-    class="grid gap-3 w-full relative pl-5 mt-2 before:content-[''] before:block before:absolute before:w-px before:h-[calc(100%-40px)] before:left-1 before:top-1 before:bg-base-content/10"
+    class="ms:grid ms:gap-3 ms:w-full ms:relative ms:pl-5 ms:mt-2 ms:before:content-[''] ms:before:block ms:before:absolute ms:before:w-px ms:before:h-[calc(100%-40px)] ms:before:left-1 ms:before:top-1 ms:before:bg-base-content/10"
   >
-    <div v-for="(item, index) in items" :key="index" class="group relative">
-      <div class="flex items-center justify-between mb-2">
-        <span class="text-[10px] font-bold font-mono text-base-content/40 uppercase tracking-wider"
+    <div v-for="(item, index) in items" :key="index" class="ms:group ms:relative">
+      <div class="ms:flex ms:items-center ms:justify-between ms:mb-2">
+        <span
+          class="ms:text-[10px] ms:font-bold ms:font-mono ms:text-base-content/40 ms:uppercase ms:tracking-wider"
           >Item #{{ index }}</span
         >
         <button
           type="button"
-          class="btn btn-xs btn-circle btn-error btn-ghost opacity-0 group-hover:opacity-100 transition-opacity"
+          class="ms:btn ms:btn-xs ms:btn-circle ms:btn-error ms:btn-ghost ms:opacity-0 ms:group-hover:opacity-100 ms:transition-opacity"
           title="Remove item"
           @click="remove(index)"
         >
           <Trash2 :size="12" />
         </button>
       </div>
-      <div class="w-full">
+      <div class="ms:w-full">
         <SchemaFormItem
           :schema="schema.value"
           :model-value="item"
@@ -52,7 +53,7 @@ function updateItem(index: number, value: unknown) {
 
     <button
       type="button"
-      class="btn btn-sm btn-outline btn-primary w-full gap-1 border-dashed"
+      class="ms:btn ms:btn-sm ms:btn-outline ms:btn-primary ms:w-full ms:gap-1 ms:border-dashed"
       @click="add"
     >
       <Plus :size="14" />

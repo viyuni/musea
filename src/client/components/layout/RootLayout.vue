@@ -29,57 +29,63 @@ const closeDrawer = () => {
 </script>
 
 <template>
-  <div class="drawer lg:drawer-open h-full font-sans">
-    <input id="musea-drawer" ref="drawerCheckbox" type="checkbox" class="drawer-toggle" />
+  <div class="ms:drawer ms:lg:drawer-open ms:h-full ms:font-sans">
+    <input id="musea-drawer" ref="drawerCheckbox" type="checkbox" class="ms:drawer-toggle" />
 
     <!-- Main Content Area -->
-    <div class="drawer-content flex flex-col overflow-hidden bg-base-100 relative">
+    <div
+      class="ms:drawer-content ms:flex ms:flex-col ms:overflow-hidden ms:bg-base-100 ms:relative"
+    >
       <!-- Mobile Header (Visible only on mobile) -->
       <header
-        class="lg:hidden h-14 border-b border-base-content/5 flex items-center justify-between px-4 shrink-0 bg-base-100/80 backdrop-blur-xl sticky top-0 z-40"
+        class="ms:lg:hidden ms:h-14 ms:border-b ms:border-base-content/5 ms:flex ms:items-center ms:justify-between ms:px-4 ms:shrink-0 ms:bg-base-100/80 ms:backdrop-blur-xl ms:sticky ms:top-0 ms:z-40"
       >
-        <div class="flex items-center gap-3">
-          <label for="musea-drawer" class="btn btn-ghost btn-sm btn-square">
-            <Menu class="size-5" />
+        <div class="ms:flex ms:items-center ms:gap-3">
+          <label for="musea-drawer" class="ms:btn ms:btn-ghost ms:btn-sm ms:btn-square">
+            <Menu class="ms:size-5" />
           </label>
           <MuseaLogo width="80" />
         </div>
 
-        <div class="flex items-center gap-3">
+        <div class="ms:flex ms:items-center ms:gap-3">
           <!-- Small Theme Switcher for mobile -->
           <button
             v-if="theme === 'light'"
-            class="btn btn-xs btn-ghost btn-square"
+            class="ms:btn ms:btn-xs ms:btn-ghost ms:btn-square"
             @click="setTheme('auto')"
           >
-            <Moon class="size-4" />
+            <Moon class="ms:size-4" />
           </button>
           <button
             v-else-if="theme === 'dark'"
-            class="btn btn-xs btn-ghost btn-square"
+            class="ms:btn ms:btn-xs ms:btn-ghost ms:btn-square"
             @click="setTheme('light')"
           >
-            <Sun class="size-4" />
+            <Sun class="ms:size-4" />
           </button>
 
-          <button v-else class="btn btn-xs btn-ghost btn-square" @click="setTheme('dark')">
-            <Monitor class="size-4" />
+          <button
+            v-else
+            class="ms:btn ms:btn-xs ms:btn-ghost ms:btn-square"
+            @click="setTheme('dark')"
+          >
+            <Monitor class="ms:size-4" />
           </button>
 
-          <Search class="size-4" @click="searchModal?.open" />
+          <Search class="ms:size-4" @click="searchModal?.open" />
         </div>
       </header>
 
       <!-- View Container -->
-      <main class="flex-1 relative overflow-hidden">
+      <main class="ms:flex-1 ms:relative ms:overflow-hidden">
         <RouterView v-slot="{ Component }">
           <transition
-            enter-active-class="transition duration-150 ease-out"
-            enter-from-class="opacity-0"
-            enter-to-class="opacity-100"
-            leave-active-class="transition duration-100 ease-in"
-            leave-from-class="opacity-100"
-            leave-to-class="opacity-0"
+            enter-active-class="ms:transition ms:duration-150 ms:ease-out"
+            enter-from-class="ms:opacity-0"
+            enter-to-class="ms:opacity-100"
+            leave-active-class="ms:transition ms:duration-100 ms:ease-in"
+            leave-from-class="ms:opacity-100"
+            leave-to-class="ms:opacity-0"
             mode="out-in"
           >
             <component :is="Component" :key="route.params.id || route.name" />
@@ -89,75 +95,81 @@ const closeDrawer = () => {
     </div>
 
     <!-- Sidebar -->
-    <div class="drawer-side z-50">
-      <label for="musea-drawer" aria-label="close sidebar" class="drawer-overlay"></label>
-      <aside class="w-64 border-r border-base-content/5 flex flex-col shrink-0 h-full bg-base-100">
+    <div class="ms:drawer-side ms:z-50">
+      <label for="musea-drawer" aria-label="close sidebar" class="ms:drawer-overlay"></label>
+      <aside
+        class="ms:w-64 ms:border-r ms:border-base-content/5 ms:flex ms:flex-col ms:shrink-0 ms:h-full ms:bg-base-100"
+      >
         <!-- Sidebar Header: Logo + Theme Switcher -->
         <div
-          class="h-16 flex items-center justify-between px-6 border-b border-base-content/5 gap-3 shrink-0"
+          class="ms:h-16 ms:flex ms:items-center ms:justify-between ms:px-6 ms:border-b ms:border-base-content/5 ms:gap-3 ms:shrink-0"
         >
           <MuseaLogo width="110" />
 
-          <div class="flex items-center">
+          <div class="ms:flex ms:items-center">
             <button
               v-if="theme === 'light'"
-              class="btn btn-xs btn-ghost btn-square rounded-lg"
+              class="ms:btn ms:btn-xs ms:btn-ghost ms:btn-square ms:rounded-lg"
               @click="setTheme('auto')"
             >
-              <Moon class="size-3.5 text-indigo-400" />
+              <Moon class="ms:size-3.5 ms:text-indigo-400" />
             </button>
             <button
               v-else-if="theme === 'dark'"
-              class="btn btn-xs btn-ghost btn-square rounded-lg"
+              class="ms:btn ms:btn-xs ms:btn-ghost ms:btn-square ms:rounded-lg"
               @click="setTheme('light')"
             >
-              <Sun class="size-3.5 text-amber-500" />
+              <Sun class="ms:size-3.5 ms:text-amber-500" />
             </button>
             <button
               v-else
-              class="btn btn-xs btn-ghost btn-square rounded-lg"
+              class="ms:btn ms:btn-xs ms:btn-ghost ms:btn-square ms:rounded-lg"
               @click="setTheme('dark')"
             >
-              <Monitor class="size-3.5" />
+              <Monitor class="ms:size-3.5" />
             </button>
           </div>
         </div>
 
         <!-- Sidebar Search -->
-        <div class="p-3 shrink-0">
+        <div class="ms:p-3 ms:shrink-0">
           <SearchModal ref="searchModal" />
           <div
-            class="flex items-center gap-3 px-3 py-2 rounded-xl bg-base-content/2 hover:bg-base-content/5 cursor-pointer transition-all border border-transparent hover:border-base-content/5"
+            class="ms:flex ms:items-center ms:gap-3 ms:px-3 ms:py-2 ms:rounded-xl ms:bg-base-content/2 ms:hover:bg-base-content/5 ms:cursor-pointer ms:transition-all ms:border ms:border-transparent ms:hover:border-base-content/5"
             @click="searchModal?.open"
           >
-            <Search class="size-3.5 opacity-40" />
-            <span class="text-[10px] font-black uppercase tracking-widest opacity-30">Search</span>
-            <kbd class="kbd kbd-xs ml-auto opacity-50 bg-base-100">⌘K</kbd>
+            <Search class="ms:size-3.5 ms:opacity-40" />
+            <span class="ms:text-[10px] ms:font-black ms:uppercase ms:tracking-widest ms:opacity-30"
+              >Search</span
+            >
+            <kbd class="ms:kbd ms:kbd-xs ms:ml-auto ms:opacity-50 ms:bg-base-100">⌘K</kbd>
           </div>
         </div>
 
-        <nav class="overflow-y-auto flex-1">
-          <ul class="menu w-full p-2">
-            <li class="mb-2">
+        <nav class="ms:overflow-y-auto ms:flex-1">
+          <ul class="ms:menu ms:w-full ms:p-2">
+            <li class="ms:mb-2">
               <RouterLink
                 :to="{ name: 'home' }"
                 :class="{ 'menu-active': route.name === 'home' }"
                 @click="closeDrawer"
               >
-                <Home class="size-3.5" />
-                <span class="text-[10px] font-black uppercase tracking-[0.2em]"> Home </span>
+                <Home class="ms:size-3.5" />
+                <span class="ms:text-[10px] ms:font-black ms:uppercase ms:tracking-[0.2em]">
+                  Home
+                </span>
               </RouterLink>
             </li>
-            <li v-for="(items, category) in groupedArts" :key="category" class="mb-2">
+            <li v-for="(items, category) in groupedArts" :key="category" class="ms:mb-2">
               <details open>
-                <summary class="group flex items-center gap-2 w-full">
-                  <Layers class="size-3.5 transition-opacity" />
+                <summary class="ms:group ms:flex ms:items-center ms:gap-2 ms:w-full">
+                  <Layers class="ms:size-3.5 ms:transition-opacity" />
 
-                  <span class="text-[10px] font-black uppercase tracking-[0.2em]">
+                  <span class="ms:text-[10px] ms:font-black ms:uppercase ms:tracking-[0.2em]">
                     {{ category }}
                   </span>
 
-                  <span class="badge badge-xs badge-ghost ml-auto font-mono">
+                  <span class="ms:badge ms:badge-xs ms:badge-ghost ms:ml-auto ms:font-mono">
                     {{ items.length }}
                   </span>
                 </summary>
@@ -166,18 +178,18 @@ const closeDrawer = () => {
                   <li
                     v-for="item in items"
                     :key="item.id"
-                    class="rounded-md"
+                    class="ms:rounded-md"
                     :class="{
                       'menu-active': currentId === item.id,
                     }"
                   >
                     <RouterLink
                       :to="{ name: 'art', params: { id: item.id }, query: currentTabQuery }"
-                      class="flex items-center"
+                      class="ms:flex ms:items-center"
                       @click="closeDrawer"
                     >
-                      <Component class="size-3.5 text-primary" />
-                      <span class="truncate">{{ item.title }}</span>
+                      <Component class="ms:size-3.5 ms:text-primary" />
+                      <span class="ms:truncate">{{ item.title }}</span>
                     </RouterLink>
                   </li>
                 </ul>

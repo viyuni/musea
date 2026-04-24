@@ -7,11 +7,13 @@ defineProps<{
 </script>
 
 <template>
-  <div class="m-4 p-4 rounded-lg bg-error/5 border border-error/10 flex gap-3">
-    <AlertCircle :size="16" class="text-error shrink-0" />
-    <div class="space-y-1">
-      <p class="text-xs font-bold text-error uppercase tracking-widest">Run Error</p>
-      <p class="text-xs text-error/80 leading-relaxed">{{ runError }}</p>
+  <div
+    class="ms:m-4 ms:p-4 ms:rounded-lg ms:bg-error/5 ms:border ms:border-error/10 ms:flex ms:gap-3"
+  >
+    <AlertCircle :size="16" class="ms:text-error ms:shrink-0" />
+    <div class="ms:space-y-1">
+      <p class="ms:text-xs ms:font-bold ms:text-error ms:uppercase ms:tracking-widest">Run Error</p>
+      <p class="ms:text-xs ms:text-error/80 ms:leading-relaxed">{{ runError }}</p>
     </div>
   </div>
 </template>

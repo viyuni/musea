@@ -1,9 +1,9 @@
 <script lang="ts" setup></script>
 
 <template>
-  <div class="max-w-140 min-w-100">
+  <div class="ms:max-w-140 ms:min-w-100">
     <code
-      class="bg-base-200 border-base-200 text-base-content py-0.5 px-2 rounded-lg leading-loose inline"
+      class="ms:bg-base-200 ms:border-base-200 ms:text-base-content ms:py-0.5 ms:px-2 ms:rounded-lg ms:leading-loose ms:inline"
       style="-webkit-box-decoration-break: clone; box-decoration-break: clone"
     >
       <slot />

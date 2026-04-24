@@ -105,29 +105,36 @@ onClickOutside(eventsPanel, () => {
 </script>
 
 <template>
-  <div class="flex flex-col h-content w-full overflow-hidden relative">
+  <div class="ms:flex ms:flex-col ms:h-content ms:w-full ms:overflow-hidden ms:relative">
     <!-- Top Section: Preview & Inspector -->
-    <div class="flex-1 flex flex-col lg:flex-row min-h-0">
+    <div class="ms:flex-1 ms:flex ms:flex-col ms:lg:flex-row ms:min-h-0">
       <!-- Preview Area -->
-      <section class="flex-1 relative flex flex-col min-w-0 overflow-hidden">
+      <section class="ms:flex-1 ms:relative ms:flex ms:flex-col ms:min-w-0 ms:overflow-hidden">
         <header
-          class="flex items-center justify-between px-4 h-10 border-b border-base-content/5 shrink-0"
+          class="ms:flex ms:items-center ms:justify-between ms:px-4 ms:h-10 ms:border-b ms:border-base-content/5 ms:shrink-0"
         >
-          <div class="flex items-center gap-2">
-            <span class="text-[10px] font-black uppercase tracking-widest opacity-30">Preview</span>
+          <div class="ms:flex ms:items-center ms:gap-2">
+            <span class="ms:text-[10px] ms:font-black ms:uppercase ms:tracking-widest ms:opacity-30"
+              >Preview</span
+            >
           </div>
           <ArtThemeSwitcher />
         </header>
-        <div class="flex-1 relative overflow-hidden lg:pb-10">
-          <ArtPreview ref="artPreview" :url="previewUrl" height-mode="auto" class="w-full h-full" />
+        <div class="ms:flex-1 ms:relative ms:overflow-hidden ms:lg:pb-10">
+          <ArtPreview
+            ref="artPreview"
+            :url="previewUrl"
+            height-mode="auto"
+            class="ms:w-full ms:h-full"
+          />
         </div>
       </section>
 
       <!-- Inspector Sidebar -->
       <aside
-        class="w-full lg:w-80 xl:w-96 border-t lg:border-t-0 lg:border-l border-base-content/5 flex flex-col flex-1 lg:flex-none lg:shrink-0 overflow-hidden"
+        class="ms:w-full ms:lg:w-80 ms:xl:w-96 ms:border-t ms:lg:border-t-0 ms:lg:border-l ms:border-base-content/5 ms:flex ms:flex-col ms:flex-1 ms:lg:flex-none ms:lg:shrink-0 ms:overflow-hidden"
       >
-        <div class="flex-1 overflow-y-auto overflow-x-hidden pb-10">
+        <div class="ms:flex-1 ms:overflow-y-auto ms:overflow-x-hidden ms:pb-10">
           <ArtDebugInspector
             v-model:prop-values="propValues"
             v-model:slot-debug-states="slotDebugStates"
@@ -141,22 +148,22 @@ onClickOutside(eventsPanel, () => {
     <!-- Bottom Section: Events Collapsible (Full Width) -->
     <footer
       ref="eventsPanel"
-      class="absolute bottom-0 left-0 right-0 z-20 border-t border-base-content/5 flex flex-col transition-all duration-200 ease-in-out bg-base-100 overflow-hidden"
-      :class="isEventsExpanded ? 'h-106' : 'h-10'"
+      class="ms:absolute ms:bottom-0 ms:left-0 ms:right-0 ms:z-20 ms:border-t ms:border-base-content/5 ms:flex ms:flex-col ms:transition-all ms:duration-200 ms:ease-in-out ms:bg-base-100 ms:overflow-hidden"
+      :class="isEventsExpanded ? 'ms:h-106' : 'ms:h-10'"
     >
       <div
-        class="h-10 flex items-center justify-between px-4 bg-base-content/2 cursor-pointer hover:bg-base-content/4 transition-colors shrink-0"
+        class="ms:h-10 ms:flex ms:items-center ms:justify-between ms:px-4 ms:bg-base-content/2 ms:cursor-pointer ms:hover:bg-base-content/4 ms:transition-colors ms:shrink-0"
         @click="isEventsExpanded = !isEventsExpanded"
       >
-        <div class="flex items-center gap-2">
+        <div class="ms:flex ms:items-center ms:gap-2">
           <ChevronDown v-if="isEventsExpanded" :size="16" />
           <ChevronUp v-else :size="16" />
-          <span class="text-[10px] font-black uppercase tracking-widest">Events</span>
+          <span class="ms:text-[10px] ms:font-black ms:uppercase ms:tracking-widest">Events</span>
         </div>
-        <div class="flex items-center gap-4">
+        <div class="ms:flex ms:items-center ms:gap-4">
           <button
             v-if="isEventsExpanded"
-            class="btn btn-ghost btn-xs h-6 gap-1.5 text-[8px] font-bold uppercase tracking-widest opacity-30 hover:opacity-100 px-2"
+            class="ms:btn ms:btn-ghost ms:btn-xs ms:h-6 ms:gap-1.5 ms:text-[8px] ms:font-bold ms:uppercase ms:tracking-widest ms:opacity-30 ms:hover:opacity-100 ms:px-2"
             @click.stop="eventsMonitor?.clearLogs()"
           >
             <Trash2 :size="10" />
@@ -166,8 +173,8 @@ onClickOutside(eventsPanel, () => {
       </div>
 
       <div
-        class="h-96 border-t border-base-content/5 overflow-y-auto transition-opacity duration-100 delay-100"
-        :class="{ 'opacity-0': !isEventsExpanded, 'opacity-100': isEventsExpanded }"
+        class="ms:h-96 ms:border-t ms:border-base-content/5 ms:overflow-y-auto ms:transition-opacity ms:duration-100 ms:delay-100"
+        :class="{ 'ms:opacity-0': !isEventsExpanded, 'ms:opacity-100': isEventsExpanded }"
       >
         <ArtDebugEvents ref="eventsMonitor" :event-docs="eventDocs" />
       </div>

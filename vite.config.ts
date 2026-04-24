@@ -2,12 +2,13 @@ import postcssTailwindcss from '@tailwindcss/postcss';
 import tailwindcss from '@tailwindcss/vite';
 import vue from '@vitejs/plugin-vue';
 import postcssImport from 'postcss-import';
+import vueDevTool from 'vite-plugin-vue-devtools';
 import { defineConfig } from 'vite-plus';
 
 import musea from './src/vite/index.ts';
 
 export default defineConfig({
-  plugins: [tailwindcss(), musea()],
+  plugins: [tailwindcss(), musea(), vueDevTool()],
   optimizeDeps: {
     include: ['@lucide/vue', '@vueuse/core', 'vue-router'],
   },

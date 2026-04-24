@@ -122,85 +122,92 @@ defineExpose({ open, close });
 </script>
 
 <template>
-  <dialog class="modal backdrop:backdrop-blur-sm w-screen" role="dialog" ref="searchModal">
+  <dialog class="ms:modal ms:backdrop:backdrop-blur-sm ms:w-screen" role="dialog" ref="searchModal">
     <div
-      class="modal-box p-0 w-11/12 max-w-2xl border border-base-content/5 bg-base-100 shadow-2xl overflow-hidden rounded-2xl"
+      class="ms:modal-box ms:p-0 ms:w-11/12 ms:max-w-2xl ms:border ms:border-base-content/5 ms:bg-base-100 ms:shadow-2xl ms:overflow-hidden ms:rounded-2xl"
     >
       <!-- Search Input Area -->
-      <div class="flex items-center px-4 py-4 border-b border-base-content/5 bg-base-content/2">
-        <Search class="size-4 opacity-30 mr-3 shrink-0" />
+      <div
+        class="ms:flex ms:items-center ms:px-4 ms:py-4 ms:border-b ms:border-base-content/5 ms:bg-base-content/2"
+      >
+        <Search class="ms:size-4 ms:opacity-30 ms:mr-3 ms:shrink-0" />
         <input
           ref="searchInput"
           v-model="keywords"
-          class="bg-transparent border-none outline-none w-full text-sm font-medium placeholder:text-base-content/20"
+          class="ms:bg-transparent ms:border-none ms:outline-none ms:w-full ms:text-sm ms:font-medium ms:placeholder:text-base-content/20"
           placeholder="Search components, categories, or tags..."
           type="text"
           spellcheck="false"
         />
-        <div class="flex items-center gap-1 shrink-0 ml-2">
-          <kbd class="kbd kbd-xs bg-base-200 border-base-300">ESC</kbd>
+        <div class="ms:flex ms:items-center ms:gap-1 ms:shrink-0 ms:ml-2">
+          <kbd class="ms:kbd ms:kbd-xs ms:bg-base-200 ms:border-base-300">ESC</kbd>
         </div>
       </div>
 
       <!-- Results Area -->
-      <div class="max-h-[60vh] overflow-y-auto no-scrollbar py-2">
+      <div class="ms:max-h-[60vh] ms:overflow-y-auto ms:no-scrollbar ms:py-2">
         <div v-if="filteredArts.length > 0">
           <div
             v-for="(item, index) in filteredArts"
             :key="item.id"
             :data-index="index"
-            class="px-2"
+            class="ms:px-2"
           >
             <div
-              class="group flex items-center gap-3 px-3 py-3 rounded-xl cursor-pointer transition-all"
+              class="ms:group ms:flex ms:items-center ms:gap-3 ms:px-3 ms:py-3 ms:rounded-xl ms:cursor-pointer ms:transition-all"
               :class="[
                 selectedIndex === index
-                  ? 'bg-primary text-primary-content shadow-lg shadow-primary/20'
-                  : 'hover:bg-base-content/5',
+                  ? 'ms:bg-primary ms:text-primary-content ms:shadow-lg ms:shadow-primary/20'
+                  : 'ms:hover:bg-base-content/5',
               ]"
               @mouseenter="selectedIndex = index"
               @click="goArt(item.id)"
             >
               <div
-                class="size-8 rounded-lg flex items-center justify-center shrink-0"
-                :class="[selectedIndex === index ? 'bg-primary-content/20' : 'bg-base-content/5']"
+                class="ms:size-8 ms:rounded-lg ms:flex ms:items-center ms:justify-center ms:shrink-0"
+                :class="[
+                  selectedIndex === index ? 'ms:bg-primary-content/20' : 'ms:bg-base-content/5',
+                ]"
               >
                 <Command
                   :size="16"
-                  :class="[selectedIndex === index ? 'text-primary-content' : 'opacity-40']"
+                  :class="[selectedIndex === index ? 'ms:text-primary-content' : 'ms:opacity-40']"
                 />
               </div>
 
-              <div class="flex-1 min-w-0">
-                <div class="flex items-center gap-2">
-                  <span class="text-xs font-black uppercase tracking-wider truncate">{{
-                    item.title
-                  }}</span>
+              <div class="ms:flex-1 ms:min-w-0">
+                <div class="ms:flex ms:items-center ms:gap-2">
                   <span
-                    class="text-[9px] font-bold uppercase tracking-widest px-1.5 py-0.5 rounded bg-black/5"
+                    class="ms:text-xs ms:font-black ms:uppercase ms:tracking-wider ms:truncate"
+                    >{{ item.title }}</span
+                  >
+                  <span
+                    class="ms:text-[9px] ms:font-bold ms:uppercase ms:tracking-widest ms:px-1.5 ms:py-0.5 ms:rounded ms:bg-black/5"
                     :class="[
                       selectedIndex === index
-                        ? 'bg-white/10 text-primary-content/80'
-                        : 'text-base-content/30',
+                        ? 'ms:bg-white/10 ms:text-primary-content/80'
+                        : 'ms:text-base-content/30',
                     ]"
                   >
                     {{ item.category }}
                   </span>
                 </div>
                 <p
-                  class="text-[10px] mt-0.5 truncate leading-relaxed"
-                  :class="[selectedIndex === index ? 'text-primary-content/70' : 'opacity-40']"
+                  class="ms:text-[10px] ms:mt-0.5 ms:truncate ms:leading-relaxed"
+                  :class="[
+                    selectedIndex === index ? 'ms:text-primary-content/70' : 'ms:opacity-40',
+                  ]"
                 >
                   {{ item.description || item.file }}
                 </p>
               </div>
 
-              <div class="shrink-0 flex items-center gap-2">
-                <CornerDownLeft v-if="selectedIndex === index" :size="12" class="opacity-60" />
+              <div class="ms:shrink-0 ms:flex ms:items-center ms:gap-2">
+                <CornerDownLeft v-if="selectedIndex === index" :size="12" class="ms:opacity-60" />
                 <ArrowRight
                   v-else
                   :size="12"
-                  class="opacity-0 group-hover:opacity-20 transition-opacity"
+                  class="ms:opacity-0 ms:group-hover:opacity-20 ms:transition-opacity"
                 />
               </div>
             </div>
@@ -210,10 +217,10 @@ defineExpose({ open, close });
         <!-- Empty State -->
         <div
           v-else-if="hasNoResults"
-          class="py-12 flex flex-col items-center justify-center gap-3 opacity-20"
+          class="ms:py-12 ms:flex ms:flex-col ms:items-center ms:justify-center ms:gap-3 ms:opacity-20"
         >
           <Search :size="32" stroke-width="1.5" />
-          <p class="text-[10px] font-black uppercase tracking-[0.2em]">
+          <p class="ms:text-[10px] ms:font-black ms:uppercase ms:tracking-[0.2em]">
             No results for "{{ keywords }}"
           </p>
         </div>
@@ -221,23 +228,27 @@ defineExpose({ open, close });
 
       <!-- Footer Hints -->
       <div
-        class="px-4 py-2 border-t border-base-content/5 flex items-center gap-4 bg-base-content/1"
+        class="ms:px-4 ms:py-2 ms:border-t ms:border-base-content/5 ms:flex ms:items-center ms:gap-4 ms:bg-base-content/1"
       >
-        <div class="flex items-center gap-1.5">
-          <kbd class="kbd kbd-xs bg-base-200 border-base-300">↵</kbd>
-          <span class="text-[9px] font-bold uppercase tracking-widest opacity-30">Select</span>
+        <div class="ms:flex ms:items-center ms:gap-1.5">
+          <kbd class="ms:kbd ms:kbd-xs ms:bg-base-200 ms:border-base-300">↵</kbd>
+          <span class="ms:text-[9px] ms:font-bold ms:uppercase ms:tracking-widest ms:opacity-30"
+            >Select</span
+          >
         </div>
-        <div class="flex items-center gap-1.5">
-          <div class="flex items-center gap-0.5">
-            <kbd class="kbd kbd-xs bg-base-200 border-base-300">↑</kbd>
-            <kbd class="kbd kbd-xs bg-base-200 border-base-300">↓</kbd>
+        <div class="ms:flex ms:items-center ms:gap-1.5">
+          <div class="ms:flex ms:items-center ms:gap-0.5">
+            <kbd class="ms:kbd ms:kbd-xs ms:bg-base-200 ms:border-base-300">↑</kbd>
+            <kbd class="ms:kbd ms:kbd-xs ms:bg-base-200 ms:border-base-300">↓</kbd>
           </div>
-          <span class="text-[9px] font-bold uppercase tracking-widest opacity-30">Navigate</span>
+          <span class="ms:text-[9px] ms:font-bold ms:uppercase ms:tracking-widest ms:opacity-30"
+            >Navigate</span
+          >
         </div>
       </div>
     </div>
 
-    <form method="dialog" class="modal-backdrop">
+    <form method="dialog" class="ms:modal-backdrop">
       <button>close</button>
     </form>
   </dialog>

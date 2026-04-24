@@ -14,4 +14,4 @@ useInspector();
 
 const app = createApp(Variant);
 await setupMuseaApp(app);
-app.mount('#app');
+app.mount('#musea-app');

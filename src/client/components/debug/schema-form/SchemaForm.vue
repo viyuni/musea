@@ -25,24 +25,28 @@ const { getPropValue, setPropValue } = useSchemaFormPropsModel(
 </script>
 
 <template>
-  <div class="w-full divide-y divide-base-content/5">
+  <div class="ms:w-full ms:divide-y ms:divide-base-content/5">
     <div
       v-for="prop in props.resolvedProps"
       :key="prop.name"
-      class="px-4 py-4 hover:bg-base-content/2 transition-colors"
+      class="ms:px-4 ms:py-4 ms:hover:bg-base-content/2 ms:transition-colors"
     >
-      <div class="flex flex-col gap-1 mb-3">
-        <div class="flex items-center gap-1">
-          <span class="text-xs font-bold font-mono tracking-tight text-base-content/80">{{
-            prop.name
-          }}</span>
-          <span v-if="prop.required" class="text-[10px] text-error font-medium">*</span>
+      <div class="ms:flex ms:flex-col ms:gap-1 ms:mb-3">
+        <div class="ms:flex ms:items-center ms:gap-1">
+          <span
+            class="ms:text-xs ms:font-bold ms:font-mono ms:tracking-tight ms:text-base-content/80"
+            >{{ prop.name }}</span
+          >
+          <span v-if="prop.required" class="ms:text-[10px] ms:text-error ms:font-medium">*</span>
         </div>
-        <p v-if="prop.description" class="text-[11px] leading-relaxed text-base-content/50">
+        <p
+          v-if="prop.description"
+          class="ms:text-[11px] ms:leading-relaxed ms:text-base-content/50"
+        >
           {{ prop.description }}
         </p>
       </div>
-      <div class="w-full">
+      <div class="ms:w-full">
         <SchemaFormItem
           :schema="prop.resolved"
           :required="prop.required"

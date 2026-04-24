@@ -14,26 +14,26 @@ function getTitle(resolved: ResolvedComponentMeta) {
 }
 </script>
 <template>
-  <div class="grid grid-cols-1 gap-9">
-    <div class="grid">
-      <div class="flex items-center gap-2">
-        <h2 class="text-xl select-none font-black uppercase">
+  <div class="ms:grid ms:grid-cols-1 ms:gap-9">
+    <div class="ms:grid">
+      <div class="ms:flex ms:items-center ms:gap-2">
+        <h2 class="ms:text-xl ms:select-none ms:font-black ms:uppercase">
           {{ getTitle(resolved) }}
         </h2>
         <span
-          class="badge badge-sm capitalize"
-          :class="isPrimary ? 'badge-primary' : 'badge-ghost'"
+          class="ms:badge ms:badge-sm ms:capitalize"
+          :class="isPrimary ? 'ms:badge-primary' : 'ms:badge-ghost'"
         >
           {{ isPrimary ? 'primary' : 'sub' }}
         </span>
       </div>
 
-      <code class="text-xs opacity-60">{{ resolved.file }}</code>
+      <code class="ms:text-xs ms:opacity-60">{{ resolved.file }}</code>
     </div>
 
     <Table title="Props" :list="resolved.props ?? []" id-key="name">
       <template #name="{ row }">
-        <span class="badge badge-soft badge-primary badge-sm whitespace-nowrap">
+        <span class="ms:badge ms:badge-soft ms:badge-primary ms:badge-sm ms:whitespace-nowrap">
           {{ row.name }}
         </span>
       </template>
@@ -43,12 +43,12 @@ function getTitle(resolved: ResolvedComponentMeta) {
         </TypeBadge>
       </template>
       <template #default="{ row }">
-        <code class="badge badge-sm badge-ghost">
+        <code class="ms:badge ms:badge-sm ms:badge-ghost">
           {{ row.default ?? '—' }}
         </code>
       </template>
       <template #description="{ row }">
-        <div class="text-sm leading-relaxed min-w-100">
+        <div class="ms:text-sm ms:leading-relaxed ms:min-w-100">
           {{ row.description || '—' }}
         </div>
       </template>
@@ -56,7 +56,7 @@ function getTitle(resolved: ResolvedComponentMeta) {
 
     <Table title="Slots" :list="resolved.slots ?? []" id-key="name">
       <template #name="{ row }">
-        <span class="badge badge-soft badge-primary badge-sm whitespace-nowrap">
+        <span class="ms:badge ms:badge-soft ms:badge-primary ms:badge-sm ms:whitespace-nowrap">
           {{ row.name }}
         </span>
       </template>
@@ -66,7 +66,7 @@ function getTitle(resolved: ResolvedComponentMeta) {
         </TypeBadge>
       </template>
       <template #description="{ row }">
-        <div class="text-sm leading-relaxed min-w-100">
+        <div class="ms:text-sm ms:leading-relaxed ms:min-w-100">
           {{ row.description || '—' }}
         </div>
       </template>
@@ -74,7 +74,7 @@ function getTitle(resolved: ResolvedComponentMeta) {
 
     <Table title="Events" :list="resolved.events ?? []" id-key="name">
       <template #name="{ row }">
-        <span class="badge badge-soft badge-primary badge-sm whitespace-nowrap">
+        <span class="ms:badge ms:badge-soft ms:badge-primary ms:badge-sm ms:whitespace-nowrap">
           {{ row.name }}
         </span>
       </template>
@@ -84,7 +84,7 @@ function getTitle(resolved: ResolvedComponentMeta) {
         </TypeBadge>
       </template>
       <template #description="{ row }">
-        <div class="text-sm leading-relaxed min-w-100">
+        <div class="ms:text-sm ms:leading-relaxed ms:min-w-100">
           {{ row.description || '—' }}
         </div>
       </template>
@@ -92,7 +92,7 @@ function getTitle(resolved: ResolvedComponentMeta) {
 
     <Table title="Exposed" :list="resolved.exposed ?? []" id-key="name">
       <template #name="{ row }">
-        <div class="badge badge-info badge-outline font-mono font-bold text-xs">
+        <div class="ms:badge ms:badge-info ms:badge-outline ms:font-mono ms:font-bold ms:text-xs">
           {{ row.name }}
         </div>
       </template>
@@ -102,7 +102,7 @@ function getTitle(resolved: ResolvedComponentMeta) {
         </TypeBadge>
       </template>
       <template #description="{ row }">
-        <div class="text-sm leading-relaxed min-w-100">
+        <div class="ms:text-sm ms:leading-relaxed ms:min-w-100">
           {{ row.description || '—' }}
         </div>
       </template>

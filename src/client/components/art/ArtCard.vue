@@ -19,24 +19,30 @@ const currentTabQuery = computed(() => {
 <template>
   <RouterLink
     :to="{ name: 'art', params: { id: data.id }, query: currentTabQuery }"
-    class="card bg-base-100 border border-base-300 transition-all duration-200 hover:border-primary/40 hover:-translate-y-1 hover:shadow-xl group"
+    class="ms:card ms:bg-base-100 ms:border ms:border-base-300 ms:transition-all ms:duration-200 ms:hover:border-primary/40 ms:hover:-translate-y-1 ms:hover:shadow-xl ms:group"
   >
-    <div class="card-body p-5 gap-4">
-      <div class="flex items-start justify-between gap-3">
-        <h3 class="card-title text-xl font-bold group-hover:text-primary transition-colors">
+    <div class="ms:card-body ms:p-5 ms:gap-4">
+      <div class="ms:flex ms:items-start ms:justify-between ms:gap-3">
+        <h3
+          class="ms:card-title ms:text-xl ms:font-bold ms:group-hover:text-primary ms:transition-colors"
+        >
           {{ data.title }}
         </h3>
         <ArtTag :status="data.status" />
       </div>
 
-      <div class="flex flex-wrap gap-1.5 mt-auto">
-        <div v-for="tag in data.tags" :key="tag" class="badge badge-sm badge-outline opacity-70">
+      <div class="ms:flex ms:flex-wrap ms:gap-1.5 ms:mt-auto">
+        <div
+          v-for="tag in data.tags"
+          :key="tag"
+          class="ms:badge ms:badge-sm ms:badge-outline ms:opacity-70"
+        >
           {{ tag }}
         </div>
       </div>
 
       <div
-        class="flex items-center justify-between text-xs font-medium uppercase tracking-wider text-base-content/40"
+        class="ms:flex ms:items-center ms:justify-between ms:text-xs ms:font-medium ms:uppercase ms:tracking-wider ms:text-base-content/40"
       >
         <span>{{ data.category || 'Uncategorized' }}</span>
         <span>{{ data.variants?.length ?? 0 }} Variants</span>

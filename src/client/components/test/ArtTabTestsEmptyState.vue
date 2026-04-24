@@ -3,16 +3,22 @@ import { Beaker } from '@lucide/vue';
 </script>
 
 <template>
-  <div class="h-full flex flex-col items-center justify-center py-20 px-8 text-center">
-    <div class="w-12 h-12 rounded-2xl bg-base-200 flex items-center justify-center mb-4 opacity-40">
-      <Beaker :size="24" class="text-base-content" />
+  <div
+    class="ms:h-full ms:flex ms:flex-col ms:items-center ms:justify-center ms:py-20 ms:px-8 ms:text-center"
+  >
+    <div
+      class="ms:w-12 ms:h-12 ms:rounded-2xl ms:bg-base-200 ms:flex ms:items-center ms:justify-center ms:mb-4 ms:opacity-40"
+    >
+      <Beaker :size="24" class="ms:text-base-content" />
     </div>
-    <p class="text-[10px] font-black uppercase tracking-[0.2em] text-base-content/20 mb-2">
+    <p
+      class="ms:text-[10px] ms:font-black ms:uppercase ms:tracking-[0.2em] ms:text-base-content/20 ms:mb-2"
+    >
       No tests configured
     </p>
-    <p class="text-xs text-base-content/40 max-w-[240px] leading-relaxed">
-      Add a <code class="bg-base-200 px-1 rounded">tests</code> array to your art manifest to enable
-      testing.
+    <p class="ms:text-xs ms:text-base-content/40 ms:max-w-60 ms:leading-relaxed">
+      Add a <code class="ms:bg-base-200 ms:px-1 ms:rounded">tests</code> array to your art manifest
+      to enable testing.
     </p>
   </div>
 </template>

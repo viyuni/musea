@@ -27,7 +27,7 @@ const isLoading = ref(true);
 const iframe = useTemplateRef('iframe');
 const queuedMessages = ref<unknown[]>([]);
 const adaptiveHeight = ref<number | null>(null);
-const { activeTheme } = useSubTheme();
+const { activeTheme, activeDataTheme } = useSubTheme();
 let frameResizeObserver: ResizeObserver | null = null;
 
 const isAutoHeight = computed(() => props.heightMode === 'auto');
@@ -182,9 +182,9 @@ defineExpose({
 
 <template>
   <div
-    class="w-full overflow-hidden relative group transition-none"
-    :class="isAutoHeight ? 'h-full' : 'h-auto'"
-    :data-theme="activeTheme"
+    class="ms:w-full ms:overflow-hidden ms:relative ms:group ms:transition-none"
+    :class="isAutoHeight ? 'ms:h-full' : 'ms:h-auto'"
+    :data-theme="activeDataTheme"
     :style="{
       padding: `${containerPPadding}px`,
       backgroundImage: `radial-gradient(
@@ -197,16 +197,16 @@ defineExpose({
   >
     <Transition
       mode="out-in"
-      enter-active-class="transition-opacity duration-80 ease-out"
-      enter-from-class="opacity-0"
-      enter-to-class="opacity-100"
-      leave-active-class="transition-opacity duration-80 ease-in"
-      leave-from-class="opacity-100"
-      leave-to-class="opacity-0"
+      enter-active-class="ms:transition-opacity ms:duration-80 ms:ease-out"
+      enter-from-class="ms:opacity-0"
+      enter-to-class="ms:opacity-100"
+      leave-active-class="ms:transition-opacity ms:duration-80 ms:ease-in"
+      leave-from-class="ms:opacity-100"
+      leave-to-class="ms:opacity-0"
     >
       <div
         v-if="isLoading"
-        class="absolute left-0 top-0 size-full inset-4 z-10 flex items-center justify-center bg-base-100 backdrop-blur-sm"
+        class="ms:absolute ms:left-0 ms:top-0 ms:size-full ms:inset-4 ms:z-10 ms:flex ms:items-center ms:justify-center ms:bg-base-100 ms:backdrop-blur-sm"
       />
     </Transition>
 
@@ -214,26 +214,26 @@ defineExpose({
       :key="props.url"
       ref="iframe"
       :src="props.url"
-      class="border-none block w-full"
+      class="ms:border-none ms:block ms:w-full"
       :class="isAutoHeight ? 'h-full' : ''"
       :style="iframeStyle"
       @load="handleIframeLoad"
     ></iframe>
 
     <div
-      class="absolute bottom-2 right-2 flex items-center gap-2 transition-opacity opacity-0 group-hover:opacity-100"
+      class="ms:absolute ms:bottom-2 ms:right-2 ms:flex ms:items-center ms:gap-2 ms:transition-opacity ms:opacity-0 ms:group-hover:opacity-100"
     >
-      <button class="btn btn-ghost btn-primary btn-square btn-xs" @click="zoomIn">
+      <button class="ms:btn ms:btn-ghost ms:btn-primary ms:btn-square ms:btn-xs" @click="zoomIn">
         <ZoomIn :size="16" />
       </button>
-      <button class="btn btn-ghost btn-primary btn-square btn-xs" @click="zoomOut">
+      <button class="ms:btn ms:btn-ghost ms:btn-primary ms:btn-square ms:btn-xs" @click="zoomOut">
         <ZoomOut :size="16" />
       </button>
-      <button class="btn btn-ghost btn-primary btn-square btn-xs" @click="resetZoom">
+      <button class="ms:btn ms:btn-ghost ms:btn-primary ms:btn-square ms:btn-xs" @click="resetZoom">
         <RotateCcw :size="16" />
       </button>
       <button
-        class="btn btn-ghost btn-primary btn-square btn-xs"
+        class="ms:btn ms:btn-ghost ms:btn-primary ms:btn-square ms:btn-xs"
         @click="openInspector"
         v-if="isDev"
       >
