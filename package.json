@@ -87,7 +87,6 @@
     "unplugin-vue-markdown": "^30.0.0",
     "vite-plugin-vue-inspector": "^5.4.0",
     "vue": "^3.5.33",
-    "vue-component-meta": "^3.2.7",
     "vue-router": "^4.6.4"
   },
   "devDependencies": {

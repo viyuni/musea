@@ -33,7 +33,7 @@ export default defineConfig({
       macro: './src/macro.ts',
       'client-app': './src/client/app.ts',
       'client-frame-variant': './src/client/frame-variant.ts',
-      'client-frame-component': './src/client/frame-component.ts',
+      'client-frame-debug': './src/client/frame-debug.ts',
     },
     shims: true,
     dts: {

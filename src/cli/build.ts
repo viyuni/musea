@@ -149,7 +149,7 @@ function mergeFullConfig(museaConfig: ResolvedMuseaConfig, cwd = process.cwd()):
         input: {
           app: resolveViteFilePath(PATHS.appEntry, cwd),
           'client-frame-variant': resolveViteFilePath(PATHS.variantFrameEntry, cwd),
-          'client-frame-component': resolveViteFilePath(PATHS.componentFrameEntry, cwd),
+          'client-debug-component': resolveViteFilePath(PATHS.componentDebugEntry, cwd),
         },
         output: {
           assetFileNames: 'assets/[name]-[hash][extname]',
@@ -175,9 +175,9 @@ async function writeMuseaPages(absoluteOutDir: string, build: BuildArtifacts) {
       chunk: getRequiredEntryChunk(build, 'client-frame-variant'),
     },
     {
-      file: path.join(absoluteOutDir, 'frame', 'component', 'index.html'),
+      file: path.join(absoluteOutDir, 'frame', 'debug', 'index.html'),
       title: 'Musea Component Preview',
-      chunk: getRequiredEntryChunk(build, 'client-frame-component'),
+      chunk: getRequiredEntryChunk(build, 'client-debug-component'),
     },
   ];
 

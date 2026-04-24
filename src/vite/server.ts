@@ -65,7 +65,7 @@ export function museaServer(ctx: MuseaPluginContext): Connect.NextHandleFunction
       event,
       ctx,
       title: 'Musea Component Preview',
-      entryFile: PATHS.componentFrameEntry,
+      entryFile: PATHS.componentDebugEntry,
     });
   });
 
