@@ -145,8 +145,7 @@ describe('docs hmr', () => {
     ];
     const { context, sent, invalidated } = createContext(root, artManifest);
     const updateFile = vi.fn();
-    const clearCache = vi.fn();
-    context.componentMetaResolver = { updateFile, clearCache } as never;
+    context.componentMetaResolver = { updateFile } as never;
 
     const modules = [
       {
@@ -167,7 +166,6 @@ describe('docs hmr', () => {
 
     expect(result).toBe(modules);
     expect(updateFile).toHaveBeenCalledWith(path.join(root, 'src/Button.vue'), 'export default {}');
-    expect(clearCache).toHaveBeenCalled();
     expect(sent[sent.length - 1]).toMatchObject({
       event: MUSEA_HOT_EVENTS.docsUpdate,
       data: { affectedArtIds: ['src/Button.art.vue'] },
