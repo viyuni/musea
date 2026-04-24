@@ -164,7 +164,6 @@ export async function handleMuseaDocsHotUpdate(
   }
 
   context.componentMetaResolver?.updateFile(hmrContext.file, await hmrContext.read());
-  context.componentMetaResolver?.clearCache();
   invalidateDocsModules(context, affectedArtIds);
 
   server.ws.send({

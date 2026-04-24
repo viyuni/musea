@@ -63,7 +63,15 @@ export function resolveArtDocs(artId: string, ctx: VirtualFileContext): Resolved
 
 export function renderDocsDetails(artId: string, ctx: VirtualFileContext) {
   const docs = resolveArtDocs(artId, ctx);
-  return createConstExport('docs', serializeModuleValue(docs));
+
+  // Re-export linked docs modules so Vite tracks them in the module graph for HMR.
+  const exportDocsLinkComponent = docs.map(
+    (doc) => `export * from ${serializeModuleValue(normalizeForImport(doc.file))};`,
+  );
+
+  return [...exportDocsLinkComponent, createConstExport('docs', serializeModuleValue(docs))].join(
+    '\n\n',
+  );
 }
 
 export const artDocsVirtualFile = defineVirtualFile({
