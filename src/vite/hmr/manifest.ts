@@ -1,4 +1,4 @@
-import { MUSEA_HOT_EVENTS, VIRTUAL_ART_MANIFEST } from '../../shared/constants.ts';
+import { MUSEA_HOT_EVENTS, VIRTUAL_ART, VIRTUAL_ART_MANIFEST } from '../../shared/constants.ts';
 import { toRelativePath } from '../../shared/utils.ts';
 import type { MuseaPluginContext } from '../../types/index.ts';
 import { refreshArtManifest } from '../engine/manifest/index.ts';
@@ -7,18 +7,24 @@ import { isArtSfc } from '../engine/parser.ts';
 import { notifyArtDocsUpdate } from './docs.ts';
 import { invalidateVirtualModules } from './utils.ts';
 
+function collectVirtualModulesByPrefix(context: MuseaPluginContext, resolvedId: string) {
+  const server = context.devServer;
+  if (!server) return [];
+
+  return Array.from(server.moduleGraph.idToModuleMap.keys()).filter(
+    (id) => id === resolvedId || id.startsWith(`${resolvedId}?`),
+  );
+}
+
 function invalidateManifest(context: MuseaPluginContext) {
   const server = context.devServer;
   if (!server) return;
 
-  // Bust both the bare virtual module and any timestamped re-imports used by the client.
-  const manifestModules = Array.from(server.moduleGraph.idToModuleMap.keys()).filter(
-    (id) =>
-      id === VIRTUAL_ART_MANIFEST.resolvedId ||
-      id.startsWith(`${VIRTUAL_ART_MANIFEST.resolvedId}?`),
-  );
+  // Bust both the manifest virtual module and the art bundle modules it points to.
+  const manifestModules = collectVirtualModulesByPrefix(context, VIRTUAL_ART_MANIFEST.resolvedId);
+  const artModules = collectVirtualModulesByPrefix(context, VIRTUAL_ART.resolvedId);
 
-  invalidateVirtualModules(server, manifestModules);
+  invalidateVirtualModules(server, [...manifestModules, ...artModules]);
 }
 
 export function notifyManifestUpdate(context: MuseaPluginContext) {

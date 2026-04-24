@@ -4,7 +4,12 @@ import path from 'node:path';
 
 import { describe, expect, test, vi } from 'vite-plus/test';
 
-import { MUSEA_HOT_EVENTS, VIRTUAL_ART_MANIFEST, VIRTUAL_DOCS } from '../../../shared/constants.ts';
+import {
+  MUSEA_HOT_EVENTS,
+  VIRTUAL_ART,
+  VIRTUAL_ART_MANIFEST,
+  VIRTUAL_DOCS,
+} from '../../../shared/constants.ts';
 import type { ArtManifest, MuseaPluginContext } from '../../../types/index.ts';
 import { toManifestCacheKey } from '../../engine/manifest/files.ts';
 import { handleMuseaDocsHotUpdate } from '../docs.ts';
@@ -57,6 +62,8 @@ function createContext(root: string, artManifest: ArtManifest[]) {
   const { server, sent, invalidated } = createDevServer([
     VIRTUAL_ART_MANIFEST.resolvedId,
     `${VIRTUAL_ART_MANIFEST.resolvedId}?t=1`,
+    `${VIRTUAL_ART.resolvedId}?artId=src%2FButton.art.vue`,
+    `${VIRTUAL_ART.resolvedId}?artId=src%2FButton.art.vue&t=1`,
     VIRTUAL_DOCS.resolvedId,
     `${VIRTUAL_DOCS.resolvedId}?artId=src%2FButton.art.vue`,
   ]);
@@ -100,6 +107,8 @@ describe('manifest hmr', () => {
       expect.arrayContaining([
         VIRTUAL_ART_MANIFEST.resolvedId,
         `${VIRTUAL_ART_MANIFEST.resolvedId}?t=1`,
+        `${VIRTUAL_ART.resolvedId}?artId=src%2FButton.art.vue`,
+        `${VIRTUAL_ART.resolvedId}?artId=src%2FButton.art.vue&t=1`,
         VIRTUAL_DOCS.resolvedId,
         `${VIRTUAL_DOCS.resolvedId}?artId=src%2FButton.art.vue`,
       ]),
