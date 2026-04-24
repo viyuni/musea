@@ -1,8 +1,7 @@
 import type { ResolvedComponentMeta } from '@viyuni/vue-component-meta/types';
-import type { SetRequired } from 'type-fest';
 
 import { VIRTUAL_DOCS } from '../../../shared/constants.ts';
-import type { ArtManifest, VirtualFileContext } from '../../../types/index.ts';
+import type { VirtualFileContext } from '../../../types/index.ts';
 import { resolveComponentDocs } from '../../engine/resolve-component-doc.ts';
 import {
   createConstExport,
@@ -12,6 +11,14 @@ import {
   renderObjectLiteral,
   serializeModuleValue,
 } from '../helpers.ts';
+
+function createStaticImport(name: string, request: string) {
+  return `import ${name} from ${serializeModuleValue(request)};`;
+}
+
+function createReExport(request: string) {
+  return `export * from ${serializeModuleValue(request)};`;
+}
 
 function renderDocsModulesExport({ artManifest }: VirtualFileContext) {
   return createConstExport(
@@ -25,18 +32,36 @@ function renderDocsModulesExport({ artManifest }: VirtualFileContext) {
   );
 }
 
-function renderMarkdownDocsModulesExport({ artManifest, root }: VirtualFileContext) {
-  return createConstExport(
-    'markdownDocsModules',
-    renderObjectLiteral(
-      artManifest
-        .filter((art): art is SetRequired<ArtManifest, 'docsFile'> => Boolean(art.docsFile))
-        .map(
-          (art) =>
-            `${JSON.stringify(art.id)}: ${createImport(normalizeForImport(art.docsFile, root))}`,
-        ),
+function renderArtDocsExport(artId: string, ctx: VirtualFileContext) {
+  const art = ctx.artManifest.find((art) => art.id === artId);
+  const imports: string[] = [];
+
+  if (!art) {
+    resolveArtDocs(artId, ctx);
+    return createConstExport('docs', renderObjectLiteral([`meta: []`, `markdown: undefined`]));
+  }
+
+  const meta = resolveArtDocs(art.id, ctx);
+  const markdownName = 'markdown';
+
+  for (const doc of meta) {
+    imports.push(createReExport(normalizeForImport(doc.file, ctx.root)));
+  }
+
+  if (art.docsFile) {
+    imports.push(createStaticImport(markdownName, normalizeForImport(art.docsFile, ctx.root)));
+  }
+
+  return [
+    ...imports,
+    createConstExport(
+      'docs',
+      renderObjectLiteral([
+        `meta: ${serializeModuleValue(meta)}`,
+        `markdown: ${art.docsFile ? markdownName : 'undefined'}`,
+      ]),
     ),
-  );
+  ].join('\n\n');
 }
 
 export function resolveArtDocs(artId: string, ctx: VirtualFileContext): ResolvedComponentMeta[] {
@@ -61,28 +86,15 @@ export function resolveArtDocs(artId: string, ctx: VirtualFileContext): Resolved
   );
 }
 
-export function renderDocsDetails(artId: string, ctx: VirtualFileContext) {
-  const docs = resolveArtDocs(artId, ctx);
-
-  // Re-export linked docs modules so Vite tracks them in the module graph for HMR.
-  const exportDocsLinkComponent = docs.map(
-    (doc) => `export * from ${serializeModuleValue(normalizeForImport(doc.file))};`,
-  );
-
-  return [...exportDocsLinkComponent, createConstExport('docs', serializeModuleValue(docs))].join(
-    '\n\n',
-  );
-}
-
 export const artDocsVirtualFile = defineVirtualFile({
   id: VIRTUAL_DOCS.id,
   async load(ctx) {
     const artId = ctx.searchParams.get('artId');
 
     if (artId) {
-      return renderDocsDetails(artId, ctx);
+      return renderArtDocsExport(artId, ctx);
     }
 
-    return [renderDocsModulesExport(ctx), renderMarkdownDocsModulesExport(ctx)].join('\n\n');
+    return renderDocsModulesExport(ctx);
   },
 });

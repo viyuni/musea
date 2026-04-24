@@ -43,34 +43,7 @@ describe('artDocsVirtualFile', () => {
     expect(warn).toHaveBeenCalledWith('Unknown art id: unknown-art');
   });
 
-  test('load with artId returns docs export from resolver', async () => {
-    const resolveComponentMeta = vi.fn((file: string) => ({ file, name: 'Demo' }));
-    const artManifest: ArtManifest[] = [
-      {
-        id: 'src/Button.art.vue',
-        file: 'src/Button.art.vue',
-        title: 'Button',
-        components: ['src/Button.vue', 'src/Icon.vue'],
-        tests: [],
-        tags: [],
-        status: 'ready',
-      },
-    ];
-    const ctx = createContext({
-      artManifest,
-      resolver: { resolveComponentMeta },
-    });
-    ctx.searchParams = new URLSearchParams({ artId: 'src/Button.art.vue' });
-
-    const code = await artDocsVirtualFile.load(ctx);
-
-    expect(resolveComponentMeta).toHaveBeenCalledTimes(2);
-    expect(code).toContain('export const docs =');
-    expect(code).toContain('"file": "src/Button.vue"');
-    expect(code).toContain('"file": "src/Icon.vue"');
-  });
-
-  test('load without artId returns docs modules and markdown modules', async () => {
+  test('load without artId returns dynamic docs manifest', async () => {
     const artManifest: ArtManifest[] = [
       {
         id: 'src/Button.art.vue',
@@ -81,15 +54,6 @@ describe('artDocsVirtualFile', () => {
         tags: [],
         status: 'ready',
         docsFile: 'src/Button.md',
-      },
-      {
-        id: 'src/Card.art.vue',
-        file: 'src/Card.art.vue',
-        title: 'Card',
-        components: ['src/Card.vue'],
-        tests: [],
-        tags: [],
-        status: 'ready',
       },
     ];
     const ctx = createContext({
@@ -103,9 +67,40 @@ describe('artDocsVirtualFile', () => {
     expect(code).toContain(
       '"src/Button.art.vue": () => import("virtual:musea-docs?artId=src%2FButton.art.vue")',
     );
-    expect(code).toContain('export const markdownDocsModules =');
-    expect(code).toContain('"src/Button.art.vue": () => import(');
+    expect(code).not.toContain('Button.md');
+    expect(code).not.toContain('meta:');
+  });
+
+  test('load with artId returns static docs and markdown entry', async () => {
+    const resolveComponentMeta = vi.fn((file: string) => ({ file, name: 'Demo' }));
+    const artManifest: ArtManifest[] = [
+      {
+        id: 'src/Button.art.vue',
+        file: 'src/Button.art.vue',
+        title: 'Button',
+        components: ['src/Button.vue', 'src/Icon.vue'],
+        tests: [],
+        tags: [],
+        status: 'ready',
+        docsFile: 'src/Button.md',
+      },
+    ];
+    const ctx = createContext({
+      artManifest,
+      resolver: { resolveComponentMeta },
+    });
+    ctx.searchParams = new URLSearchParams({ artId: 'src/Button.art.vue' });
+
+    const code = await artDocsVirtualFile.load(ctx);
+
+    expect(resolveComponentMeta).toHaveBeenCalledTimes(2);
+    expect(code).toContain('import markdown from "/src/Button.md";');
+    expect(code).toContain('export * from "/src/Button.vue";');
+    expect(code).toContain('export * from "/src/Icon.vue";');
+    expect(code).toContain('export const docs =');
+    expect(code).toContain('meta: [');
+    expect(code).toContain('"file": "src/Button.vue"');
+    expect(code).toContain('markdown: markdown');
     expect(code).toContain('Button.md');
-    expect(code).not.toContain('Card.md');
   });
 });

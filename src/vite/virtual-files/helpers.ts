@@ -32,7 +32,7 @@ export function defineVirtualFile(definition: VirtualFileDefinition) {
 
 export function normalizeForImport(file: string, root = process.cwd()) {
   const abs = path.isAbsolute(file) ? file : path.resolve(root, file);
-  const rel = toRelativePath(file, root);
+  const rel = toRelativePath(abs, root);
   const importPath = rel.startsWith('..') ? `/@fs/${normalizePath(abs)}` : `/${rel}`;
 
   return importPath;

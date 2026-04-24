@@ -12,13 +12,15 @@ declare module 'virtual:musea-manifest' {
 declare module 'virtual:musea-docs' {
   export const docsModules: Record<
     string,
-    () => Promise<{ docs: import('./src/types/index.ts').ArtDocs }>
+    () => Promise<typeof import('virtual:musea-docs?artId=*')>
   >;
-  export const markdownDocsModules: Record<string, () => Promise<import('vue').Component>>;
 }
 
 declare module 'virtual:musea-docs?artId=*' {
-  export const docs: import('./src/types/index.ts').ArtDocs;
+  export const docs: {
+    meta: import('@viyuni/vue-component-meta/types').ResolvedComponentMeta[];
+    markdown?: import('vue').Component;
+  };
 }
 
 declare module 'virtual:musea-frame' {}

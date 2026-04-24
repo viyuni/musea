@@ -1,21 +1,13 @@
 import type { ResolvedComponentMeta } from '@viyuni/vue-component-meta/types';
-import { docsModules, markdownDocsModules } from 'virtual:musea-docs';
+import { docsModules } from 'virtual:musea-docs';
 import { shallowRef, toValue, watchEffect, type MaybeRefOrGetter } from 'vue';
 
 import { MUSEA_HOT_EVENTS, VIRTUAL_DOCS } from '../../shared/constants';
 
 type DocsModules = typeof docsModules;
-type MarkdownDocsModules = typeof markdownDocsModules;
+type ArtDocsModule = Awaited<ReturnType<DocsModules[string]>>;
 
-type DocsVirtualModule = {
-  docsModules: DocsModules;
-  markdownDocsModules: MarkdownDocsModules;
-};
-
-const docsVirtualModule = shallowRef<DocsVirtualModule>({
-  docsModules,
-  markdownDocsModules,
-});
+const docsVirtualModule = shallowRef<DocsModules>(docsModules);
 
 function createDocsQuery(params: Record<string, string>) {
   return new URLSearchParams(params).toString();
@@ -29,10 +21,14 @@ async function reloadDocsVirtualModule(timestamp: number) {
   return await import(
     /* @vite-ignore */
     `${VIRTUAL_DOCS.url}?${query}`
-  );
+  ).then((module) => module.docsModules as DocsModules);
 }
 
-async function reloadArtDoc(id: string, timestamp: number) {
+async function updateDocsVirtualModule(timestamp: number) {
+  docsVirtualModule.value = await reloadDocsVirtualModule(timestamp);
+}
+
+async function reloadArtDocsModule(id: string, timestamp: number) {
   const query = createDocsQuery({
     artId: id,
     t: String(timestamp),
@@ -41,12 +37,7 @@ async function reloadArtDoc(id: string, timestamp: number) {
   return await import(
     /* @vite-ignore */
     `${VIRTUAL_DOCS.url}?${query}`
-  ).then((module) => module.docs);
-}
-
-async function updateDocsVirtualModule(timestamp: number) {
-  const module = await reloadDocsVirtualModule(timestamp);
-  docsVirtualModule.value = module as DocsVirtualModule;
+  ).then((module) => module as ArtDocsModule);
 }
 
 function shouldRefreshArtDoc(currentArtId: string | undefined, affectedArtIds?: string[]) {
@@ -57,19 +48,19 @@ function shouldRefreshArtDoc(currentArtId: string | undefined, affectedArtIds?: 
 }
 
 export async function loadArtDoc(id: string) {
-  const loader = docsVirtualModule.value.docsModules[id];
+  const loader = docsVirtualModule.value[id];
   if (!loader) throw new Error('Unknown art id: ' + id);
 
-  return await loader().then((module) => module.docs);
+  return await loader().then((module: ArtDocsModule) => module.docs.meta);
 }
 
 export async function loadArtMarkdownDoc(artId: string) {
   if (import.meta.hot) {
-    await updateDocsVirtualModule(Date.now());
+    return await reloadArtDocsModule(artId, Date.now()).then((module) => module.docs.markdown);
   }
 
-  const loader = docsVirtualModule.value.markdownDocsModules[artId];
-  return await loader?.();
+  const loader = docsVirtualModule.value[artId];
+  return await loader?.().then((module: ArtDocsModule) => module.docs.markdown);
 }
 
 export const useArtDoc = (id: MaybeRefOrGetter<string | undefined>) => {
@@ -84,7 +75,7 @@ export const useArtDoc = (id: MaybeRefOrGetter<string | undefined>) => {
     }
 
     artDoc.value = (await (import.meta.hot
-      ? reloadArtDoc(artId, timestamp)
+      ? reloadArtDocsModule(artId, timestamp).then((module) => module.docs.meta)
       : loadArtDoc(artId))) as ResolvedComponentMeta[];
   }
 
