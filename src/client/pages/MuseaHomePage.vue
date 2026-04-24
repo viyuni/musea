@@ -20,20 +20,24 @@ const { arts, totalVariants, categoryCount, totalArts } = useArtManifest();
           </p>
         </div>
 
-        <div class="ms:stats ms:stats-horizontal">
-          <div class="ms:stat ms:py-3 ms:px-6">
-            <div class="ms:stat-title ms:text-[10px] ms:uppercase ms:font-black ms:tracking-widest">
+        <div class="ms:ms-stats ms:ms-stats-horizontal">
+          <div class="ms:ms-stat ms:py-3 ms:px-6">
+            <div
+              class="ms:ms-stat-title ms:text-[10px] ms:uppercase ms:font-black ms:tracking-widest"
+            >
               Total Arts
             </div>
-            <div class="ms:stat-value ms:text-2xl ms:font-black ms:text-primary ms:text-center">
+            <div class="ms:ms-stat-value ms:text-2xl ms:font-black ms:text-primary ms:text-center">
               {{ totalArts }}
             </div>
           </div>
-          <div class="ms:stat ms:py-3 ms:px-6">
-            <div class="ms:stat-title ms:text-[10px] ms:uppercase ms:font-black ms:tracking-widest">
+          <div class="ms:ms-stat ms:py-3 ms:px-6">
+            <div
+              class="ms:ms-stat-title ms:text-[10px] ms:uppercase ms:font-black ms:tracking-widest"
+            >
               Total Variants
             </div>
-            <div class="ms:stat-value ms:text-2xl ms:font-black ms:text-center">
+            <div class="ms:ms-stat-value ms:text-2xl ms:font-black ms:text-center">
               {{ totalVariants }}
             </div>
           </div>

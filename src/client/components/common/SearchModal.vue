@@ -122,9 +122,13 @@ defineExpose({ open, close });
 </script>
 
 <template>
-  <dialog class="ms:modal ms:backdrop:backdrop-blur-sm ms:w-screen" role="dialog" ref="searchModal">
+  <dialog
+    class="ms:ms-modal ms:backdrop:backdrop-blur-sm ms:w-screen"
+    role="dialog"
+    ref="searchModal"
+  >
     <div
-      class="ms:modal-box ms:p-0 ms:w-11/12 ms:max-w-2xl ms:border ms:border-base-content/5 ms:bg-base-100 ms:shadow-2xl ms:overflow-hidden ms:rounded-2xl"
+      class="ms:ms-modal-box ms:p-0 ms:w-11/12 ms:max-w-2xl ms:border ms:border-base-content/5 ms:bg-base-100 ms:shadow-2xl ms:overflow-hidden ms:rounded-2xl"
     >
       <!-- Search Input Area -->
       <div
@@ -140,7 +144,7 @@ defineExpose({ open, close });
           spellcheck="false"
         />
         <div class="ms:flex ms:items-center ms:gap-1 ms:shrink-0 ms:ml-2">
-          <kbd class="ms:kbd ms:kbd-xs ms:bg-base-200 ms:border-base-300">ESC</kbd>
+          <kbd class="ms:ms-kbd ms:ms-kbd-xs ms:bg-base-200 ms:border-base-300">ESC</kbd>
         </div>
       </div>
 
@@ -231,15 +235,15 @@ defineExpose({ open, close });
         class="ms:px-4 ms:py-2 ms:border-t ms:border-base-content/5 ms:flex ms:items-center ms:gap-4 ms:bg-base-content/1"
       >
         <div class="ms:flex ms:items-center ms:gap-1.5">
-          <kbd class="ms:kbd ms:kbd-xs ms:bg-base-200 ms:border-base-300">↵</kbd>
+          <kbd class="ms:ms-kbd ms:ms-kbd-xs ms:bg-base-200 ms:border-base-300">↵</kbd>
           <span class="ms:text-[9px] ms:font-bold ms:uppercase ms:tracking-widest ms:opacity-30"
             >Select</span
           >
         </div>
         <div class="ms:flex ms:items-center ms:gap-1.5">
           <div class="ms:flex ms:items-center ms:gap-0.5">
-            <kbd class="ms:kbd ms:kbd-xs ms:bg-base-200 ms:border-base-300">↑</kbd>
-            <kbd class="ms:kbd ms:kbd-xs ms:bg-base-200 ms:border-base-300">↓</kbd>
+            <kbd class="ms:ms-kbd ms:ms-kbd-xs ms:bg-base-200 ms:border-base-300">↑</kbd>
+            <kbd class="ms:ms-kbd ms:ms-kbd-xs ms:bg-base-200 ms:border-base-300">↓</kbd>
           </div>
           <span class="ms:text-[9px] ms:font-bold ms:uppercase ms:tracking-widest ms:opacity-30"
             >Navigate</span
@@ -248,7 +252,7 @@ defineExpose({ open, close });
       </div>
     </div>
 
-    <form method="dialog" class="ms:modal-backdrop">
+    <form method="dialog" class="ms:ms-modal-backdrop">
       <button>close</button>
     </form>
   </dialog>

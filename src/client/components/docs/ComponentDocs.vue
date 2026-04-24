@@ -21,8 +21,8 @@ function getTitle(resolved: ResolvedComponentMeta) {
           {{ getTitle(resolved) }}
         </h2>
         <span
-          class="ms:badge ms:badge-sm ms:capitalize"
-          :class="isPrimary ? 'ms:badge-primary' : 'ms:badge-ghost'"
+          class="ms:ms-badge ms:ms-badge-sm ms:capitalize"
+          :class="isPrimary ? 'ms:ms-badge-primary' : 'ms:ms-badge-ghost'"
         >
           {{ isPrimary ? 'primary' : 'sub' }}
         </span>
@@ -33,7 +33,9 @@ function getTitle(resolved: ResolvedComponentMeta) {
 
     <Table title="Props" :list="resolved.props ?? []" id-key="name">
       <template #name="{ row }">
-        <span class="ms:badge ms:badge-soft ms:badge-primary ms:badge-sm ms:whitespace-nowrap">
+        <span
+          class="ms:ms-badge ms:ms-badge-soft ms:ms-badge-primary ms:ms-badge-sm ms:whitespace-nowrap"
+        >
           {{ row.name }}
         </span>
       </template>
@@ -43,7 +45,7 @@ function getTitle(resolved: ResolvedComponentMeta) {
         </TypeBadge>
       </template>
       <template #default="{ row }">
-        <code class="ms:badge ms:badge-sm ms:badge-ghost">
+        <code class="ms:ms-badge ms:ms-badge-sm ms:ms-badge-ghost">
           {{ row.default ?? '—' }}
         </code>
       </template>
@@ -56,7 +58,9 @@ function getTitle(resolved: ResolvedComponentMeta) {
 
     <Table title="Slots" :list="resolved.slots ?? []" id-key="name">
       <template #name="{ row }">
-        <span class="ms:badge ms:badge-soft ms:badge-primary ms:badge-sm ms:whitespace-nowrap">
+        <span
+          class="ms:ms-badge ms:ms-badge-soft ms:ms-badge-primary ms:ms-badge-sm ms:whitespace-nowrap"
+        >
           {{ row.name }}
         </span>
       </template>
@@ -74,7 +78,9 @@ function getTitle(resolved: ResolvedComponentMeta) {
 
     <Table title="Events" :list="resolved.events ?? []" id-key="name">
       <template #name="{ row }">
-        <span class="ms:badge ms:badge-soft ms:badge-primary ms:badge-sm ms:whitespace-nowrap">
+        <span
+          class="ms:ms-badge ms:ms-badge-soft ms:ms-badge-primary ms:ms-badge-sm ms:whitespace-nowrap"
+        >
           {{ row.name }}
         </span>
       </template>
@@ -92,7 +98,9 @@ function getTitle(resolved: ResolvedComponentMeta) {
 
     <Table title="Exposed" :list="resolved.exposed ?? []" id-key="name">
       <template #name="{ row }">
-        <div class="ms:badge ms:badge-info ms:badge-outline ms:font-mono ms:font-bold ms:text-xs">
+        <div
+          class="ms:ms-badge ms:ms-badge-info ms:ms-badge-outline ms:font-mono ms:font-bold ms:text-xs"
+        >
           {{ row.name }}
         </div>
       </template>

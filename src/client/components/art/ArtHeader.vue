@@ -32,7 +32,7 @@ function openInVSCode() {
 
       <button
         v-if="isDev"
-        class="ms:btn ms:btn-sm ms:btn-ghost ms:gap-2 ms:px-3 ms:font-medium ms:text-base-content"
+        class="ms:ms-btn ms:ms-btn-sm ms:ms-btn-ghost ms:gap-2 ms:px-3 ms:font-medium ms:text-base-content"
         @click="openInVSCode"
       >
         <VSCodeIcon width="16" height="16" />

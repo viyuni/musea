@@ -204,14 +204,14 @@ function getRunResultSignature(result: ArtTestsRunResponse) {
       <div class="ms:flex ms:items-center ms:gap-2">
         <button
           v-if="runHistory.length > 0"
-          class="ms:btn ms:btn-ghost ms:btn-xs ms:h-7 ms:gap-1.5 ms:text-[9px] ms:font-bold ms:uppercase ms:tracking-widest ms:opacity-30 ms:hover:opacity-100 ms:px-2"
+          class="ms:ms-btn ms:ms-btn-ghost ms:ms-btn-xs ms:h-7 ms:gap-1.5 ms:text-[9px] ms:font-bold ms:uppercase ms:tracking-widest ms:opacity-30 ms:hover:opacity-100 ms:px-2"
           @click="clearRunHistory"
         >
           <Trash2 :size="10" />
           Clear History
         </button>
         <button
-          class="ms:btn ms:btn-primary ms:btn-xs ms:h-7 ms:gap-1.5 ms:text-[9px] ms:font-bold ms:uppercase ms:tracking-widest"
+          class="ms:ms-btn ms:ms-btn-primary ms:ms-btn-xs ms:h-7 ms:gap-1.5 ms:text-[9px] ms:font-bold ms:uppercase ms:tracking-widest"
           :disabled="!hasTests || isRunning"
           @click="runTests"
         >

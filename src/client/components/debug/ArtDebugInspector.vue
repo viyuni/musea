@@ -79,7 +79,7 @@ function resetSlots() {
             >Properties</span
           >
           <button
-            class="ms:btn ms:btn-ghost ms:btn-xs ms:h-7 ms:gap-1.5 ms:text-[9px] ms:font-bold ms:uppercase ms:tracking-widest ms:opacity-30 ms:hover:opacity-100"
+            class="ms:ms-btn ms:ms-btn-ghost ms:ms-btn-xs ms:h-7 ms:gap-1.5 ms:text-[9px] ms:font-bold ms:uppercase ms:tracking-widest ms:opacity-30 ms:hover:opacity-100"
             @click="resetProps"
           >
             <RefreshCcw :size="10" />
@@ -98,7 +98,7 @@ function resetSlots() {
             >Slots</span
           >
           <button
-            class="ms:btn ms:btn-ghost ms:btn-xs ms:h-7 ms:gap-1.5 ms:text-[9px] ms:font-bold ms:uppercase ms:tracking-widest ms:opacity-30 ms:hover:opacity-100"
+            class="ms:ms-btn ms:ms-btn-ghost ms:ms-btn-xs ms:h-7 ms:gap-1.5 ms:text-[9px] ms:font-bold ms:uppercase ms:tracking-widest ms:opacity-30 ms:hover:opacity-100"
             @click="resetSlots"
           >
             <RefreshCcw :size="10" />

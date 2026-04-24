@@ -21,27 +21,27 @@ const {
       <input
         v-model="booleanValue"
         type="checkbox"
-        class="ms:toggle ms:toggle-primary ms:toggle-sm"
+        class="ms:ms-toggle ms:ms-toggle-primary ms:ms-toggle-sm"
       />
     </div>
     <textarea
       v-else-if="type === 'string'"
       v-model="stringValue"
-      class="ms:textarea ms:textarea-bordered ms:textarea-sm ms:w-full ms:min-h-20 ms:font-mono ms:text-xs ms:focus:textarea-primary ms:leading-tight"
+      class="ms:ms-textarea ms:ms-textarea-bordered ms:ms-textarea-sm ms:w-full ms:min-h-20 ms:font-mono ms:text-xs ms:focus:ms-textarea-primary ms:leading-tight"
       placeholder="Enter string..."
     ></textarea>
     <input
       v-else-if="type === 'number' || type === 'bigint'"
       :value="numberInput"
       type="number"
-      class="ms:input ms:input-bordered ms:input-sm ms:w-full ms:font-mono ms:text-xs ms:focus:input-primary"
+      class="ms:ms-input ms:ms-input-bordered ms:ms-input-sm ms:w-full ms:font-mono ms:text-xs ms:focus:ms-input-primary"
       placeholder="0"
       @input="updateNumberInput(($event.target as HTMLInputElement).value)"
     />
     <div v-else class="ms:grid ms:gap-1.5">
       <textarea
         :value="jsonInput"
-        class="ms:textarea ms:textarea-bordered ms:textarea-sm ms:w-full ms:min-h-20 ms:font-mono ms:text-xs ms:focus:textarea-primary ms:leading-tight"
+        class="ms:ms-textarea ms:ms-textarea-bordered ms:ms-textarea-sm ms:w-full ms:min-h-20 ms:font-mono ms:text-xs ms:focus:ms-textarea-primary ms:leading-tight"
         placeholder="JSON data..."
         @input="updateJsonInput(($event.target as HTMLTextAreaElement).value)"
       ></textarea>

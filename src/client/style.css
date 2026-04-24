@@ -3,6 +3,7 @@
 @plugin "@tailwindcss/typography";
 
 @plugin "daisyui" {
+  prefix: 'ms-';
   themes: 'musea-light', 'musea-dark';
   root: '#musea-app';
 }
@@ -190,7 +191,7 @@
 }
 
 #musea-app .md-body a {
-  @apply ms:link ms:link-primary ms:no-underline ms:hover:underline;
+  @apply ms:ms-link ms:ms-link-primary ms:no-underline ms:hover:underline;
 }
 
 #musea-app .md-body blockquote {
@@ -222,7 +223,7 @@
 }
 
 #musea-app .md-body table {
-  @apply ms:table ms:min-w-200 ms:w-full ms:rounded-box ms:border ms:border-base-content/5 ms:bg-base-100;
+  @apply ms:ms-table ms:min-w-200 ms:w-full ms:ms-rounded-box ms:border ms:border-base-content/5 ms:bg-base-100;
 }
 
 #musea-app .md-body table thead tr {
@@ -246,7 +247,7 @@
 }
 
 #musea-app .md-body .task-list-item input[type='checkbox'] {
-  @apply ms:checkbox ms:checkbox-primary ms:checkbox-sm ms:rounded-md;
+  @apply ms:ms-checkbox ms:ms-checkbox-primary ms:ms-checkbox-sm ms:rounded-md;
 }
 
 #musea-app .md-body .task-list-item input[disabled] {

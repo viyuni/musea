@@ -19,12 +19,12 @@ const currentTabQuery = computed(() => {
 <template>
   <RouterLink
     :to="{ name: 'art', params: { id: data.id }, query: currentTabQuery }"
-    class="ms:card ms:bg-base-100 ms:border ms:border-base-300 ms:transition-all ms:duration-200 ms:hover:border-primary/40 ms:hover:-translate-y-1 ms:hover:shadow-xl ms:group"
+    class="ms:ms-card ms:bg-base-100 ms:border ms:border-base-300 ms:transition-all ms:duration-200 ms:hover:border-primary/40 ms:hover:-translate-y-1 ms:hover:shadow-xl ms:group"
   >
-    <div class="ms:card-body ms:p-5 ms:gap-4">
+    <div class="ms:ms-card-body ms:p-5 ms:gap-4">
       <div class="ms:flex ms:items-start ms:justify-between ms:gap-3">
         <h3
-          class="ms:card-title ms:text-xl ms:font-bold ms:group-hover:text-primary ms:transition-colors"
+          class="ms:ms-card-title ms:text-xl ms:font-bold ms:group-hover:text-primary ms:transition-colors"
         >
           {{ data.title }}
         </h3>
@@ -35,7 +35,7 @@ const currentTabQuery = computed(() => {
         <div
           v-for="tag in data.tags"
           :key="tag"
-          class="ms:badge ms:badge-sm ms:badge-outline ms:opacity-70"
+          class="ms:ms-badge ms:ms-badge-sm ms:ms-badge-outline ms:opacity-70"
         >
           {{ tag }}
         </div>

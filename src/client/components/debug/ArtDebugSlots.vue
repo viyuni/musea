@@ -81,7 +81,7 @@ function updateSlotText(name: string, event: Event) {
             <input
               :checked="getSlotState(slotDoc.name)?.enabled ?? false"
               type="checkbox"
-              class="ms:toggle ms:toggle-primary ms:toggle-xs"
+              class="ms:ms-toggle ms:ms-toggle-primary ms:ms-toggle-xs"
               @change="updateSlotEnabled(slotDoc.name, $event)"
             />
           </div>
@@ -99,7 +99,7 @@ function updateSlotText(name: string, event: Event) {
             <textarea
               :value="getSlotState(slotDoc.name)?.text ?? ''"
               rows="3"
-              class="ms:textarea ms:textarea-bordered ms:textarea-sm ms:w-full ms:bg-base-content/2 ms:font-mono ms:text-[11px] ms:leading-relaxed ms:resize-none ms:focus:textarea-primary ms:transition-all"
+              class="ms:ms-textarea ms:ms-textarea-bordered ms:ms-textarea-sm ms:w-full ms:bg-base-content/2 ms:font-mono ms:text-[11px] ms:leading-relaxed ms:resize-none ms:focus:ms-textarea-primary ms:transition-all"
               placeholder="Enter text or HTML content..."
               @input="updateSlotText(slotDoc.name, $event)"
             ></textarea>

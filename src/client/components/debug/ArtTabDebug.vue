@@ -163,7 +163,7 @@ onClickOutside(eventsPanel, () => {
         <div class="ms:flex ms:items-center ms:gap-4">
           <button
             v-if="isEventsExpanded"
-            class="ms:btn ms:btn-ghost ms:btn-xs ms:h-6 ms:gap-1.5 ms:text-[8px] ms:font-bold ms:uppercase ms:tracking-widest ms:opacity-30 ms:hover:opacity-100 ms:px-2"
+            class="ms:ms-btn ms:ms-btn-ghost ms:ms-btn-xs ms:h-6 ms:gap-1.5 ms:text-[8px] ms:font-bold ms:uppercase ms:tracking-widest ms:opacity-30 ms:hover:opacity-100 ms:px-2"
             @click.stop="eventsMonitor?.clearLogs()"
           >
             <Trash2 :size="10" />

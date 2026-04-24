@@ -223,17 +223,26 @@ defineExpose({
     <div
       class="ms:absolute ms:bottom-2 ms:right-2 ms:flex ms:items-center ms:gap-2 ms:transition-opacity ms:opacity-0 ms:group-hover:opacity-100"
     >
-      <button class="ms:btn ms:btn-ghost ms:btn-primary ms:btn-square ms:btn-xs" @click="zoomIn">
+      <button
+        class="ms:ms-btn ms:ms-btn-ghost ms:ms-btn-primary ms:ms-btn-square ms:ms-btn-xs"
+        @click="zoomIn"
+      >
         <ZoomIn :size="16" />
       </button>
-      <button class="ms:btn ms:btn-ghost ms:btn-primary ms:btn-square ms:btn-xs" @click="zoomOut">
+      <button
+        class="ms:ms-btn ms:ms-btn-ghost ms:ms-btn-primary ms:ms-btn-square ms:ms-btn-xs"
+        @click="zoomOut"
+      >
         <ZoomOut :size="16" />
       </button>
-      <button class="ms:btn ms:btn-ghost ms:btn-primary ms:btn-square ms:btn-xs" @click="resetZoom">
+      <button
+        class="ms:ms-btn ms:ms-btn-ghost ms:ms-btn-primary ms:ms-btn-square ms:ms-btn-xs"
+        @click="resetZoom"
+      >
         <RotateCcw :size="16" />
       </button>
       <button
-        class="ms:btn ms:btn-ghost ms:btn-primary ms:btn-square ms:btn-xs"
+        class="ms:ms-btn ms:ms-btn-ghost ms:ms-btn-primary ms:ms-btn-square ms:ms-btn-xs"
         @click="openInspector"
         v-if="isDev"
       >

@@ -35,7 +35,7 @@ function updateItem(index: number, value: unknown) {
         >
         <button
           type="button"
-          class="ms:btn ms:btn-xs ms:btn-circle ms:btn-error ms:btn-ghost ms:opacity-0 ms:group-hover:opacity-100 ms:transition-opacity"
+          class="ms:ms-btn ms:ms-btn-xs ms:ms-btn-circle ms:ms-btn-error ms:ms-btn-ghost ms:opacity-0 ms:group-hover:opacity-100 ms:transition-opacity"
           title="Remove item"
           @click="remove(index)"
         >
@@ -53,7 +53,7 @@ function updateItem(index: number, value: unknown) {
 
     <button
       type="button"
-      class="ms:btn ms:btn-sm ms:btn-outline ms:btn-primary ms:w-full ms:gap-1 ms:border-dashed"
+      class="ms:ms-btn ms:ms-btn-sm ms:ms-btn-outline ms:ms-btn-primary ms:w-full ms:gap-1 ms:border-dashed"
       @click="add"
     >
       <Plus :size="14" />

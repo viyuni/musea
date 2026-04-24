@@ -22,7 +22,7 @@ const titles = computed(() => Object.keys(slots));
 
     <div v-if="list && list.length > 0" class="ms:w-full ms:overflow-x-auto">
       <table
-        class="ms:table ms:w-max ms:min-w-full ms:rounded-box ms:border ms:border-base-content/5 ms:bg-base-100"
+        class="ms:ms-table ms:w-max ms:min-w-full ms:ms-rounded-box ms:border ms:border-base-content/5 ms:bg-base-100"
       >
         <thead>
           <tr class="ms:text-base-content ms:text-[11px] ms:uppercase ms:tracking-widest">
@@ -45,7 +45,7 @@ const titles = computed(() => Object.keys(slots));
 
     <div
       v-else
-      class="ms:grid ms:place-items-center ms:p-4 ms:border ms:border-dashed ms:border-base-content/10 ms:rounded-box ms:bg-base-100"
+      class="ms:grid ms:place-items-center ms:p-4 ms:border ms:border-dashed ms:border-base-content/10 ms:ms-rounded-box ms:bg-base-100"
     >
       <div class="ms:text-center">
         <div class="ms:text-base-content/30 ms:font-bold ms:italic ms:tracking-widest ms:uppercase">

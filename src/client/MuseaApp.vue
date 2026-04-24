@@ -6,7 +6,7 @@ const { activeDataTheme } = useTheme();
 
 <template>
   <div
-    class="ms:size-screen ms:overflow-hidden ms:font-sans ms:antialiased musea-scope"
+    class="ms:size-screen ms:overflow-hidden ms:font-sans ms:antialiased"
     :data-theme="activeDataTheme"
   >
     <RouterView v-slot="{ Component }">
