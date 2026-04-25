@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { Box, Tag } from '@lucide/vue';
 import type { ResolvedComponentMeta } from '@viyuni/vue-component-meta/types';
 
 import type { ArtManifest } from '../../../../types';
