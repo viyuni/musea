@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { Sun, Moon, Monitor } from '@lucide/vue';
 
-import { useSubTheme } from '../../../shared/composables/use-theme';
+import { useSubTheme } from '../composables/use-theme';
 
 const { theme, setTheme } = useSubTheme();
 </script>

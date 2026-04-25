@@ -89,23 +89,22 @@
 }
 
 @layer base {
-  /* ::selection {
-    background-color: var(--selection-background);
-    color: var(--selection-color);
-  } */
-
-  /* 兼容火狐浏览器 */
-  /* ::-moz-selection {
-    background-color: var(--selection-background);
-    color: var(--selection-color);
-  } */
-
   [data-theme='musea-dark'] {
     color-scheme: dark;
   }
 
   [data-theme='musea-light'] {
     color-scheme: light;
+  }
+
+  #musea-app::selection {
+    background-color: var(--selection-background);
+    color: var(--selection-color);
+  }
+
+  #musea-app::-moz-selection {
+    background-color: var(--selection-background);
+    color: var(--selection-color);
   }
 
   #musea-app .shiki,

@@ -4,14 +4,13 @@ import { ref, watch } from 'vue';
 import { useRoute, useRouter } from 'vue-router';
 
 import type { ArtManifest } from '../../../../types';
-import ArtTabDebug from '../../debug/components/DebugTab.vue';
-import ArtTabDocs from '../../docs/components/ArtTabDocs.vue';
+import { DebugTab } from '../../debug/index.ts';
+import { DocsTab } from '../../docs/index.ts';
 import ArtHeader from './ArtHeader.vue';
-import ArtTabVariants from './ArtTabVariants.vue';
 
-type Tab = 'variants' | 'debug' | 'documents';
-const ALL_TABS: Tab[] = ['documents', 'variants', 'debug'];
-const TABS: Tab[] = ALL_TABS;
+type Tab = 'debug' | 'documents';
+
+const TABS: Tab[] = ['documents', 'debug'];
 const STORAGE_KEY = 'musea:active-tab';
 
 const { art, docs = [] } = defineProps<{
@@ -24,7 +23,7 @@ const route = useRoute();
 const router = useRouter();
 
 function isTab(value: unknown): value is Tab {
-  return typeof value === 'string' && ALL_TABS.includes(value as Tab);
+  return typeof value === 'string' && TABS.includes(value as Tab);
 }
 
 function getRouteTab() {
@@ -125,17 +124,13 @@ watch(
 
     <!-- Tab Content -->
     <div class="vi:flex-1 vi:min-w-0">
-      <div v-if="isChecked('variants')" class="vi:px-4 vi:py-4 vi:lg:px-8 vi:lg:py-8">
-        <ArtTabVariants :art />
-      </div>
-
       <!-- h-content on Debug means it fits exactly the viewport, so it won't scroll the main page -->
       <div v-if="isChecked('debug')" class="vi:h-content">
-        <ArtTabDebug :art :docs />
+        <DebugTab :art :docs />
       </div>
 
       <div v-if="isChecked('documents')" class="vi:px-4 vi:py-4 vi:lg:px-8 vi:lg:py-8">
-        <ArtTabDocs :art :docs />
+        <DocsTab :art :docs />
       </div>
     </div>
   </div>

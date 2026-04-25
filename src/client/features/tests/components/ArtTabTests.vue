@@ -4,6 +4,11 @@ import { computed, onMounted, onUnmounted, ref, watch } from 'vue';
 
 import { ROUTES } from '../../../../shared/constants.ts';
 import type { ArtManifest } from '../../../../types/index.ts';
+import {
+  computeArtTestsRunResult,
+  ensureArtTestsClient,
+  subscribeArtTestsUpdates,
+} from '../../art/composables/use-art-tests.ts';
 import ArtTabTestsConfiguredFilesState from '../../tests/components/ArtTabTestsConfiguredFilesState.vue';
 import ArtTabTestsEmptyState from '../../tests/components/ArtTabTestsEmptyState.vue';
 import ArtTabTestsRunErrorState from '../../tests/components/ArtTabTestsRunErrorState.vue';
@@ -12,12 +17,7 @@ import type {
   ArtTestsRunHistoryItem,
   ArtTestsRunResponse,
   ArtTestsRunTriggerResponse,
-} from '../../tests/types/tests.ts';
-import {
-  computeArtTestsRunResult,
-  ensureArtTestsClient,
-  subscribeArtTestsUpdates,
-} from '../composables/use-art-tests.ts';
+} from '../types/tests.ts';
 
 const props = defineProps<{
   art?: ArtManifest | null;

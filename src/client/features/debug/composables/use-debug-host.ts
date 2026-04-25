@@ -14,10 +14,7 @@ import { ROUTES } from '../../../../shared/constants.ts';
 import type { ArtManifest } from '../../../../types/index.ts';
 import type { SlotDebugState } from '../../../types/index.ts';
 import { resolvePreviewUrl } from '../../../utils/index.ts';
-import {
-  formatEventPayloadEntries,
-  type EventPayloadEntry,
-} from '../bridge/debug-preview-shared.ts';
+import { formatEventPayloadEntries, type EventPayloadEntry } from '../types/index.ts';
 import { useDebugBridge } from './use-debug-bridge.ts';
 
 export interface EventLogEntry {

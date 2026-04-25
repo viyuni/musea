@@ -5,18 +5,18 @@ import { onClickOutside } from '@vueuse/core';
 import { computed, ref, useTemplateRef } from 'vue';
 
 import type { ArtManifest } from '../../../../types/index.ts';
-import ArtDebugFrame from '../../art/components/ArtDebugFrame.vue';
-import ArtThemeSwitcher from '../../art/components/ArtThemeSwitcher.vue';
+import ThemeSwitcher from '../../../shared/components/ThemeSwitcher.vue';
 import { useDebugHost } from '../composables/use-debug-host.ts';
-import ArtDebugEvents from './DebugEvents.vue';
-import ArtDebugInspector from './DebugInspector.vue';
+import DebugEvents from './DebugEvents.vue';
+import DebugFrame from './DebugFrame.vue';
+import DebugInspector from './DebugInspector.vue';
 
 const props = defineProps<{
   art?: ArtManifest | null;
   docs?: ResolvedComponentMeta[] | null;
 }>();
 
-const artPreview = useTemplateRef<InstanceType<typeof ArtDebugFrame>>('artPreview');
+const artPreview = useTemplateRef('artPreview');
 const eventsPanel = useTemplateRef('eventsPanel');
 
 const isEventsExpanded = ref(false);
@@ -63,10 +63,10 @@ onClickOutside(eventsPanel, () => {
               >Preview</span
             >
           </div>
-          <ArtThemeSwitcher />
+          <ThemeSwitcher />
         </header>
         <div class="vi:flex-1 vi:relative vi:overflow-hidden vi:lg:pb-10">
-          <ArtDebugFrame
+          <DebugFrame
             ref="artPreview"
             :url="previewUrl"
             height-mode="fill"
@@ -82,7 +82,7 @@ onClickOutside(eventsPanel, () => {
         class="vi:w-full vi:lg:w-80 vi:xl:w-96 vi:border-t vi:lg:border-t-0 vi:lg:border-l vi:border-base-content/5 vi:flex vi:flex-col vi:flex-1 vi:lg:flex-none vi:lg:shrink-0 vi:overflow-hidden"
       >
         <div class="vi:flex-1 vi:overflow-y-auto vi:overflow-x-hidden vi:pb-10">
-          <ArtDebugInspector
+          <DebugInspector
             v-model:prop-values="propValues"
             v-model:slot-debug-states="slotDebugStates"
             :prop-docs="propDocs"
@@ -123,7 +123,7 @@ onClickOutside(eventsPanel, () => {
         class="vi:h-96 vi:border-t vi:border-base-content/5 vi:overflow-y-auto vi:transition-opacity vi:duration-100 vi:delay-100"
         :class="{ 'vi:opacity-0': !isEventsExpanded, 'vi:opacity-100': isEventsExpanded }"
       >
-        <ArtDebugEvents :event-logs="eventLogs" />
+        <DebugEvents :event-logs="eventLogs" />
       </div>
     </footer>
   </div>

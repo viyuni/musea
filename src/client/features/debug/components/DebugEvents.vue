@@ -1,8 +1,8 @@
 <script setup lang="ts">
 import { Activity } from '@lucide/vue';
 
-import { formatDebugValue } from '../bridge/debug-preview-shared.ts';
 import type { EventLogEntry } from '../composables/use-debug-host.ts';
+import { formatDebugValue } from '../types/index.ts';
 
 defineProps<{
   eventLogs: EventLogEntry[];

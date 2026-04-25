@@ -1,10 +1,7 @@
 import { createEventHook, createSharedComposable } from '@vueuse/core';
 
 import type { SlotDebugState } from '../../../types/index.ts';
-import type {
-  DebugPreviewBridge,
-  DebugPreviewComponentEvent,
-} from '../bridge/debug-preview-shared.ts';
+import type { DebugPreviewBridge, DebugPreviewComponentEvent } from '../types/index.ts';
 
 const noop = () => {};
 type DebugSlotsPayload = { slots: SlotDebugState[] };
