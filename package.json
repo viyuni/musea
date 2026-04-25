@@ -1,6 +1,6 @@
 {
   "name": "@viyuni/musea",
-  "version": "0.0.7",
+  "version": "0.0.8",
   "description": "Vue component gallery for you to manage demos, variants, and docs in one place.",
   "keywords": [
     "art-vue",
