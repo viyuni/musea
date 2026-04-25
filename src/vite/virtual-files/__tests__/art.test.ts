@@ -36,15 +36,12 @@ describe('artBundleVirtualFile', () => {
 
     expect(code).toContain('import component_0 from "/src/Button.vue";');
     expect(code).toContain(
-      'import variant_0 from "virtual:musea-art-variant.art.vue?artId=src%2FButton.art.vue";',
-    );
-    expect(code).toContain(
-      'import variant_1 from "virtual:musea-art-variant.art.vue?artId=src%2FButton.art.vue&variant=primary";',
+      'import variant_0 from "virtual:musea-art-variant.art.vue?artId=src%2FButton.art.vue&variant=primary";',
     );
     expect(code).toContain('export default {');
     expect(code).toContain('"src/Button.art.vue": {');
-    expect(code).toContain('"": variant_0');
-    expect(code).toContain('"primary": variant_1');
+    expect(code).not.toContain('"":');
+    expect(code).toContain('"primary": variant_0');
   });
 
   test('throws in virtual module when primary component is missing', async () => {

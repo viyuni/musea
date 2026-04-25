@@ -1,12 +1,20 @@
 <script setup lang="ts">
-import VariantFrame from './VariantFrame.vue';
+import { museaConfig } from 'virtual:musea-config';
+import { computed } from 'vue';
 
-defineProps<{
+import VariantFrame from './VariantFrame.vue';
+import VariantInline from './VariantInline.vue';
+
+const props = defineProps<{
   artId: string;
-  variantName?: string | null;
+  variantName: string;
 }>();
+
+const VariantComponent = computed(() => {
+  return museaConfig.variantRenderMode === 'inline' ? VariantInline : VariantFrame;
+});
 </script>
 
 <template>
-  <VariantFrame :art-id :variantName />
+  <component :is="VariantComponent" :art-id="props.artId" :variant-name="props.variantName" />
 </template>

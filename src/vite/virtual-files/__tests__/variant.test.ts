@@ -69,6 +69,44 @@ describe('artVariantVirtualFile', () => {
     ).toBeNull();
   });
 
+  test('id resolves to a variant-specific synthetic filename', () => {
+    const root = createFixtureRoot();
+    writeFixture(
+      root,
+      'src/Button.art.vue',
+      '<template><Art title="x" status="ready" /></template>',
+    );
+    const artManifest: ArtManifest[] = [
+      {
+        id: 'src/Button.art.vue',
+        file: 'src/Button.art.vue',
+        title: 'Button',
+        components: ['src/Button.vue'],
+        tests: [],
+        tags: [],
+        status: 'ready',
+      },
+    ];
+    const ctx = createContext(root, artManifest);
+    const idResolver = artVariantVirtualFile.id;
+
+    if (typeof idResolver !== 'function') {
+      throw new Error('Expected variant virtual file id resolver to be a function');
+    }
+
+    const resolved = idResolver({
+      ...ctx,
+      searchParams: new URLSearchParams({
+        artId: 'src/Button.art.vue',
+        variant: 'primary',
+      }),
+    } satisfies VirtualFileResolveContext);
+
+    expect(resolved).toContain('Button__');
+    expect(resolved).toContain('.art.vue?');
+    expect(resolved).toContain('variant=primary');
+  });
+
   test('load watches art file and returns transformed code', async () => {
     const root = createFixtureRoot();
     writeFixture(

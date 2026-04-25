@@ -18,14 +18,6 @@ export function isArtMarkdownFile(file: string) {
   return file.endsWith('.art.md');
 }
 
-export function parseDefaultAttributeValue(value: string | undefined) {
-  if (value === undefined) {
-    return true;
-  }
-
-  return value === 'true';
-}
-
 export function isElementNode(node: TemplateChildNode): node is ElementNode {
   return node.type === NodeTypes.ELEMENT;
 }
@@ -99,7 +91,7 @@ export function collectAttributes(node: ElementNode) {
       tests.push(content);
     }
 
-    props[prop.name] = prop.name === 'default' ? parseDefaultAttributeValue(content) : content;
+    props[prop.name] = content;
   });
 
   props.components = components;
@@ -114,20 +106,6 @@ function isNameProp(prop: AttributeNode | DirectiveNode): prop is AttributeNode 
 
 export function getNameAttributeValue(node: ElementNode) {
   return node.props.find(isNameProp)?.value?.content;
-}
-
-function isDefaultProp(prop: AttributeNode | DirectiveNode): prop is AttributeNode {
-  return isAttributeNode(prop) && prop.name === 'default';
-}
-
-export function getDefaultAttributeValue(node: ElementNode) {
-  const prop = node.props.find(isDefaultProp);
-
-  if (!prop) {
-    return false;
-  }
-
-  return parseDefaultAttributeValue(prop.value?.content);
 }
 
 export function findArtRootNode(root: RootNode) {

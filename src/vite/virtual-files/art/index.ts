@@ -36,13 +36,12 @@ function renderArtModule(art: ArtManifest, root: string) {
     `import ${componentImportName} from ${JSON.stringify(normalizeForImport(primaryComponent, root))};`,
   );
 
-  const normalVariants = art.variants ? [{ name: '' }, ...art.variants] : [{ name: '' }];
-  const variantEntries = normalVariants.map((variant, index) => {
+  const variantEntries = (art.variants ?? []).map((variant, index) => {
     const variantImportName = createImportName('variant', index);
     imports.push(
       `import ${variantImportName} from ${JSON.stringify(createVariantRequest(art, variant.name))};`,
     );
-    return `${JSON.stringify(variant.name ?? '')}: ${variantImportName}`;
+    return `${JSON.stringify(variant.name)}: ${variantImportName}`;
   });
 
   return [

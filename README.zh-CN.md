@@ -74,7 +74,7 @@ vp add -D @viyuni/musea
     <!-- :components="['./Button.vue']" -->
     docs="./Button.md"
   >
-    <variant name="Default" default>
+    <variant name="Default">
       <Button>Button</Button>
     </variant>
     <variant name="Disabled">

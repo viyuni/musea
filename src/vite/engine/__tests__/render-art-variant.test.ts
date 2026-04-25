@@ -8,7 +8,7 @@ const source = `
     <Variant name="primary">
       <button>Primary</button>
     </Variant>
-    <Variant name="secondary" default>
+    <Variant name="secondary">
       <button>Secondary</button>
     </Variant>
   </Art>
@@ -28,14 +28,14 @@ describe('renderArtVariant', () => {
     expect(result.map).toBeUndefined();
   });
 
-  test('uses default variant when rendererVariant is missing', () => {
+  test('uses first variant when rendererVariant is missing', () => {
     const result = renderArtVariant(source, {
       filename: 'Button.art.vue',
       sourceMap: false,
     });
 
-    expect(result.code).toContain('<button>Secondary</button>');
-    expect(result.code).not.toContain('<button>Primary</button>');
+    expect(result.code).toContain('<button>Primary</button>');
+    expect(result.code).not.toContain('<button>Secondary</button>');
   });
 
   test('falls back to source and warns when variant is not found', () => {

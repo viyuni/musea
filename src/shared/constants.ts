@@ -63,6 +63,15 @@ export const VIRTUAL_ART_VARIANT = {
 } as const;
 
 /**
+ * Musea config virtual module
+ */
+export const VIRTUAL_MUSEA_CONFIG = {
+  id: 'virtual:musea-config',
+  resolvedId: '\0virtual:musea-config',
+  url: '/@id/__x00__virtual:musea-config',
+} as const;
+
+/**
  * Art variant query key
  */
 export const ART_VARIANT_QUERY_KEY = 'musea-art-variant';

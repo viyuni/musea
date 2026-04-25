@@ -3,12 +3,31 @@ import { createConfigLoader } from 'unconfig';
 import { sourceObjectFields } from 'unconfig/presets';
 
 import { toRelativePath } from '../shared/utils.ts';
-import type { MuseaConfig } from '../types/index.ts';
+import { variantRenderModes, type MuseaConfig, type VariantRenderMode } from '../types/index.ts';
 
 export type ResolvedMuseaConfig = Required<MuseaConfig>;
 
 export const DEFAULT_OUT_DIR = '.musea' as const;
 export const DEFAULT_SETUP_FILE = 'musea.setup.ts' as const;
+
+function createMuseaConfigLoader(cwd = process.cwd()) {
+  return createConfigLoader<MuseaConfig>({
+    cwd,
+    merge: false,
+    sources: [
+      {
+        files: 'musea.config',
+      },
+      sourceObjectFields({ files: 'vite.config', fields: 'musea' }),
+    ],
+  });
+}
+
+function normalizeVariantRenderMode(mode?: string): VariantRenderMode {
+  return variantRenderModes.includes(mode as VariantRenderMode)
+    ? (mode as VariantRenderMode)
+    : 'iframe';
+}
 
 function normalMuseaConfig(config: MuseaConfig = {}): ResolvedMuseaConfig {
   return {
@@ -20,23 +39,19 @@ function normalMuseaConfig(config: MuseaConfig = {}): ResolvedMuseaConfig {
     setupFile: config.setupFile ?? DEFAULT_SETUP_FILE,
     port: config.port ?? 3000,
     host: config.host ?? false,
+    variantRenderMode: normalizeVariantRenderMode(config.variantRenderMode),
     vite: config.vite ?? {},
   };
 }
 
 export async function loadMuseaConfig(overrides: MuseaConfig = {}, cwd = process.cwd()) {
-  const loader = createConfigLoader<MuseaConfig>({
-    cwd,
-    merge: false,
-    sources: [
-      {
-        files: 'musea.config',
-      },
-      sourceObjectFields({ files: 'vite.config', fields: 'musea' }),
-    ],
-  });
-
+  const loader = createMuseaConfigLoader(cwd);
   const loaded = await loader.load();
 
   return normalMuseaConfig(defu(overrides, loaded.config));
+}
+
+export async function findMuseaConfigFiles(cwd = process.cwd()) {
+  const loader = createMuseaConfigLoader(cwd);
+  return await loader.findConfigs();
 }

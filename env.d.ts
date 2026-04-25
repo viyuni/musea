@@ -30,6 +30,12 @@ declare module 'virtual:musea-docs?artId=*' {
   };
 }
 
+declare module 'virtual:musea-config' {
+  export const museaConfig: {
+    variantRenderMode: import('./src/types/index.ts').VariantRenderMode;
+  };
+}
+
 declare module 'virtual:musea-frame' {}
 
 declare module 'virtual:musea-style' {}

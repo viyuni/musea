@@ -13,7 +13,7 @@ import Button from './Button.vue';
     tags="action,form"
     status="ready"
   >
-    <Variant name="Primary" default>
+    <Variant name="Primary" description="This is a button default variant">
       <Button color="primary" size="medium">Save Changes</Button>
     </Variant>
 

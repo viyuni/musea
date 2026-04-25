@@ -48,7 +48,7 @@ describe('scanArtManifest', () => {
     tags="form, action"
     status="ready"
   >
-    <Variant name="primary" default />
+    <Variant name="primary" />
     <Variant name="secondary" />
   </Art>
 </template>
@@ -67,7 +67,7 @@ describe('scanArtManifest', () => {
         components: ['src/components/Button.vue', 'src/components/ButtonIcon.vue'],
         tests: ['src/components/Button.test.ts'],
         docsFile: 'src/docs/button.md',
-        variants: [{ name: 'primary', default: true }, { name: 'secondary' }],
+        variants: [{ name: 'primary' }, { name: 'secondary' }],
       },
     ]);
   });

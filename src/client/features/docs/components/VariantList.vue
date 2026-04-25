@@ -1,8 +1,6 @@
 <script setup lang="ts">
-import { useTemplateRef } from 'vue';
-
 import type { ArtManifest } from '../../../../types/index.ts';
-import VariantRender from './VariantFrame.vue';
+import VariantRender from './VariantRender.vue';
 
 const props = defineProps<{
   art: ArtManifest;
@@ -10,7 +8,7 @@ const props = defineProps<{
 </script>
 
 <template>
-  <div ref="containerRef" class="vi:grid vi:gap-10">
+  <div class="vi:grid vi:gap-10">
     <div
       v-for="variant in art?.variants"
       :key="variant.name"
@@ -21,12 +19,6 @@ const props = defineProps<{
           <h3 class="vi:text-sm vi:font-bold vi:opacity-80 vi:uppercase vi:tracking-wider">
             {{ variant.name }}
           </h3>
-          <span
-            v-if="variant.default"
-            class="vi:px-1.5 vi:py-0.5 vi:rounded vi:bg-primary/10 vi:text-primary vi:text-[10px] vi:font-bold vi:uppercase"
-          >
-            Default
-          </span>
         </div>
 
         <div class="vi:text-base-content/60 vi:text-sm">
@@ -35,7 +27,7 @@ const props = defineProps<{
       </header>
 
       <div>
-        <VariantRender :art-id="art.id" :variant="variant.name" />
+        <VariantRender :art-id="art.id" :variant-name="variant.name" />
       </div>
     </div>
   </div>

@@ -12,7 +12,7 @@ import Example2 from './Example2.vue';
     tags="demo,typography"
     status="ready"
   >
-    <Variant name="Default" default>
+    <Variant name="Default">
       <Example :size="30">Hello Musea</Example>
     </Variant>
 

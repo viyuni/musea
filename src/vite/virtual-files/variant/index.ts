@@ -11,12 +11,13 @@ import { defineVirtualFile } from '../helpers.ts';
 
 export interface LoadArtOptions {
   file: string;
+  filename?: string;
   variant?: string | null;
   sourceMap?: boolean;
 }
 
 export function loadArtModule(options: LoadArtOptions) {
-  const { file, variant, sourceMap = true } = options;
+  const { file, filename = file, variant, sourceMap = true } = options;
 
   if (!isArtSfc(file)) {
     return null;
@@ -24,35 +25,41 @@ export function loadArtModule(options: LoadArtOptions) {
   const source = readFileSync(file, 'utf-8');
 
   return renderArtVariant(source, {
-    filename: file,
+    filename,
     sourceMap,
     rendererVariant: variant,
   });
 }
 
+function normalizeVariantName(variant?: string | null) {
+  return variant || 'default';
+}
+
 function createVariantHash(artId: string, variant?: string | null) {
   return createHash('sha1')
-    .update(`${artId}:${variant ?? 'default'}`)
+    .update(`${artId}:${normalizeVariantName(variant)}`)
     .digest('hex')
     .slice(0, 8);
+}
+
+function createVariantFilename(file: string, artId: string, variant?: string | null) {
+  const artDir = path.dirname(file);
+  const artBaseName = path.basename(file, '.art.vue');
+  const variantHash = createVariantHash(artId, variant);
+  return path.join(artDir, `${artBaseName}__${variantHash}.art.vue`);
 }
 
 function createResolvedArtVariantId({
   artId,
   file,
-  isBuild,
   searchParams,
 }: {
   artId: string;
   file: string;
-  isBuild: boolean;
   searchParams: URLSearchParams;
 }) {
   const variant = searchParams.get('variant');
-  const artDir = path.dirname(file);
-  const artBaseName = path.basename(file, '.art.vue');
-  const variantHash = createVariantHash(artId, variant);
-  const resolvedFile = isBuild ? path.join(artDir, `${artBaseName}__${variantHash}.art.vue`) : file;
+  const resolvedFile = createVariantFilename(file, artId, variant);
 
   const resolvedSearchParams = new URLSearchParams(searchParams);
   resolvedSearchParams.set(ART_VARIANT_QUERY_KEY, 'true');
@@ -61,7 +68,7 @@ function createResolvedArtVariantId({
 }
 
 export const artVariantVirtualFile = defineVirtualFile({
-  id({ artManifest, isBuild, requestId, root, searchParams }) {
+  id({ artManifest, requestId, root, searchParams }) {
     if (!requestId.startsWith(VIRTUAL_ART_VARIANT.id)) {
       return;
     }
@@ -83,7 +90,6 @@ export const artVariantVirtualFile = defineVirtualFile({
     return createResolvedArtVariantId({
       artId,
       file: toAbsolutePath(art.file, root),
-      isBuild,
       searchParams,
     });
   },
@@ -113,6 +119,11 @@ export const artVariantVirtualFile = defineVirtualFile({
     const file = toAbsolutePath(art.file, root);
     addWatchFile?.(file);
 
-    return loadArtModule({ file, variant, sourceMap });
+    return loadArtModule({
+      file,
+      filename: createVariantFilename(file, artId, variant),
+      variant,
+      sourceMap,
+    });
   },
 });

@@ -32,7 +32,6 @@ function readArtMetadata(filePath: string): ArtMetadata | undefined {
     const parsed = collectAttributes(item) as unknown as ParsedVariantProps;
     return {
       name: parsed.name,
-      default: parsed.default,
       description: parsed.description,
     };
   });

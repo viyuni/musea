@@ -7,7 +7,8 @@
     "./src/macro.ts",
     "./src/types/*.ts",
     "./src/shared/constants.ts",
-    "./src/shared/**/*"
+    "./src/shared/**/*",
+    "./musea.config.ts"
   ],
   "exclude": ["src/**/__tests__/*", "src/vite/**/*"],
   "compilerOptions": {

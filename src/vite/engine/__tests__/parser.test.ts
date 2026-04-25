@@ -1,11 +1,6 @@
 import { describe, expect, test, vi } from 'vite-plus/test';
 
-import {
-  collectAttributes,
-  getDefaultAttributeValue,
-  getNameAttributeValue,
-  parseArtSfc,
-} from '../parser.ts';
+import { collectAttributes, getNameAttributeValue, parseArtSfc } from '../parser.ts';
 
 describe('parseArtSfc', () => {
   test('collects art root and direct variant nodes', () => {
@@ -18,10 +13,9 @@ describe('parseArtSfc', () => {
     category="Inputs"
     status="ready"
     tags="form, action"
-    default="false"
   >
-    <Variant name="primary" default />
-    <Variant name="secondary" default="false" />
+    <Variant name="primary" />
+    <Variant name="secondary" />
   </Art>
 </template>
 `,
@@ -34,12 +28,10 @@ describe('parseArtSfc', () => {
       category: 'Inputs',
       status: 'ready',
       tags: 'form, action',
-      default: false,
     });
     expect(variantNodes).toHaveLength(2);
     expect(getNameAttributeValue(variantNodes[0]!)).toBe('primary');
-    expect(getDefaultAttributeValue(variantNodes[0]!)).toBe(true);
-    expect(getDefaultAttributeValue(variantNodes[1]!)).toBe(false);
+    expect(getNameAttributeValue(variantNodes[1]!)).toBe('secondary');
   });
 
   test('supports components attribute and :components directive', () => {

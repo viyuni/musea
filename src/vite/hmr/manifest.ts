@@ -1,4 +1,9 @@
-import { MUSEA_HOT_EVENTS, VIRTUAL_ART, VIRTUAL_ART_MANIFEST } from '../../shared/constants.ts';
+import {
+  MUSEA_HOT_EVENTS,
+  VIRTUAL_ART,
+  VIRTUAL_ART_MANIFEST,
+  VIRTUAL_ART_VARIANT,
+} from '../../shared/constants.ts';
 import { toRelativePath } from '../../shared/utils.ts';
 import type { MuseaPluginContext } from '../../types/index.ts';
 import { refreshArtManifest } from '../engine/manifest/index.ts';
@@ -23,8 +28,9 @@ function invalidateManifest(context: MuseaPluginContext) {
   // Bust both the manifest virtual module and the art bundle modules it points to.
   const manifestModules = collectVirtualModulesByPrefix(context, VIRTUAL_ART_MANIFEST.resolvedId);
   const artModules = collectVirtualModulesByPrefix(context, VIRTUAL_ART.resolvedId);
+  const variantModules = collectVirtualModulesByPrefix(context, VIRTUAL_ART_VARIANT.resolvedId);
 
-  invalidateVirtualModules(server, [...manifestModules, ...artModules]);
+  invalidateVirtualModules(server, [...manifestModules, ...artModules, ...variantModules]);
 }
 
 export function notifyManifestUpdate(context: MuseaPluginContext) {

@@ -74,7 +74,7 @@ Create an `.art.vue` file next to the component you want to showcase.
     <!-- :components="['./Button.vue']" -->
     docs="./Button.md"
   >
-    <variant name="Default" default>
+    <variant name="Default">
       <Button>Button</Button>
     </variant>
     <variant name="Disabled">

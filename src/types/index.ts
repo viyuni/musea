@@ -8,6 +8,10 @@ export type ArtStatus = (typeof artStatuses)[number];
 
 export type Awaitable<T> = T | Promise<T>;
 
+export const variantRenderModes = ['iframe', 'inline'] as const;
+
+export type VariantRenderMode = (typeof variantRenderModes)[number];
+
 export interface MuseaConfig {
   /**
    * Default: all `.art.vue` files under the project root.
@@ -47,6 +51,13 @@ export interface MuseaConfig {
   host?: string | boolean;
 
   /**
+   * Controls how variants are rendered in docs preview.
+   *
+   * @default iframe
+   */
+  variantRenderMode?: VariantRenderMode;
+
+  /**
    * Extra Vite config for the Musea app.
    *
    * User project Vite plugins are not inherited automatically.
@@ -80,13 +91,11 @@ export interface ParsedArtProps {
 
 export interface VariantProps {
   name: string;
-  default?: boolean;
   description?: string;
 }
 
 export interface ParsedVariantProps {
   name: string;
-  default?: boolean;
   description?: string;
 }
 

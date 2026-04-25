@@ -2,7 +2,7 @@ import type { ElementNode } from '@vue/compiler-core';
 import MagicString from 'magic-string';
 
 import { warn } from '../../shared/logger.ts';
-import { getDefaultAttributeValue, getNameAttributeValue, parseArtSfc } from './parser.ts';
+import { getNameAttributeValue, parseArtSfc } from './parser.ts';
 
 interface RenderArtVariantOptions {
   filename: string;
@@ -31,11 +31,7 @@ export function renderArtVariant(source: string, options: RenderArtVariantOption
       (node) => getNameAttributeValue(node) === rendererVariant,
     );
   } else {
-    // find default variant
-    const defineVariantNodes = variantNodes.find((node) => getDefaultAttributeValue(node));
-
-    // if no default variant, use first variant
-    rendererVariantNode = defineVariantNodes ? defineVariantNodes : variantNodes?.[0];
+    rendererVariantNode = variantNodes[0];
   }
 
   if (!rendererVariantNode) {
