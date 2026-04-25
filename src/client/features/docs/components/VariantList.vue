@@ -26,9 +26,11 @@ const props = defineProps<{
         </div>
       </header>
 
-      <div>
-        <VariantRender :art-id="art.id" :variant-name="variant.name" />
-      </div>
+      <VariantRender
+        :key="`${art.id}:${variant.name}`"
+        :art-id="art.id"
+        :variant-name="variant.name"
+      />
     </div>
   </div>
 </template>

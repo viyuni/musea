@@ -12,7 +12,9 @@
     "./src/vite/**/*.ts",
     "./src/cli/**/*.ts",
     "./src/shared/**/*",
-    "./src/types/*.ts"
+    "./src/types/*.ts",
+    "./musea.config.ts",
+    "./musea.setup.ts"
   ],
   "exclude": ["./src/client/**/*"],
   "compilerOptions": {
