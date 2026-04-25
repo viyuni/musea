@@ -144,7 +144,7 @@ const closeDrawer = () => {
             </button>
 
             <button
-              class="vi:hidden vi:lg:block vi:vi-btn vi:vi-btn-sm vi:vi-btn-ghost vi:vi-btn-square vi:rounded-lg vi:hover:vi-bg-base-content/10"
+              class="vi:hidden vi:lg:flex vi:vi-btn vi:vi-btn-sm vi:vi-btn-ghost vi:vi-btn-square vi:rounded-lg vi:hover:vi-bg-base-content/10"
               title="Collapse Sidebar"
               @click="toggleSidebar"
             >
