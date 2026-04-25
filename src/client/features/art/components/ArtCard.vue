@@ -19,7 +19,7 @@ const currentTabQuery = computed(() => {
 <template>
   <RouterLink
     :to="{ name: 'art', params: { id: data.id }, query: currentTabQuery }"
-    class="vi:vi-card vi:bg-base-100 vi:border vi:border-base-300 vi:transition-all vi:duration-200 vi:hover:border-primary/40 vi:hover:-translate-y-1 vi:hover:shadow-xl vi:group"
+    class="vi:vi-card vi:rounded-lg vi:bg-base-100 vi:border vi:border-base-200 vi:transition-[translate] vi:duration-200 vi:hover:border-primary/40 vi:hover:-translate-y-1 vi:hover:shadow-xl vi:group"
   >
     <div class="vi:vi-card-body vi:p-5 vi:gap-4">
       <div class="vi:flex vi:items-start vi:justify-between vi:gap-3">

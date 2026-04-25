@@ -12,7 +12,7 @@ const props = defineProps<{
     <div
       v-for="variant in art?.variants"
       :key="variant.name"
-      class="vi:border vi:border-base-300 vi:rounded-md vi:p-4 vi:overflow-hidden"
+      class="vi:border vi:border-base-200 vi:rounded-lg vi:p-4 vi:overflow-hidden"
     >
       <header class="vi:mb-2">
         <div class="vi:flex vi:items-center vi:gap-2 vi:mb-1">

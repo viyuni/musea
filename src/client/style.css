@@ -214,7 +214,7 @@
 }
 
 #musea-app .md-body pre {
-  @apply vi:rounded-xl vi:p-3 vi:overflow-auto vi:border vi:border-base-200;
+  @apply vi:rounded-lg vi:p-3 vi:overflow-auto vi:border vi:border-base-200;
 }
 
 #musea-app .md-body .table-wrapper {
@@ -222,7 +222,7 @@
 }
 
 #musea-app .md-body table {
-  @apply vi:vi-table vi:min-w-200 vi:w-full vi:vi-rounded-box vi:border vi:border-base-content/5 vi:bg-base-100;
+  @apply vi:vi-table vi:min-w-200 vi:w-full vi:rounded-lg vi:border vi:border-base-content/5 vi:bg-base-100;
 }
 
 #musea-app .md-body table thead tr {

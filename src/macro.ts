@@ -11,13 +11,35 @@ type DefineComponent<P = {}, S = {}, E = {}, M = {}> = {
 
 declare module 'vue' {
   export interface GlobalComponents {
+    /**
+     * Art component
+     * @example
+     * <Art
+     *   title="My Art"
+     *   description="My Art description"
+     *   :components="['./Button.vue']"
+     * >
+     *   <Variant name="My Variant" description="My Variant description">
+     *     <!-- Component Example -->
+     *   </Variant>
+     * </Art>
+     */
     Art: DefineComponent<import('./types/index.ts').ArtProps, {}, {}>;
+
+    /**
+     * Variant component
+     * @example
+     * <Variant name="My Variant" description="My Variant description">
+     *   <!-- Component Example -->
+     * </Variant>
+     */
     Variant: DefineComponent<import('./types/index.ts').VariantProps, {}, {}>;
   }
 }
 
 declare module 'vite' {
   interface UserConfig {
+    /** Musea config */
     musea?: import('./types/index.ts').MuseaConfig;
   }
 }
@@ -25,7 +47,7 @@ declare module 'vite' {
 //@ts-ignore
 declare module 'vite-plus' {
   interface UserConfig {
-    musea?: import('./types/index.ts').MuseaConfig;
+    /** Musea config */ musea?: import('./types/index.ts').MuseaConfig;
   }
 }
 
