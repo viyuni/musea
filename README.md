@@ -139,6 +139,7 @@ export default defineConfig({
   patterns: ['src/**/*.art.vue'],
   ignore: ['**/node_modules/**', '**/dist/**'],
   setupFile: 'musea.setup.ts',
+  variantRenderMode: 'iframe'
   sourceMap: true,
   outDir: '.musea',
   port: 3000,
@@ -206,7 +207,7 @@ If you configure `musea` in `vite.config.*`, include `@viyuni/musea/macro` in th
 `<variant>` fields:
 
 - required: `name`
-- optional: `default`, `description`
+- optional: `description`
 
 ## Build Output
 
@@ -216,7 +217,7 @@ Expected output files:
 
 - `.musea/index.html`
 - `.musea/frame/variant/index.html`
-- `.musea/frame/component/index.html`
+- `.musea/frame/debug/index.html`
 - `.musea/assets/*`
 
 ## Local Development (Contributing)
@@ -250,7 +251,7 @@ To avoid expectation gaps, the sections below clarify what Musea supports today 
 - CLI workflow: `musea dev` / `musea build` / `musea preview`
 - API docs generation from component metadata (`vue-component-meta`)
 - Global setup via `musea.setup.*` (plugins, global components, directives, provide, etc.)
-- Fixed core routes and frame previews (`/`, `/frame/variant`, `/frame/component`)
+- Fixed core routes and frame previews (`/`, `/frame/variant`, `/frame/debug`)
 
 ### Planned Capabilities (Roadmap)
 

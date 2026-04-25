@@ -139,6 +139,7 @@ export default defineConfig({
   patterns: ['src/**/*.art.vue'],
   ignore: ['**/node_modules/**', '**/dist/**'],
   setupFile: 'musea.setup.ts',
+  variantRenderMode: 'iframe'
   sourceMap: true,
   outDir: '.musea',
   port: 3000,
@@ -206,7 +207,7 @@ TypeScript 提示：
 `<variant>` 字段：
 
 - 必填：`name`
-- 可选：`default`、`description`
+- 可选：`description`
 
 ## 构建产物
 
@@ -216,7 +217,7 @@ TypeScript 提示：
 
 - `.musea/index.html`
 - `.musea/frame/variant/index.html`
-- `.musea/frame/component/index.html`
+- `.musea/frame/debug/index.html`
 - `.musea/assets/*`
 
 ## 本地开发（贡献）
@@ -250,7 +251,7 @@ Musea 的产品方向与交互体验参考了：
 - CLI 工作流：`musea dev` / `musea build` / `musea preview`
 - 基于组件元信息生成 API 文档（`vue-component-meta`）
 - `musea.setup.*` 全局初始化扩展（插件、全局组件、指令、provide 等）
-- 固定核心路由与 frame 预览能力（`/`、`/frame/variant`、`/frame/component`）
+- 固定核心路由与 frame 预览能力（`/`、`/frame/variant`、`/frame/debug`）
 
 ### 计划能力（Roadmap）
 
